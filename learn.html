@@ -562,23 +562,101 @@ function wfTests(){const out=document.getElementById("wfTestOut");const code=doc
 function wfBuildCheck(){const x=document.getElementById("wfBuild").value.trim();document.getElementById("wfBuildOut").textContent=x.length<40?"Too short. Explain the rule, your implementation, one edge case, one failure, and why the fix works.":"Good. Now verify your explanation against the actual result and build a second example without copying the lesson.";}function deepDive(t){
  const tags=(t.tags||"").split(";").map(x=>x.trim()).filter(Boolean);
  const cat=(t.cat||"").toLowerCase();
- const title=(t.title||"").toLowerCase();
- const angle=cat.includes("javascript")
-   ? "What does the JavaScript engine/browser/runtime actually do? Separate syntax, values, bindings, execution, state, scheduling, memory and observable effects."
+ const title=t.title||"This topic";
+ const domain=cat.includes("javascript")?"JavaScript":cat.includes("mathematics")?"Mathematics":cat.includes("dsa")?"Data Structures & Algorithms":"Engineering";
+ const idiot=t.idiot||"Imagine the concept as a ridiculous machine. The joke is only the handle; the real rule is what we test and keep.";
+ const technical=cat.includes("javascript")
+   ? "JavaScript is a language with defined syntax and semantics, executed inside a particular runtime such as a browser or Node.js. A correct lesson must distinguish what the ECMAScript language specifies from what a host environment provides. When you study "+title+", track values, bindings, execution context, control flow, side effects, errors, scheduling and observable results rather than memorising a slogan."
    : cat.includes("mathematics")
-   ? "What are the definitions, assumptions, domain restrictions, transformations, identities, proof obligations and numerical limitations?"
+   ? "Mathematics is a system of definitions, assumptions, transformations and proofs. For "+title+", every symbol has a meaning, every operation has conditions, and every conclusion needs a reason. Numerical calculation is useful evidence, but it is not a proof by itself. Check domains, signs, units, boundary cases and whether a transformation is reversible."
    : cat.includes("dsa")
-   ? "What is the data model, invariant, operation sequence, correctness argument and asymptotic cost? Why does the algorithm work?"
-   : "What is the engineering contract, failure mode, measurement method, trade-off and maintainability consequence?";
- const level=(cat.includes("javascript")?"Language / Runtime":"")+(cat.includes("mathematics")?"Math / Proof":"")+(cat.includes("dsa")?"Algorithm / Data Structure":"")+(cat.includes("engineering")?"Engineering / Systems":"");
+   ? "An algorithm is not a magic recipe. For "+title+", identify the input model, the maintained state, the invariant, the operation performed at each step, the termination condition and the output contract. Then measure time and space costs. A solution is only trustworthy when you can explain why it is correct and where it fails."
+   : "Engineering turns requirements into systems that can be changed, tested, observed and operated. For "+title+", define the contract, identify failure modes, choose measurements, make trade-offs explicit and verify the result. Cleverness without evidence is just expensive confusion.";
+ const why=cat.includes("javascript")
+   ? "The purpose is to control computation and state without relying on accidental behaviour. Ask what problem "+title+" solves, what simpler mechanism existed before it, and what new failure modes it introduces."
+   : cat.includes("mathematics")
+   ? "The purpose is to give you a reusable way to reason. Ask which class of problems "+title+" compresses, which assumptions make the method valid, and how you would recognise a problem that does not fit."
+   : cat.includes("dsa")
+   ? "The purpose is to make a problem tractable. Ask what bottleneck "+title+" removes, which invariant makes the method work, and why a naive approach becomes too slow or memory-heavy."
+   : "The purpose is to make a system reliable and understandable. Ask which risk "+title+" addresses, how success is measured, and what trade-off the solution creates.";
+ const syntax=cat.includes("javascript")
+   ? "<pre>// Learn the grammar, not just the shape.
+"+esc(title)+" → identify the declaration/expression/statement form
+→ identify every keyword, operator, delimiter and operand
+→ identify evaluation order
+→ identify produced value and side effects
+→ identify possible exceptions and host dependencies</pre>"
+   : cat.includes("mathematics")
+   ? "<pre>SYMBOL / EXPRESSION
+      ↓
+DEFINE EVERY SYMBOL
+      ↓
+STATE DOMAIN + ASSUMPTIONS
+      ↓
+APPLY A VALID IDENTITY / RULE
+      ↓
+SIMPLIFY OR COMPUTE
+      ↓
+CHECK THE RESULT</pre>"
+   : cat.includes("dsa")
+   ? "<pre>INPUT
+  ↓
+DATA REPRESENTATION
+  ↓
+INVARIANT
+  ↓
+REPEATED OPERATION
+  ↓
+STATE CHANGE
+  ↓
+TERMINATION
+  ↓
+OUTPUT + COMPLEXITY</pre>"
+   : "<pre>REQUIREMENT
+  ↓
+CONTRACT
+  ↓
+DESIGN
+  ↓
+IMPLEMENTATION
+  ↓
+TEST
+  ↓
+MEASURE
+  ↓
+OBSERVE FAILURE
+  ↓
+REFACTOR</pre>";
+ const sub=tags.map((x,i)=>{
+   const n=i+1;
+   return "<article class='card deep-subskill'><h4>"+n+". "+esc(x)+"</h4>"+
+    "<p><b>Definition:</b> What does <b>"+esc(x)+"</b> mean in this topic? State it in plain language first, then in precise technical language. Do not hide behind the word itself. If you cannot define it without repeating the label, you do not own the concept yet.</p>"+
+    "<p><b>Purpose:</b> Why does <b>"+esc(x)+"</b> exist? Name the problem it solves. Then name one situation where using it would be unnecessary, misleading, or more complicated than the problem deserves.</p>"+
+    "<p><b>Mechanism:</b> Describe the actual sequence of operations. What is read first? What changes? What remains unchanged? What produces the next step? What finally becomes observable? Trace the smallest useful example by hand.</p>"+
+    "<p><b>Rules:</b> List the conditions that must remain true. Include ordering, scope, domain restrictions, mutation rules, invariants, termination conditions, or API contracts when relevant.</p>"+
+    "<p><b>Boundary:</b> Test zero, one, empty input, duplicate values, maximum/minimum values, invalid input and the exact transition where behaviour changes. Boundary cases are where memorised explanations usually explode.</p>"+
+    "<p><b>Evidence:</b> Decide what would prove your understanding wrong: an executable experiment, counterexample, calculation, proof, benchmark, assertion, or reproducible failure. Never accept 'it seems to work' as evidence.</p>"+
+    "<p><b>Connection:</b> Explain which earlier idea makes <b>"+esc(x)+"</b> understandable and which later idea becomes easier after mastering it.</p></article>";
+ }).join("");
+ const trace=cat.includes("mathematics")
+   ? "<p>For a calculation, write the given values, define symbols, state restrictions, choose the identity or theorem, substitute carefully, simplify one step at a time, then verify by substitution, estimation, an independent method, or a counterexample. For proofs, distinguish a definition from a theorem and a theorem from an empirical observation.</p>"
+   : cat.includes("dsa")
+   ? "<p>For an algorithm, write a tiny input and literally list every state change. Mark the invariant after every operation. Then show why the loop/recursion moves toward termination. Finally compare the result with a brute-force oracle on many small cases. This turns 'I think this algorithm works' into evidence.</p>"
+   : cat.includes("javascript")
+   ? "<p>For code, trace source text into parsed structure, then into evaluation and observable effects. Track bindings and values separately: a name is not the same thing as the value it currently refers to. Track mutation separately from reassignment. Track synchronous execution separately from queued asynchronous work. When an error occurs, record the exact error type, message, location and smallest input that reproduces it.</p>"
+   : "<p>For engineering, trace a real request from input to output. Record assumptions, state transitions, dependencies, failure points, logs, metrics and recovery behaviour. Then test the smallest useful case, normal cases, boundaries, malformed inputs and operational failures.</p>";
  return "<section class='deep-dive card'>"+
- "<h2>🧠 DEEP MODE — "+esc(t.title)+"</h2>"+
- "<div class='idiot'><h3>🤡 IDIOT RULE</h3><p>We are not learning a sentence. We are building a machine in your head. "+esc(t.idiot||"Make the idea absurd enough to remember, then precise enough to trust.")+"</p><p><b>Teacher rule:</b> I can make the explanation ridiculous. I cannot make the technical rule ridiculous.</p></div>"+
- "<div class='engineer'><h3>🧑‍💻 PROFESSIONAL QUESTION</h3><p>"+esc(angle)+"</p><p><b>Domain:</b> "+esc(level)+"</p></div>"+
- "<h3>🔤 SUB-SKILL DISSECTION</h3>"+
- tags.map((x,i)=>"<article class='card'><h4>"+(i+1)+". "+esc(x)+"</h4><p><b>What is it?</b> Define it without using its own name.</p><p><b>Why?</b> What problem does it solve, and what complexity does it introduce?</p><p><b>Mechanism:</b> What exact steps/rules produce the behavior?</p><p><b>Boundary:</b> When does the rule stop applying or require a special case?</p><p><b>Evidence:</b> What experiment, calculation, proof or test could prove your explanation wrong?</p><p><b>Connection:</b> Which earlier topic does this depend on, and which later topic depends on it?</p></article>").join("")+
- "<h3>⚙️ EXECUTION / DERIVATION TRACE</h3>"+
- "<div class='try'><p><b>Never teleport from input to answer.</b></p><pre>INPUT / ASSUMPTIONS
+ "<h2>🧠 DEEP MODE — "+esc(title)+"</h2>"+
+ "<p><b>Minimum teaching target:</b> this lesson is designed as a full-page treatment of <b>"+esc(title)+"</b>, not a definition card. Read it in order, perform the experiments, and do not mark mastery until you can reproduce the reasoning without the page.</p>"+
+ "<div class='idiot'><h3>🤡 1. IDIOT PICTURE</h3><p>"+esc(idiot)+"</p><p>Imagine a cartoon idiot trying to solve <b>"+esc(title)+"</b> with the wrong mental model. Your job is to catch the idiot. Then replace the joke with the exact rule. The humour makes the hook memorable; the technical explanation is the authority.</p></div>"+
+ "<div class='engineer'><h3>🧑‍💻 2. PRECISE TECHNICAL MEANING</h3><p>"+esc(technical)+"</p><p><b>Domain:</b> "+domain+". <b>Rule:</b> never confuse a convenient beginner model with the complete mechanism. The beginner model is allowed to be incomplete; it is not allowed to contradict the real rule.</p></div>"+
+ "<h3>❓ 3. WHY DOES THIS EXIST?</h3><p>"+esc(why)+"</p><p>Before learning syntax, identify the problem. Then ask three questions: <b>What was hard before this existed?</b> <b>What does this make easier?</b> <b>What new complexity does it introduce?</b> If you cannot answer all three, pause here. You are memorising a tool instead of understanding why the tool exists.</p>"+
+ "<h3>🔤 4. VOCABULARY — NO MYSTERY WORDS</h3><p>This lesson's coverage is: <b>"+esc(tags.join(", "))+"</b>. Each term is a separate skill. A semicolon between words does not magically fuse them into one concept. Learn what each term means, how it behaves, how it interacts with the other terms, and what failure looks like.</p>"+
+ "<h3>✍️ 5. SYNTAX / FORMAL STRUCTURE</h3>"+syntax+
+ "<p>Read syntax from left to right. For every token ask: is it a keyword, identifier, literal, operator, delimiter, type of value, function call, grouping marker, separator, or piece of data? Then ask what the parser can recognise and what the runtime/calculation/algorithm does with that structure. Syntax answers <i>how it is written</i>; semantics answers <i>what it means</i>. Confusing those two creates the classic beginner monster: 'my syntax looks right, therefore my program must be right.' No. A syntactically valid disaster is still a disaster.</p>"+
+ "<h3>🧩 6. SUB-SKILL DISSECTION</h3>"+sub+
+ "<h3>⚙️ 7. WHAT ACTUALLY HAPPENS?</h3>"+trace+
+ "<div class='try'><pre>INPUT / ASSUMPTIONS
       ↓
 PARSE / DEFINE
       ↓
@@ -586,17 +664,25 @@ RULES / INVARIANTS
       ↓
 INTERMEDIATE STATE
       ↓
-NEXT RULE / OPERATION
+NEXT OPERATION
       ↓
 RESULT
       ↓
-VALIDATE AGAINST THE SPECIFICATION</pre><p>For programming, trace values, bindings, calls, state, queues and side effects. For mathematics, trace definitions, transformations and assumptions. For DSA, trace the data structure plus the invariant. For engineering, trace the request/state/failure path.</p></div>"+
- "<h3>💀 PROFESSIONAL TRAP HUNT</h3>"+
- "<div class='trap'><ul><li>What is the smallest valid input?</li><li>What happens for empty input?</li><li>What happens exactly at a boundary?</li><li>What happens with duplicate or adversarial data?</li><li>What happens when the input becomes huge?</li><li>What happens when an assumption is false?</li><li>What error/wrong result appears?</li><li>Can the failure be reproduced deterministically?</li></ul></div>"+
- "<h3>📐 CORRECTNESS IS NOT OPTIONAL</h3><p>Write the rule/invariant that must remain true. Then explain why every operation preserves it. If this is mathematics, state the assumptions and prove the transformation. If this is DSA, prove the invariant and termination. If this is JavaScript, distinguish language guarantees from browser/runtime behavior.</p>"+
- "<h3>⏱️ COST MODEL</h3><p>Ask what the solution costs in time, space, allocations, I/O, network latency, event-loop blocking, numerical error or human complexity. A solution that works once is not automatically a good solution.</p>"+
- "<h3>🔗 KNOWLEDGE GRAPH</h3><p><b>Prerequisite → "+esc(t.title)+" → dependent concepts.</b> Do not memorize isolated cards. Explain why the previous concept is needed and predict which later concepts become easier because this one is mastered.</p>"+
- "<h3>🧪 MASTER IT BY FOUR LEVELS</h3><ol><li><b>Idiot:</b> explain the stupid picture.</li><li><b>Competent:</b> solve a normal problem.</li><li><b>Advanced:</b> handle edge cases, failures, interactions and cost.</li><li><b>Wizard:</b> derive the rule, build from a blank page, prove/test it, deliberately break it, repair it, and teach it.</li></ol>"+
+VALIDATE
+      ↓
+EXPLAIN WITHOUT NOTES</pre></div>"+
+ "<h3>🔮 8. PREDICT BEFORE YOU RUN</h3><p>Stop before executing anything. Write down the expected result and why. For code, predict output, state changes, thrown errors and asynchronous ordering. For mathematics, estimate the sign and approximate size before calculating. For DSA, predict the data structure after each major operation. For engineering, predict the request path and likely failure points. Prediction exposes misunderstanding faster than passive reading because your brain must commit to a model.</p>"+
+ "<h3>▶️ 9. RUN / CALCULATE / TRACE</h3><p>Now perform the smallest real experiment. Use the practical lab where available. Change exactly one thing at a time. Record the actual result. If actual and predicted differ, that mismatch is not embarrassment; it is a free X-ray of your mental model.</p>"+
+ "<h3>💥 10. BREAK IT ON PURPOSE</h3><div class='trap'><ul><li>Use the smallest valid input.</li><li>Try empty input.</li><li>Try one element.</li><li>Try duplicate values.</li><li>Try the smallest and largest relevant values.</li><li>Try malformed or invalid input.</li><li>Break one assumption at a time.</li><li>Make the workload large enough to expose cost.</li><li>Record the exact wrong answer or error instead of saying 'it broke'.</li></ul></div>"+
+ "<h3>🐛 11. DEBUG LIKE A DETECTIVE</h3><p>Debugging is not random editing. Reproduce the failure. Reduce it to the smallest failing case. Read the exact error or compare expected versus actual. Identify the first incorrect state, not merely the final symptom. Form one hypothesis. Change one thing. Re-run the same test. Keep the change if the evidence supports it; revert it if it does not. Repeat until the root cause is explained. Then add a regression test so the same bug has somewhere to die permanently.</p>"+
+ "<h3>🧪 12. EDGE CASES AND ADVERSARIES</h3><p>A professional lesson includes cases that attack its assumptions. Ask what happens with zero, negative values, empty collections, duplicates, maximum sizes, invalid states, unexpected ordering, repeated calls, precision limits, timeouts, partial failures, and hostile inputs when security matters. Explain not only the answer but why the answer follows from the rules.</p>"+
+ "<h3>📐 13. CORRECTNESS</h3><p>Write a sentence beginning <b>'This is correct when...'</b> and finish it with the actual conditions. Then state the invariant, proof idea, specification, or language guarantee that supports the claim. A test suite can provide evidence that an implementation works on tested cases; it does not automatically prove that every possible input is correct. Know the difference between evidence and proof.</p>"+
+ "<h3>⏱️ 14. COST MODEL</h3><p>Measure the relevant cost: time, space, allocations, recursion depth, I/O, network latency, event-loop blocking, numerical error, compilation/build cost, or human maintenance cost. For DSA, state asymptotic complexity and what operation dominates. For mathematics, consider numerical stability and approximation error. For JavaScript, consider allocations, garbage collection, scheduling and host APIs where relevant. For engineering, include operational and maintenance cost.</p>"+
+ "<h3>🔗 15. CONNECTIONS</h3><p><b>Prerequisites:</b> "+esc(tags.slice(0,Math.max(1,Math.min(3,tags.length))).join(", "))+". <b>Current concept:</b> "+esc(title)+". <b>Next step:</b> combine it with the other covered skills to solve a larger problem. Mastery means you can explain those connections, not merely recognise each word on a checklist.</p>"+
+ "<h3>📈 16. FOUR LEVELS OF MASTERY</h3><ol><li><b>Idiot:</b> explain the ridiculous picture and the one-sentence rule.</li><li><b>Competent:</b> use the concept correctly on a normal problem and explain every important step.</li><li><b>Advanced:</b> handle edge cases, interactions, failures, trade-offs and complexity.</li><li><b>Wizard:</b> derive or justify the rule, build the solution from a blank page, deliberately break it, debug it, test it, measure it, and teach it to another person without copying the lesson.</li></ol>"+
+ "<h3>🏗️ 17. BUILD WITHOUT A TUTORIAL</h3><p>Create a small artifact that forces the concept to exist in your hands. Do not copy a finished solution. First write the requirements. Then write examples. Then write the smallest implementation. Then test normal cases and adversarial cases. Then refactor. Finally explain why your design is correct and what its limits are. If you cannot build a tiny version, you probably recognise the concept rather than understand it.</p>"+
+ "<h3>🧠 18. FIVE WHYS</h3><ol><li>Why does <b>"+esc(title)+"</b> behave this way?</li><li>Why is that rule necessary?</li><li>Why does the underlying mechanism need that rule?</li><li>Why would a simpler alternative fail or be insufficient?</li><li>Why does this matter when building real software, solving problems, or reasoning about systems?</li></ol>"+
+ "<h3>👑 19. FINAL IDIOT BOSS</h3><p>Close the lesson. Without looking back, define <b>"+esc(title)+"</b>. Explain every coverage term. Write the relevant syntax or mathematical form. Trace a small example. Predict its result before running it. Break one assumption. Diagnose the failure. Fix it. State the edge cases. State correctness conditions. State cost. Then explain how this topic connects to at least two other topics in the curriculum. If you can do all of that from memory, you are no longer just reading about "+esc(title)+" — you are using it.</p>"+
  "</section>";
 }
 function renderLesson(){
