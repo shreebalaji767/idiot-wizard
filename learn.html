@@ -209,11 +209,16 @@ const groups={
 ["Capstones","requirements;design;implementation;tests;benchmark;explain;refactor","A capstone integrates design, implementation, tests, measurement and explanation.","The final boss is finishing something that survives reality.","Build a calculator, parser, graph tool and offline app from specifications.","Calling it finished because it opens."]
 ]};
 const topics=[];for(const [cat,arr] of Object.entries(groups))for(const x of arr)topics.push({cat,title:x[0],tags:x[1],core:x[2],idiot:x[3],doit:x[4],trap:x[5]});
+const qEl=document.getElementById("q");
+const catEl=document.getElementById("cat");
+const statsEl=document.getElementById("stats");
+const listEl=document.getElementById("list");
+const mainEl=document.getElementById("main");
 let idx=0,done=JSON.parse(localStorage.getItem("iw_lesson_done")||"{}");
-const cats=["ALL",...Object.keys(groups)];cat.innerHTML=cats.map(x=>"<option>"+x+"</option>").join("");
+const cats=["ALL",...Object.keys(groups)];catEl.innerHTML=cats.map(x=>"<option>"+x+"</option>").join("");
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function visible(){let qv=q.value.toLowerCase(),cv=cat.value;return topics.filter(t=>(cv==="ALL"||t.cat===cv)&&(!qv||(t.cat+" "+t.title+" "+t.tags).toLowerCase().includes(qv)))}
-function renderList(){let v=visible();stats.textContent=topics.length+" lessons • "+Object.keys(done).length+" completed";list.innerHTML=v.map(t=>{let i=topics.indexOf(t);return "<button class='"+(i===idx?"sel":"")+"' onclick='openTopic("+i+")'>"+(done[i]?"✓ ":"")+esc(t.title)+" <small>("+esc(t.cat)+")</small></button>"}).join("")}
+function visible(){let qv=qEl.value.toLowerCase(),cv=catEl.value;return topics.filter(t=>(cv==="ALL"||t.cat===cv)&&(!qv||(t.cat+" "+t.title+" "+t.tags).toLowerCase().includes(qv)))}
+function renderList(){let v=visible();statsEl.textContent=topics.length+" lessons • "+Object.keys(done).length+" completed";listEl.innerHTML=v.map(t=>{let i=topics.indexOf(t);return "<button class='"+(i===idx?"sel":"")+"' onclick='openTopic("+i+")'>"+(done[i]?"✓ ":"")+esc(t.title)+" <small>("+esc(t.cat)+")</small></button>"}).join("")}
 function openTopic(i){idx=i;render();scrollTo({top:0,behavior:"smooth"})}
 const TEACH={
 "Foundations":["A program is a recipe for a machine that has zero common sense.","Start with values: data the machine can hold. An expression is a question that produces a value. A statement is an instruction that changes what happens. Syntax is the grammar; semantics are the meaning.","Then learn state: a program remembers information, changes it, and makes decisions. Algorithms are the plans; programs are those plans written in an executable language.","Advanced thinking means separating syntax, semantics, runtime behavior, side effects, invariants and failure modes. Never memorize a rule without asking what the engine actually does."],
@@ -742,8 +747,8 @@ function prev(){
   render();
   scrollTo({top:0,behavior:"smooth"});
 }
-q.addEventListener("input",renderList);
-cat.addEventListener("change",renderList);
+qEl.addEventListener("input",renderList);
+catEl.addEventListener("change",renderList);
 render();
 
 function renderLesson(){
