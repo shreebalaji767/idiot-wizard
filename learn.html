@@ -249,11 +249,142 @@ function teachFor(t){
 }
 function theory(t){
   const title=esc(t.title||"This Topic");
-  const raw=(t.tags||"").split(";").map(x=>x.trim()).filter(Boolean);
-  const glossary=raw.map((p,i)=>"<article class='theory-card'><h4>"+(i+1)+". "+esc(p)+"</h4><p><b>IDIOT BRAIN:</b> "+idiot(p)+"</p><p><b>REAL BRAIN:</b> "+precise(p)+"</p><p><b>WHY IT EXISTS:</b> "+purpose(p)+"</p><p><b>MENTAL MODEL:</b> "+model(p)+"</p><p><b>COMMON TRAP:</b> "+trap(p)+"</p></article>").join("");
-  return "<section class='full-theory'><h2>🤡 COMPLETE THEORY: "+title+"</h2><p>This is not a snippet collection. This is the actual lesson. Read the idea, learn the vocabulary, understand the syntax, predict behavior, inspect failures, and only then touch the practical lab.</p><div class='idiot'><h3>🧠 IDIOT → IDIOT FIRST</h3><p>"+chaos(t)+"</p></div><h3>📖 WHAT THIS TOPIC ACTUALLY IS</h3><p>"+definition(t)+"</p><h3>🧱 THEORY MAP — NOTHING SKIPPED</h3>"+glossary+"<h3>✍️ SYNTAX MAP</h3><div class='syntax-box'><p><b>GENERAL FORM:</b> Learn the grammar shape before memorising examples. Identify keywords, names, operators, delimiters, optional pieces, required pieces, and evaluation order.</p><p><b>READING RULE:</b> Never memorise punctuation like a parrot. Say what every token means and what the engine does with it.</p><p><b>ERROR RULE:</b> Wrong syntax is not failure. It is the engine saying, “Your sentence is grammatically cursed.” Read the exact error and repair the grammar.</p></div><h3>🔬 FROM ZERO → ADVANCED</h3><ol><li>Vocabulary: define every word.</li><li>Grammar: recognise the syntax shape.</li><li>Semantics: explain what the syntax means.</li><li>Execution: predict what happens step by step.</li><li>Edge cases: learn where intuition breaks.</li><li>Failure: deliberately identify common mistakes.</li><li>Design: know when this tool should and should not be used.</li><li>Advanced: connect it to runtime behavior, memory, performance, security and other topics.</li></ol><h3>🎯 MASTER IT WITHOUT COPYING</h3><p>Close the examples. Explain the topic aloud from memory: what it is, why it exists, its syntax shape, its rules, its edge cases, its common errors, and one situation where you would deliberately choose a different technique. Then verify your explanation in the practical lab.</p><div class='engineer'><h3>🧑‍💻 ENGINEER CHECKLIST</h3><ul><li>Can you define it precisely?</li><li>Can you recognise valid and invalid syntax?</li><li>Can you predict evaluation/execution?</li><li>Can you explain an error instead of merely fixing it?</li><li>Can you handle boundary cases?</li><li>Can you explain trade-offs?</li><li>Can you connect it to a larger program?</li></ul></div></section>";
-}
-function idiot(p){return "Imagine "+esc(p)+" is a tiny goblin demanding one job. You give it the wrong thing, it throws a chair. You give it the right thing, it does the job. That is the core idea: learn the rule, then learn exactly where the rule stops working.";}
+  const tags=(t.tags||"").split(";").map(x=>x.trim()).filter(Boolean);
+  const tagCards=tags.map((p,i)=>`
+    <article class="theory-card">
+      <h4>${i+1}. ${esc(p)}</h4>
+      <div class="idiot"><b>🤡 IDIOT BRAIN:</b><p>${idiot(p)}</p></div>
+      <p><b>📐 PRECISE IDEA:</b> ${precise(p)}</p>
+      <p><b>❓ WHY IT EXISTS:</b> ${purpose(p)}</p>
+      <p><b>🧠 MENTAL MODEL:</b> ${model(p)}</p>
+      <p><b>⚙️ HOW TO REASON ABOUT IT:</b> Start with the inputs and assumptions, identify the rule that transforms them, predict the observable result, then check boundary cases and failure modes.</p>
+      <p><b>💀 COMMON TRAP:</b> ${trap(p)}</p>
+      <div class="engineer"><b>🧑‍💻 ENGINEER STANDARD:</b> You are not finished when you can reproduce an example. You are finished when you can define ${esc(p)}, explain why its rule works, predict a new case, diagnose a failure, and explain its trade-offs.</div>
+    </article>`).join("");
+
+  return `
+  <section class="full-theory">
+    <h2>🤡 COMPLETE THEORY: ${title}</h2>
+    <p><b>This page is the theory layer.</b> No “copy this snippet and pray.” Every curriculum topic is treated as a real subject: vocabulary → purpose → syntax/grammar → semantics → execution → edge cases → errors → trade-offs → practice → mastery.</p>
+
+    <div class="idiot">
+      <h3>🧠 IDIOT → IDIOT EXPLANATION</h3>
+      <p>${chaos(t)}</p>
+      <p><b>Human translation:</b> ${esc(t.core||"Learn the rules of the topic and how they behave in real programs.")}</p>
+    </div>
+
+    <h3>1. WHAT THIS TOPIC REALLY IS</h3>
+    <p>${definition(t)}</p>
+    <p><b>Topic boundary:</b> The named subtopics below are not decorative labels. Each one is a concept you should be able to define, use, test, break, debug, and connect to the rest of the curriculum.</p>
+
+    <h3>2. WHY THIS TOPIC EXISTS</h3>
+    <p>${purpose(title)}</p>
+    <p>Good programming education always answers two questions: <b>“What does this mechanism do?”</b> and <b>“Why would anyone design a language, algorithm, data structure, or mathematical system this way?”</b> Learn both.</p>
+
+    <h3>3. VOCABULARY — NO MYSTERY WORDS</h3>
+    ${tagCards}
+
+    <h3>4. SYNTAX / GRAMMAR</h3>
+    <div class="syntax-box">
+      <p><b>GENERAL RULE:</b> Before writing code, identify keywords, identifiers, literals, operators, delimiters, required parts, optional parts, and the order in which the language expects them.</p>
+      <p><b>TOKEN TEST:</b> For every piece of syntax, ask: “What is this token? What can legally appear here? What does it bind to? What value or operation does it represent?”</p>
+      <p><b>GROUPING TEST:</b> Add parentheses mentally when precedence or nesting could change meaning. Never rely on visual guessing for complicated expressions.</p>
+      <p><b>INVALID SYNTAX:</b> A syntax error means the source cannot be parsed according to the grammar. Read the reported location, then inspect the surrounding construct rather than blindly changing random characters.</p>
+    </div>
+
+    <h3>5. SEMANTICS — WHAT THE RULE ACTUALLY MEANS</h3>
+    <p>Syntax is the sentence shape. Semantics is the meaning. Two pieces of code can look similar while producing different values, changing different state, allocating different objects, or following different control-flow paths.</p>
+    <ol>
+      <li>Identify the values or states entering the construct.</li>
+      <li>Apply the language/algorithm/math rule exactly.</li>
+      <li>Track every transformation or state change.</li>
+      <li>Record the resulting value, side effect, or invariant.</li>
+      <li>Repeat until execution reaches an observable result.</li>
+    </ol>
+
+    <h3>6. EXECUTION / MECHANISM</h3>
+    <div class="engineer">
+      <p><b>Professional rule:</b> Never explain behavior with “JavaScript just does that.” Replace it with a mechanism: parsing, evaluation, binding lookup, conversion, property lookup, queue scheduling, algorithm invariant, mathematical identity, memory operation, or API contract.</p>
+      <p>When a result surprises you, reconstruct the sequence instead of guessing. The practical lab exists specifically so you can test that prediction against real execution.</p>
+    </div>
+
+    <h3>7. EDGE CASES — WHERE THE MONSTERS LIVE</h3>
+    <ul>
+      <li>Empty input</li><li>Minimum and maximum meaningful values</li><li>Duplicate values</li><li>Unexpected types or representations</li>
+      <li>Boundary indexes</li><li>Large inputs</li><li>Invalid input</li><li>Repeated operations</li>
+      <li>Failure halfway through an operation</li><li>Interaction with another mechanism</li>
+    </ul>
+    <p>For each edge case, predict the result <i>before</i> running it. Prediction is part of learning; execution is the verification.</p>
+
+    <h3>8. ERRORS AND DEBUGGING</h3>
+    <div class="trap">
+      <p><b>Syntax error:</b> the grammar cannot be parsed.</p>
+      <p><b>Runtime error:</b> execution reaches an operation that cannot complete.</p>
+      <p><b>Logic error:</b> the program runs but violates the intended rule.</p>
+      <p><b>Wrong answer:</b> the algorithm executes but computes the wrong result.</p>
+      <p><b>Performance problem:</b> the result may be correct but the work or memory grows too much.</p>
+      <p><b>Conceptual error:</b> the implementation follows a false mental model. This is the most important one to repair because it causes repeated bugs.</p>
+    </div>
+    <p>Debugging sequence: <b>observe → reproduce → isolate → form a hypothesis → test the hypothesis → fix the smallest cause → rerun → add a regression test → explain why the fix works.</b></p>
+
+    <h3>9. FROM ZERO → ADVANCED → ENGINEER</h3>
+    <ol>
+      <li><b>Zero:</b> recognise the vocabulary and purpose.</li>
+      <li><b>Beginner:</b> use the basic syntax correctly.</li>
+      <li><b>Intermediate:</b> predict behavior and handle common edge cases.</li>
+      <li><b>Advanced:</b> understand implementation/runtime/algorithmic consequences.</li>
+      <li><b>Expert:</b> reason about invariants, trade-offs, failure modes, performance, security, maintainability, and interactions with other mechanisms.</li>
+    </ol>
+
+    <h3>10. PRACTICAL MASTERY LOOP</h3>
+    <pre>LEARN
+↓
+EXPLAIN IT LIKE AN IDIOT
+↓
+EXPLAIN IT PRECISELY
+↓
+PREDICT
+↓
+RUN
+↓
+BREAK IT
+↓
+READ THE REAL ERROR / RESULT
+↓
+DEBUG
+↓
+FIX
+↓
+TEST BOUNDARIES
+↓
+SOLVE A NEW PROBLEM
+↓
+EXPLAIN WHY YOUR SOLUTION WORKS
+↓
+BUILD SOMETHING</pre>
+
+    <h3>11. CONNECTIONS TO THE REST OF THE CURRICULUM</h3>
+    <p>No topic lives alone. Ask: Which earlier concept supplies its vocabulary? Which data structure or mathematical idea does it depend on? What runtime behavior can change its cost? What security or correctness assumption can invalidate it? What later topic becomes easier once this one is understood?</p>
+
+    <h3>12. MASTERY QUESTIONS</h3>
+    <ol>
+      <li>Define the topic without using the topic's name as the definition.</li>
+      <li>Explain every subtopic listed on this page.</li>
+      <li>State the normal rule and at least one exception or boundary.</li>
+      <li>Predict a new example before executing it.</li>
+      <li>Diagnose a deliberately broken example.</li>
+      <li>Explain the performance or mathematical cost where relevant.</li>
+      <li>Explain when you would choose a different mechanism.</li>
+      <li>Teach the entire idea to another idiot without copying the page.</li>
+    </ol>
+
+    <div class="try">
+      <h3>🏆 FINAL BOSS</h3>
+      <p>${esc(t.doit||"Build a small real problem using this topic, then deliberately break it and repair it.")}</p>
+      <p><b>Required evidence:</b> working result + boundary tests + one broken case + diagnosis + corrected version + explanation of the rule behind the correction.</p>
+    </div>
+  </section>`;
+}function idiot(p){return "Imagine "+esc(p)+" is a tiny goblin demanding one job. You give it the wrong thing, it throws a chair. You give it the right thing, it does the job. That is the core idea: learn the rule, then learn exactly where the rule stops working.";}
 function precise(p){return "Treat "+esc(p)+" as a defined technical mechanism, not a magic word. Learn its inputs, outputs, state changes, constraints, evaluation rules, interactions with surrounding code, and observable failure modes.";}
 function purpose(p){return "It exists because programs need a precise way to represent, transform, control, communicate, store, or reason about information. The useful question is not only “what is it?” but “what problem does it solve?”";}
 function model(p){return "Picture "+esc(p)+" as a machine with an input side, rules in the middle, and observable output on the other side. When something goes wrong, inspect which side violated the contract.";}
