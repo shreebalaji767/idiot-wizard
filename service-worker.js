@@ -1,4 +1,4 @@
-const CACHE="iw-v4";
+const CACHE="iw-v5";
 const ASSETS=["./","./index.html","./learn.html","./practical.html","./manifest.json","./service-worker.js"];
 
 self.addEventListener("install",event=>{
