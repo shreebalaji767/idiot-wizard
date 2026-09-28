@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IDIOT → WIZARD — Deep Learning</title>
+<style>
+:root{--bg:#070b14;--panel:#101a2c;--panel2:#0b1323;--line:#2b3a58;--text:#eef3ff;--muted:#aab6cd;--purple:#8b5cf6;--green:#22c55e;--red:#ef4444;--blue:#38bdf8;--gold:#f59e0b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#21153a,#070b14 58%);color:var(--text);font:15px/1.75 system-ui,sans-serif}
+header{position:sticky;top:0;z-index:10;background:rgba(7,11,20,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:14px 20px}
+.brand{font-weight:1000;font-size:24px}.brand b{color:#a78bfa}.sub{color:var(--muted)}
+.wrap{display:grid;grid-template-columns:310px 1fr;min-height:calc(100vh - 74px)}
+aside{border-right:1px solid var(--line);padding:16px;position:sticky;top:74px;height:calc(100vh - 74px);overflow:auto;background:#080e19}
+input,select,textarea{width:100%;background:#070c16;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;margin:5px 0}
+button{cursor:pointer;color:var(--text);background:#17243c;border:1px solid var(--line);border-radius:9px;padding:9px 12px}.primary{background:var(--purple);border-color:var(--purple)}
+.topic{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #18253d;border-radius:0;background:transparent;color:var(--muted);padding:9px}.topic:hover,.topic.active{background:#21183b;color:white}
+main{max-width:1100px;width:100%;margin:auto;padding:28px}
+.hero,.card{background:rgba(16,26,44,.95);border:1px solid var(--line);border-radius:17px;padding:22px;margin-bottom:18px}
+h1{font-size:clamp(34px,5vw,58px);line-height:1.03;margin:.15em 0}h2{margin-top:1.5em}h3{margin-top:1.3em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.box{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:15px}
+.idiot{border-left:5px solid var(--purple);background:#17112b;padding:15px;border-radius:10px}.precise{border-left:5px solid var(--blue);background:#0d2030;padding:15px;border-radius:10px}.danger{border-left:5px solid var(--red);background:#281216;padding:15px;border-radius:10px}.practice{border-left:5px solid var(--green);background:#0c2118;padding:15px;border-radius:10px}.boss{border-left:5px solid var(--gold);background:#251b08;padding:15px;border-radius:10px}
+pre{background:#050810;border:1px solid var(--line);padding:15px;border-radius:10px;overflow:auto}.code{font-family:ui-monospace,monospace}
+.step{counter-increment:step}.step:before{content:counter(step);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--purple);margin-right:8px;font-weight:900}
+.lesson{counter-reset:step}.check{display:flex;gap:8px;align-items:flex-start;margin:8px 0}.check input{width:auto;margin-top:6px}
+.bar{height:9px;background:#25324c;border-radius:10px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--green))}
+.small{font-size:13px;color:var(--muted)}a{color:#c4b5fd}
+@media(max-width:850px){.wrap{display:block}aside{position:relative;top:0;height:auto;max-height:360px}main{padding:14px}}
+</style>
+</head>
+<body>
+<header><div class="brand">IDIOT <b>→</b> WIZARD <span class="sub">/ DEEP LEARNING MODE</span></div><div class="sub">No “trust me bro”. Learn the rule, mechanism, failure, edge cases and engineering trade-offs.</div></header>
+<div class="wrap">
+<aside>
+<input id="search" placeholder="Search the entire curriculum...">
+<select id="cat"><option>All</option><option>JavaScript</option><option>Mathematics</option><option>DSA</option></select>
+<div id="count" class="small"></div><div id="topics"></div>
+<hr><a href="learn.html">← Regular curriculum</a><br><a href="practical.html">← Practical lab</a>
+</aside>
+<main id="main"></main>
+</div>
+<script>
+const curriculum = [
+["JavaScript","Foundations","values, expressions, statements, syntax, semantics, comments, strict mode"],
+["JavaScript","Variables","let, const, var, declaration, initialization, assignment, scope, TDZ, hoisting, shadowing"],
+["JavaScript","Types","undefined, null, boolean, number, bigint, string, symbol, object, primitive values"],
+["JavaScript","Coercion and equality","ToPrimitive, ToNumber, ToString, truthy, falsy, ==, ===, Object.is, NaN, -0"],
+["JavaScript","Operators","arithmetic, comparison, logical, assignment, bitwise, ternary, nullish, optional chaining, precedence"],
+["JavaScript","Control flow","if, switch, loops, for-of, for-in, break, continue, labels, termination"],
+["JavaScript","Functions","declaration, expression, parameters, return, defaults, rest, arrow functions, callbacks"],
+["JavaScript","Higher-order functions","callbacks, map, filter, reduce, find, some, every, composition, pure functions"],
+["JavaScript","Scope","global, module, function, block, lexical scope, scope chain, shadowing"],
+["JavaScript","Hoisting and TDZ","creation phase, var, let, const, function declarations, temporal dead zone"],
+["JavaScript","Closures","lexical environments, captured bindings, factories, private state, lifetime"],
+["JavaScript","this","method calls, plain calls, new, call, apply, bind, arrows, classes"],
+["JavaScript","Objects","properties, keys, values, descriptors, identity, references, getters, setters"],
+["JavaScript","Destructuring and spread","array patterns, object patterns, defaults, rest, spread, shallow copies"],
+["JavaScript","Arrays","indexing, mutation, traversal, slice, splice, sort, map, filter, reduce, searching"],
+["JavaScript","Strings and Unicode","UTF-16, code units, code points, graphemes, normalization, iteration"],
+["JavaScript","Numbers","IEEE-754, precision, NaN, Infinity, safe integers, rounding"],
+["JavaScript","BigInt","arbitrary-size integers, conversions, arithmetic, modular arithmetic"],
+["JavaScript","Math","rounding, powers, roots, logs, random, min, max, trigonometry"],
+["JavaScript","Regular expressions","patterns, flags, groups, captures, lookaround, replacement, backtracking"],
+["JavaScript","Map and Set","Map, Set, WeakMap, WeakSet, identity, lookup, uniqueness"],
+["JavaScript","Prototypes","prototype chain, lookup, Object.create, constructor.prototype, shadowing"],
+["JavaScript","Classes","constructor, fields, methods, static, private fields, extends, super"],
+["JavaScript","Iterators and generators","iterable protocol, iterator protocol, Symbol.iterator, yield, delegation"],
+["JavaScript","Symbols","unique symbols, registry, well-known symbols, protocol hooks"],
+["JavaScript","Errors","Error types, throw, try, catch, finally, propagation, custom errors"],
+["JavaScript","Promises","states, settlement, chaining, rejection, all, allSettled, race, any"],
+["JavaScript","async and await","async functions, await, concurrency, sequential work, cancellation"],
+["JavaScript","Event loop","call stack, tasks, microtasks, timers, rendering, scheduling"],
+["JavaScript","Modules","ES modules, named/default exports, imports, dynamic import, dependency graphs"],
+["JavaScript","DOM","nodes, selectors, attributes, creation, removal, text, DOM tree"],
+["JavaScript","Events","capture, target, bubble, delegation, target, currentTarget, custom events"],
+["JavaScript","Forms","controls, FormData, validation, submit, serialization, user input"],
+["JavaScript","Fetch and HTTP","requests, responses, methods, headers, status, JSON, CORS, aborting"],
+["JavaScript","Storage","localStorage, sessionStorage, serialization, quota, persistence"],
+["JavaScript","IndexedDB","databases, object stores, keys, indexes, transactions, cursors"],
+["JavaScript","Web Workers","worker lifecycle, messages, isolation, structured clone, transferables"],
+["JavaScript","Service workers and PWA","install, activate, fetch, Cache API, offline strategies, updates"],
+["JavaScript","Streams","ReadableStream, WritableStream, TransformStream, chunks, backpressure"],
+["JavaScript","Web Crypto","secure randomness, digest, keys, SubtleCrypto, trust boundaries"],
+["JavaScript","WebSocket and WebRTC","persistent messaging, signaling, peer connections, data channels"],
+["JavaScript","Intl","NumberFormat, DateTimeFormat, Collator, PluralRules, locales"],
+["JavaScript","Memory and garbage collection","reachability, references, GC, leaks, listeners, profiling"],
+["JavaScript","Proxy and Reflect","traps, invariants, reflection, metaprogramming"],
+["JavaScript","Typed arrays","ArrayBuffer, Uint8Array, DataView, bytes, endianness"],
+["JavaScript","Atomics and SharedArrayBuffer","shared memory, races, Atomics, synchronization"],
+["JavaScript","Node.js","process, fs, path, streams, events, HTTP, environment"],
+["JavaScript","npm and tooling","package.json, semver, dependencies, scripts, bundlers, linting"],
+["JavaScript","Testing","assertions, unit, integration, fixtures, mocks, property testing"],
+["JavaScript","Performance","measurement, profiling, allocation, DOM cost, debounce, throttle"],
+["JavaScript","Security","XSS, injection, CSP, CORS, secrets, dependencies, trust boundaries"],
+["Mathematics","Arithmetic foundations","integers, negatives, fractions, decimals, order of operations"],
+["Mathematics","Factors and divisibility","factors, multiples, primes, divisibility, GCD, LCM"],
+["Mathematics","Ratios and proportions","ratios, rates, proportions, scaling, unit reasoning"],
+["Mathematics","Percentages","percentage change, discounts, growth, compound change"],
+["Mathematics","Algebra","variables, expressions, equations, inequalities, manipulation"],
+["Mathematics","Functions","domain, range, mapping, composition, inverse functions"],
+["Mathematics","Graphs and coordinates","coordinate plane, lines, slopes, distance, intersections"],
+["Mathematics","Sequences and series","arithmetic, geometric, recurrence, sums, growth"],
+["Mathematics","Exponents and logarithms","laws of exponents, roots, logs, change of base"],
+["Mathematics","Logic","propositions, predicates, truth tables, implication, equivalence"],
+["Mathematics","Sets","membership, union, intersection, difference, Cartesian product"],
+["Mathematics","Relations","reflexive, symmetric, transitive, equivalence relations"],
+["Mathematics","Proof techniques","direct proof, contradiction, contrapositive, induction"],
+["Mathematics","Counting","sum rule, product rule, permutations, combinations, pigeonhole"],
+["Mathematics","Recurrence relations","recursive definitions, expansion, recurrence solving"],
+["Mathematics","Number theory","prime factorization, modular arithmetic, congruences"],
+["Mathematics","Euclidean algorithms","GCD, extended GCD, Bezout coefficients"],
+["Mathematics","Modular inverses","inverse conditions, extended Euclid, modular division"],
+["Mathematics","Cryptographic mathematics","modular powers, Fermat, Euler, finite arithmetic"],
+["Mathematics","Probability foundations","sample spaces, events, counting probability"],
+["Mathematics","Conditional probability","conditional events, independence, Bayes theorem"],
+["Mathematics","Expected value and variance","random variables, expectation, variance, linearity"],
+["Mathematics","Distributions","Bernoulli, binomial, geometric, Poisson, normal concepts"],
+["Mathematics","Graph mathematics","vertices, edges, degree, paths, cycles, connectivity"],
+["Mathematics","Trees mathematics","rooted trees, depth, height, leaves, tree counting"],
+["Mathematics","Vectors","components, magnitude, direction, addition, dot product"],
+["Mathematics","Matrices","addition, multiplication, transpose, inverse, determinant"],
+["Mathematics","Linear systems","Gaussian elimination, rank, consistency, solution spaces"],
+["Mathematics","Transformations","translation, scaling, rotation, matrix representation"],
+["Mathematics","Limits","approach, continuity, one-sided limits, numerical intuition"],
+["Mathematics","Derivatives","rate of change, rules, chain rule, optimization"],
+["Mathematics","Integrals","area, accumulation, antiderivatives, numerical integration"],
+["Mathematics","Statistics","mean, median, mode, variance, standard deviation"],
+["Mathematics","Correlation and regression","covariance, correlation, least squares, residuals"],
+["DSA","Complexity analysis","Big-O, Omega, Theta, best, average, worst, amortized analysis"],
+["DSA","Arrays","traversal, insertion, deletion, prefix sums, difference arrays"],
+["DSA","Sliding window","fixed windows, variable windows, frequency state"],
+["DSA","Two pointers","opposite pointers, same-direction pointers, invariants"],
+["DSA","Kadane algorithm","running best, local/global maximum, proof and boundaries"],
+["DSA","Strings","frequency maps, palindrome, anagram, substring problems"],
+["DSA","Pattern matching","KMP, prefix function, Z algorithm, Rabin-Karp"],
+["DSA","Linked lists","singly, doubly, circular, insertion, deletion"],
+["DSA","Linked-list algorithms","reversal, cycle detection, merging, fast/slow pointers"],
+["DSA","Stacks","LIFO, implementation, expression evaluation, brackets"],
+["DSA","Monotonic stack","next greater element, next smaller, histogram"],
+["DSA","Queues","FIFO, circular queue, deque, implementation"],
+["DSA","Priority queues","heap-backed priority queues, insertion, extraction"],
+["DSA","Hashing","hash functions, collisions, chaining, open addressing, load factor"],
+["DSA","Binary trees","nodes, height, traversals, recursion"],
+["DSA","BST","ordering invariant, search, insertion, deletion"],
+["DSA","AVL trees","balance factor, rotations, rebalancing"],
+["DSA","Red-black trees","color invariant, rotations, balancing"],
+["DSA","Heaps","heap property, heapify, build heap, heapsort"],
+["DSA","Tries","prefix tree, insertion, lookup, autocomplete"],
+["DSA","Segment trees","range queries, updates, combine operation"],
+["DSA","Fenwick trees","prefix sums, binary indexed tree, updates"],
+["DSA","Graph representation","adjacency list, matrix, edge lists, directed and weighted graphs"],
+["DSA","BFS","queue, levels, shortest unweighted paths"],
+["DSA","DFS","recursion, stack, discovery, components"],
+["DSA","Cycle detection","undirected and directed cycle detection"],
+["DSA","Topological sorting","DAG invariant, Kahn, DFS ordering"],
+["DSA","Dijkstra","nonnegative weights, relaxation, priority queue"],
+["DSA","Bellman-Ford","relaxation rounds, negative edges, negative cycles"],
+["DSA","Floyd-Warshall","all-pairs dynamic programming, intermediate vertices"],
+["DSA","Minimum spanning trees","cut idea, Kruskal, Prim"],
+["DSA","DSU / Union-Find","parent, rank, size, path compression"],
+["DSA","SCC","Kosaraju, Tarjan, strongly connected components"],
+["DSA","Bridges and articulation points","low-link values, discovery times"],
+["DSA","Brute force","complete search, feasibility, pruning opportunities"],
+["DSA","Divide and conquer","split, solve, combine, recurrence"],
+["DSA","Greedy algorithms","local choice, exchange argument, counterexamples"],
+["DSA","Backtracking","state, choice, constraint, undo"],
+["DSA","Dynamic programming","state, transition, base case, order, reconstruction"],
+["DSA","Memoization and tabulation","top-down versus bottom-up"],
+["DSA","Bit manipulation","bits, masks, shifts, XOR, set/unset/test"],
+["DSA","Randomized algorithms","random choices, expected behavior, correctness"],
+["DSA","Range-query algorithms","prefix structures, segment trees, Fenwick trees"],
+["DSA","Computational geometry","orientation, cross product, intersections, convex hull"],
+["DSA","Network flow","residual graph, augmenting paths, max flow"],
+["DSA","Matching","bipartite matching, augmenting paths, maximum matching"],
+["DSA","Advanced dynamic programming","digit DP, tree DP, interval DP, optimization"]
+];
+
+const deep = {
+"Foundations":{
+definition:"Programming is the construction of a precisely defined process that transforms inputs and state into outputs. JavaScript source is text first; an engine parses that text, evaluates expressions, executes statements, manages environments and produces observable effects.",
+syntax:["A literal such as 42 is an expression.","An expression can appear where a value is required.","A statement is a complete executable instruction such as a variable declaration, if statement or return statement.","Comments are ignored by the parser as executable instructions.","'use strict' activates strict-mode semantics for a script or function."],
+mechanism:["Source text is parsed into an internal representation.","Expressions are evaluated to values and may have side effects.","Bindings are resolved through lexical environments.","Statements control sequencing, branching, looping and completion.","Runtime APIs provide effects such as I/O, timers and DOM operations."],
+examples:[["Expression","2 + 3 * 4","14"],["Expression","const x = 10","A declaration statement whose initializer contains the expression 10"],["Statement","if (score >= 50) { pass(); }","A branch executes only when its condition is truthy"],["Strict mode","'use strict'; x = 1;","ReferenceError because accidental global assignment is rejected"]],
+"edge":["Empty input","A statement that never executes","An expression whose value is ignored","Syntax that cannot be parsed","Runtime failure after successful parsing"],
+"boss":"Write a tiny program that accepts three values, computes a result, deliberately contains one syntax error and one logic error, then repair both and explain the difference between parsing, execution and correctness."
+},
+"Variables":{
+definition:"A variable is a binding between a name and a value. let, const and var differ in scope, initialization timing, redeclaration rules and interaction with the temporal dead zone.",
+syntax:["let name = value;","const name = value;","var name = value;","name = newValue;"],
+mechanism:["A declaration creates a binding according to its declaration kind.","Initialization gives the binding its first value.","Assignment changes a mutable binding's current value.","const prevents reassignment of the binding; it does not make referenced objects immutable.","let and const are block scoped; var is function scoped."],
+examples:[["let","let score = 10; score = 20;","20"],["const","const user = {name:'A'}; user.name='B';","The binding remains the same; the object is mutated"],["TDZ","console.log(x); let x = 3;","ReferenceError"],["var","if(true){var x=1} console.log(x);","1 because var is not block scoped"]],
+"edge":["Redeclaring a let in the same scope","Reading let/const before initialization","Shadowing an outer binding","Mutating an object referenced by const","Accidental global assignment"],
+"boss":"Build a score tracker using let/const only, then explain every binding's scope, initialization point, reassignment and mutation."
+},
+"Coercion and equality":{
+definition:"Coercion is conversion between value representations performed explicitly by code or implicitly by language operations. Equality operators apply different rules and therefore must be reasoned about, not memorized as a giant table.",
+syntax:["a === b","a == b","Object.is(a,b)","Boolean(value)","Number(value)","String(value)"],
+mechanism:["Strict equality compares without the abstract-equality conversions.","Abstract equality may convert operands according to specified rules.","ToPrimitive can ask an object for a primitive representation.","ToNumber, ToString and ToBoolean implement standardized conversions.","NaN is not equal to itself; Object.is distinguishes NaN and treats +0 and -0 differently from ===."],
+examples:[["Strict","5 === '5'","false"],["Abstract","5 == '5'","true"],["Falsy","Boolean(0)","false"],["NaN","Object.is(NaN,NaN)","true"]],
+"edge":["null versus undefined","empty string","0 and -0","NaN","objects with custom conversion"],
+"boss":"Create a coercion test table with at least 20 pairs. For each, predict the result, run it, and explain the exact conversion rule rather than saying 'JavaScript is weird'."
+},
+"Event loop":{
+definition:"The JavaScript event loop coordinates execution of synchronous jobs with queued asynchronous work. The call stack runs the current job; queued work becomes eligible only after the current job reaches a completion point according to the host's scheduling rules.",
+syntax:["console.log('A');","setTimeout(fn,0);","Promise.resolve().then(fn);","queueMicrotask(fn);"],
+mechanism:["A synchronous job runs to completion.","Promise reactions and queueMicrotask callbacks are microtasks.","Timers enqueue tasks for later execution; zero delay does not mean immediate execution.","The host may perform rendering between eligible work according to browser scheduling.","Different host environments expose additional queues and phases."],
+examples:[["Ordering","console.log(1); setTimeout(()=>console.log(2),0); Promise.resolve().then(()=>console.log(3)); console.log(4);","1, 4, 3, then 2 in a typical browser"],["Microtask chain","Promise.resolve().then(()=>console.log('A')).then(()=>console.log('B'));","Both promise reactions run as microtasks before the next timer task"]],
+"edge":["Nested timers","Microtask starvation","Long synchronous work","Unhandled rejection","Worker versus main-thread scheduling"],
+"boss":"Predict a 15-line event-loop program before running it. Draw the call stack, task queue and microtask queue at each transition, then verify your prediction in the practical lab."
+}
+};
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function selected(){return curriculum.filter(x=>(cat.value==="All"||x[0]===cat.value)&&((x[1]+" "+x[2]).toLowerCase().includes(search.value.toLowerCase())))}
+let current=0,done=JSON.parse(localStorage.getItem("iw_deep_done")||"{}");
+
+function renderList(){
+ const list=selected();count.textContent=list.length+" deep lessons";
+ topics.innerHTML=list.map((x,i)=>'<button class="topic '+(curriculum.indexOf(x)===current?'active':'')+'" onclick="openTopic('+curriculum.indexOf(x)+')">'+esc(x[1])+' <span class="small">('+x[0]+')</span></button>').join("");
+}
+function generic(t){
+ const tags=t[2].split(",").map(x=>x.trim());
+ return {
+ definition:"This is not a vocabulary checkbox. You must understand what "+t[1]+" represents, what problem it solves, what assumptions it requires, how its rules produce results, and what breaks when those assumptions are violated.",
+ syntax:tags.map(x=>"Identify the exact syntax or formal rule for "+x+" and write it from memory. Then explain each token or mathematical symbol."),
+ mechanism:tags.map(x=>"For "+x+": identify inputs → apply the rule → track intermediate state → observe the result → test a boundary."),
+ examples:[["Normal case",t[1],"Explain the expected result before running or calculating it."],["Boundary case","empty / minimum / maximum / duplicate input","Predict before execution."],["Invalid case","violating a documented constraint","Classify the failure and explain the violated rule."]],
+ edge:["Empty input","Boundary values","Duplicate values","Invalid input","Large input","Unexpected representation","Interaction with another concept"],
+ boss:"Build a small real problem using "+t[1]+". Include a normal case, at least three edge cases, one deliberately broken case, a diagnosis, a fix, and an explanation of the invariant or rule that makes the final solution correct."
+ };
+}
+function render(){
+ const t=curriculum[current],d=deep[t[1]]||generic(t),tags=t[2].split(",").map(x=>x.trim());
+ const pct=Math.round(Object.keys(done).length/curriculum.length*100);
+ main.innerHTML='<div class="hero"><div class="sub">'+esc(t[0])+' / Deep lesson</div><h1>'+esc(t[1])+'</h1><p><b>Curriculum vocabulary:</b> '+esc(t[2])+'</p><div class="bar"><div class="fill" style="width:'+pct+'%"></div></div><p class="small">'+Object.keys(done).length+' of '+curriculum.length+' deep lessons mastered</p></div>'+
+ '<article class="card lesson">'+
+ '<h2>📖 1. Complete definition</h2><div class="precise"><p>'+esc(d.definition)+'</p></div>'+
+ '<h2>🤡 2. IDIOT → IDIOT explanation</h2><div class="idiot"><p>Imagine '+esc(t[1])+' is a goblin with a very specific job. If you give it the wrong input, violate its rules, or misunderstand its timing, the goblin does not politely fix your brain. It produces exactly what the rules say. Your job is to learn those rules instead of guessing.</p><p><b>Translation:</b> '+esc(d.definition)+'</p></div>'+
+ '<h2>🧩 3. Vocabulary — '+tags.length+' concepts</h2><div class="grid">'+tags.map((x,i)=>'<div class="box"><b>'+(i+1)+'. '+esc(x)+'</b><p>Define it. State why it exists. Give a normal example. Give a boundary example. Name one common misconception.</p></div>').join("")+'</div>'+
+ '<h2>✍️ 4. Syntax / formal grammar</h2><div class="box">'+d.syntax.map((x,i)=>'<p class="step"><b>Rule '+(i+1)+':</b> '+esc(x)+'</p>').join("")+'</div>'+
+ '<h2>⚙️ 5. Execution / mechanism</h2><div class="precise">'+d.mechanism.map((x,i)=>'<p class="step">'+esc(x)+'</p>').join("")+'</div>'+
+ '<h2>🔬 6. Worked examples</h2><div class="grid">'+d.examples.map(x=>'<div class="box"><b>'+esc(x[0])+'</b><pre>'+esc(x[1])+'</pre><p><b>Expected reasoning:</b> '+esc(x[2])+'</p></div>').join("")+'</div>'+
+ '<h2>🧠 7. How to think like an engineer</h2><ol><li>State the input and its type/representation.</li><li>State the rule or invariant being applied.</li><li>Predict the intermediate state.</li><li>Predict the final observable result.</li><li>Test the prediction.</li><li>Explain any mismatch without hand-waving.</li></ol>'+
+ '<h2>💀 8. Edge cases</h2><div class="danger">'+d.edge.map(x=>'<div class="check"><input type="checkbox"> <span><b>'+esc(x)+'</b> — predict the behavior before testing it.</span></div>').join("")+'</div>'+
+ '<h2>🐛 9. Debugging protocol</h2><div class="box"><ol><li>Reproduce the failure.</li><li>Record the exact input and output/error.</li><li>Separate syntax, runtime, logic, correctness, performance and conceptual errors.</li><li>Locate the smallest operation where reality diverges from your prediction.</li><li>State the rule you misunderstood or violated.</li><li>Change the smallest necessary thing.</li><li>Run a regression test.</li><li>Test a boundary case.</li><li>Explain why the fix works.</li></ol></div>'+
+ '<h2>📈 10. Complexity / trade-offs</h2><div class="precise"><p>When this topic has measurable cost, analyse time, space, allocations, I/O, latency and scalability. Do not write “fast” or “slow” without identifying what grows with the input.</p><p>For JavaScript APIs, also consider memory retention, asynchronous scheduling, browser main-thread work and security boundaries where relevant. For mathematics, state assumptions and numerical precision. For DSA, state the invariant and asymptotic complexity.</p></div>'+
+ '<h2>🧪 11. Mastery drill</h2><div class="practice"><ol><li>Explain every vocabulary item without looking.</li><li>Write the essential syntax/formula/algorithm from memory.</li><li>Predict five new cases.</li><li>Run or calculate them.</li><li>Deliberately create a failure.</li><li>Diagnose it.</li><li>Fix it.</li><li>Test a boundary.</li><li>Teach the concept in your own words.</li></ol></div>'+
+ '<h2>🏗️ 12. Build task</h2><div class="boss"><p>'+esc(d.boss)+'</p><textarea id="answer" placeholder="Write your explanation, design, invariant, edge cases and test evidence..."></textarea><button class="primary" onclick="master()">✓ Mark deep lesson mastered</button><span id="msg"></span></div>'+
+ '<div class="actions"><button onclick="prev()">← Previous</button><button onclick="next()">Next →</button></div>'+
+ '</article>';
+ renderList();
+}
+function master(){if(document.getElementById("answer").value.trim().length<120){msg.textContent=" Write at least 120 characters explaining the rule, mechanism, edge case and test.";return}done[current]=Date.now();localStorage.setItem("iw_deep_done",JSON.stringify(done));msg.textContent=" ✓ Mastery recorded. Now prove it again tomorrow without this page.";renderList()}
+function openTopic(i){current=i;render()}
+function next(){current=(current+1)%curriculum.length;render();scrollTo(0,0)}
+function prev(){current=(current-1+curriculum.length)%curriculum.length;render();scrollTo(0,0)}
+search.oninput=renderList;cat.onchange=renderList;render();
+</script>
+</body>
+</html>
