@@ -1,52 +1,40 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IDIOT → WIZARD — Full Lessons</title><style>
-:root{--b:#070b14;--p:#101a2c;--p2:#17243c;--l:#2b3a58;--t:#eef3ff;--m:#aab6cd;--a:#8b5cf6;--g:#22c55e;--r:#ef4444}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1b1230,#070b14 55%);color:var(--t);font:15px/1.65 system-ui,sans-serif}.wrap{display:grid;grid-template-columns:320px 1fr;min-height:100vh}.side{border-right:1px solid var(--l);padding:18px;position:sticky;top:0;height:100vh;overflow:auto;background:#080e19}.brand{font-weight:900;font-size:24px}.brand b{color:#a78bfa}.search,select{width:100%;background:#0b1323;color:var(--t);border:1px solid var(--l);border-radius:9px;padding:10px;margin:7px 0}.list button{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid #18253d;border-radius:0;padding:9px;color:var(--m)}.list button:hover,.list .sel{background:#21183b;color:var(--t)}main{padding:28px;max-width:1100px;width:100%;margin:auto}.hero,.card{background:rgba(16,26,44,.94);border:1px solid var(--l);border-radius:16px;padding:20px;margin-bottom:16px}.hero{background:linear-gradient(135deg,#261744,#10253b)}h1{font-size:clamp(30px,5vw,54px);line-height:1.05;margin:.2em 0}.crumb{color:#c4b5fd}.idiot{border-left:5px solid var(--a);background:#17112b;padding:15px;border-radius:9px}.engineer{border-left:5px solid #38bdf8;background:#0d2030;padding:15px;border-radius:9px}.trap{border-left:5px solid var(--r);background:#281216;padding:15px;border-radius:9px}.try{border-left:5px solid var(--g);background:#0c2118;padding:15px;border-radius:9px}pre{background:#060a12;border:1px solid var(--l);padding:14px;border-radius:9px;overflow:auto}.actions{display:flex;gap:8px;flex-wrap:wrap}button{cursor:pointer;color:var(--t);background:var(--p2);border:1px solid var(--l);border-radius:9px;padding:9px 12px}.primary{background:var(--a);border-color:var(--a)}.progress{height:9px;background:#25324c;border-radius:9px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#8b5cf6,#22c55e)}.workflow{background:#0b1323;border:1px solid var(--l);border-radius:14px;padding:18px;margin-top:18px}.workflow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.step{border:1px solid var(--l);border-radius:12px;padding:12px;background:#0e1728}.step h4{margin:0 0 6px}.step textarea,.step input{width:100%;background:#060a12;color:var(--t);border:1px solid var(--l);border-radius:8px;padding:9px;box-sizing:border-box}.step textarea{min-height:110px;font-family:ui-monospace,monospace}.result{white-space:pre-wrap;background:#060a12;border:1px solid var(--l);padding:10px;border-radius:8px;margin-top:8px;min-height:38px}.workflow .done{color:#86efac}.workflow .bad{color:#fca5a5}.workflow button{margin-top:7px}@media(max-width:900px){.wrap{display:block}.side{position:relative;height:auto}.list{max-height:330px;overflow:auto}main{padding:14px}}
-</style><style id="responsive-idiot-wizard">
-:root{--safe:env(safe-area-inset-bottom,0px)}
-html{font-size:16px;scroll-behavior:smooth}
-body{min-width:0;overflow-x:hidden;-webkit-text-size-adjust:100%;padding-bottom:var(--safe)}
-img,svg,canvas,video,iframe{max-width:100%;height:auto}
-pre,code{max-width:100%}
-pre{overflow:auto;-webkit-overflow-scrolling:touch;white-space:pre}
-table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
-button,input,select,textarea{font:inherit;max-width:100%}
-textarea{resize:vertical}
-@media(max-width:900px){
-  .app{grid-template-columns:1fr!important;display:block!important}
-  .side{position:sticky!important;top:0!important;z-index:50;width:100%!important;height:auto!important;max-height:46vh!important;overflow:auto!important;border-right:0!important;border-bottom:1px solid var(--l,#293754)!important;padding:12px!important}
-  .side nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
-  .side nav button,.side>button{margin:0!important;min-height:44px}
-  .main{width:100%!important;max-width:none!important;padding:14px!important}
-  .top{position:sticky;top:0;z-index:40;background:rgba(9,16,30,.94);padding:6px 0}
-  .hero,.card{padding:15px!important;border-radius:12px!important}
-  .grid{grid-template-columns:1fr!important}
-  .lab{grid-template-columns:1fr!important}
-  .math{grid-template-columns:1fr!important}
-  .editor,.out{min-height:260px!important}
-}
-@media(max-width:600px){
-  body{font-size:14px}
-  .side{max-height:52vh!important}
-  .side nav{grid-template-columns:1fr 1fr}
-  .logo{font-size:20px}
-  .main{padding:10px!important}
-  h1{font-size:clamp(28px,10vw,42px)!important}
-  h2{font-size:22px}
-  h3{font-size:19px}
-  .top{margin-bottom:8px}
-  .search{min-height:44px}
-  button,.field,input,select,textarea{min-height:44px}
-  .editor,.out{min-height:220px!important;font-size:12px!important;padding:10px!important}
-  .lesson pre,pre{font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}
-  .topic{align-items:flex-start}
-  .topic input{margin-top:4px;flex:0 0 auto}
-  .topic small{overflow-wrap:anywhere}
-}
-@media(max-width:380px){
-  .side nav{grid-template-columns:1fr}
-  .main{padding:8px!important}
-  .hero,.card{padding:12px!important}
-}
-</style></head><body><div class="wrap"><aside class="side"><div class="brand">IDIOT <b>→</b> WIZARD</div><p style="color:var(--m)">Every topic. Zero "trust me bro".</p><input id="q" class="search" placeholder="Search topics..."><select id="cat"></select><div id="stats" style="color:var(--m)"></div><div id="list" class="list"></div><hr><a href="index.html" style="color:#c4b5fd">← Dashboard</a><br><a href="practical.html" style="color:#c4b5fd">⚙️ Practical Lab</a></aside><main id="main"></main></div><script>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IDIOT → WIZARD — Full Lessons</title>
+<style>
+:root{--bg:#070b14;--panel:#101a2c;--panel2:#17243c;--line:#2b3a58;--text:#eef3ff;--muted:#aab6cd;--purple:#8b5cf6;--green:#22c55e;--red:#ef4444;--blue:#38bdf8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at top,#1b1230,#070b14 55%);color:var(--text);font:15px/1.7 system-ui,sans-serif;overflow-x:hidden}
+.app{display:grid;grid-template-columns:310px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;overflow:auto;padding:18px;background:#080e19;border-right:1px solid var(--line)}
+.brand{font-size:24px;font-weight:900}.brand b{color:#a78bfa}.muted{color:var(--muted)}input,select,button{font:inherit}input,select{width:100%;padding:11px;background:#0b1323;color:var(--text);border:1px solid var(--line);border-radius:9px;margin:6px 0}
+.list button{display:block;width:100%;text-align:left;background:transparent;color:var(--muted);border:0;border-bottom:1px solid #18253d;border-radius:0;padding:9px;cursor:pointer}.list button:hover,.list .sel{background:#21183b;color:var(--text)}
+main{width:100%;max-width:1120px;margin:auto;padding:28px}.hero,.card{background:rgba(16,26,44,.95);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px}.hero{background:linear-gradient(135deg,#261744,#10253b)}
+h1{font-size:clamp(30px,5vw,55px);line-height:1.05;margin:.15em 0}h2{margin-top:0}.crumb{color:#c4b5fd}.idiot{border-left:5px solid var(--purple);background:#17112b;padding:16px;border-radius:9px}.real{border-left:5px solid var(--blue);background:#0d2030;padding:16px;border-radius:9px}.trap{border-left:5px solid var(--red);background:#281216;padding:16px;border-radius:9px}.build{border-left:5px solid var(--green);background:#0c2118;padding:16px;border-radius:9px}
+.coverage{display:flex;gap:7px;flex-wrap:wrap}.tag{padding:5px 9px;border:1px solid var(--line);border-radius:99px;background:#0b1323;color:#cbd5e1}
+.progress{height:9px;background:#25324c;border-radius:9px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#8b5cf6,#22c55e)}
+pre{background:#060a12;border:1px solid var(--line);padding:14px;border-radius:9px;overflow:auto;white-space:pre-wrap}code{font-family:ui-monospace,monospace}.actions{display:flex;gap:8px;flex-wrap:wrap}button.action{cursor:pointer;color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:10px 13px}.primary{background:var(--purple)!important;border-color:var(--purple)!important}
+.step{border:1px solid var(--line);background:#0e1728;border-radius:12px;padding:15px;margin:10px 0}.step h3{margin-top:0}
+@media(max-width:900px){.app{display:block}.side{position:sticky;height:auto;max-height:48vh;z-index:20;border-right:0;border-bottom:1px solid var(--line)}main{padding:15px}}
+@media(max-width:600px){main{padding:10px}.hero,.card{padding:15px}button,input,select{min-height:44px}h1{font-size:clamp(28px,10vw,42px)}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+<div class="brand">IDIOT <b>→</b> WIZARD</div>
+<p class="muted">Every topic. Zero “trust me bro”.</p>
+<input id="search" placeholder="Search topics...">
+<select id="category"></select>
+<div id="stats" class="muted"></div>
+<div id="list" class="list"></div>
+<hr>
+<a href="index.html">← Dashboard</a><br><a href="practical.html">⚙️ Practical Lab</a>
+</aside>
+<main id="main"></main>
+</div>
+<script>
 const groups={
 "JavaScript":[
 ["Foundations","values;expressions;statements;comments;strict mode","A program is exact instructions over values. Expressions produce values; statements perform actions.","The computer is a very fast intern who cannot read your mind.","Predict output, run it, then change one token and predict again.","Confusing an expression with a statement."],
@@ -208,565 +196,39 @@ const groups={
 ["Architecture","separation;modules;boundaries;state","Architecture separates responsibilities and keeps dependencies understandable.","Do not make a 20,000-line spaghetti noodle and call it architecture.","Separate domain logic, rendering and persistence.","Abstracting everything before a problem exists."],
 ["Capstones","requirements;design;implementation;tests;benchmark;explain;refactor","A capstone integrates design, implementation, tests, measurement and explanation.","The final boss is finishing something that survives reality.","Build a calculator, parser, graph tool and offline app from specifications.","Calling it finished because it opens."]
 ]};
-const topics=[];for(const [cat,arr] of Object.entries(groups))for(const x of arr)topics.push({cat,title:x[0],tags:x[1],core:x[2],idiot:x[3],doit:x[4],trap:x[5]});
-const qEl=document.getElementById("q");
-const catEl=document.getElementById("cat");
-const statsEl=document.getElementById("stats");
-const listEl=document.getElementById("list");
-const mainEl=document.getElementById("main");
-let idx=0,done=JSON.parse(localStorage.getItem("iw_lesson_done")||"{}");
-const cats=["ALL",...Object.keys(groups)];catEl.innerHTML=cats.map(x=>"<option>"+x+"</option>").join("");
-function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function visible(){let qv=qEl.value.toLowerCase(),cv=catEl.value;return topics.filter(t=>(cv==="ALL"||t.cat===cv)&&(!qv||(t.cat+" "+t.title+" "+t.tags).toLowerCase().includes(qv)))}
-function renderList(){let v=visible();statsEl.textContent=topics.length+" lessons • "+Object.keys(done).length+" completed";listEl.innerHTML=v.map(t=>{let i=topics.indexOf(t);return "<button class='"+(i===idx?"sel":"")+"' onclick='openTopic("+i+")'>"+(done[i]?"✓ ":"")+esc(t.title)+" <small>("+esc(t.cat)+")</small></button>"}).join("")}
-function openTopic(i){idx=i;render();scrollTo({top:0,behavior:"smooth"})}
-const TEACH={
-"Foundations":["A program is a recipe for a machine that has zero common sense.","Start with values: data the machine can hold. An expression is a question that produces a value. A statement is an instruction that changes what happens. Syntax is the grammar; semantics are the meaning.","Then learn state: a program remembers information, changes it, and makes decisions. Algorithms are the plans; programs are those plans written in an executable language.","Advanced thinking means separating syntax, semantics, runtime behavior, side effects, invariants and failure modes. Never memorize a rule without asking what the engine actually does."],
-"Variables":[
-"🤡 IDIOT PICTURE — Imagine JavaScript is a warehouse run by one extremely confident idiot who has lost every box label three times today. You say \`let age = 25\`, and the idiot writes the name \`age\` into his inventory system and associates that binding with the value 25. The important part is that the label is not the same thing as the thing being labelled. If you shout 'AGE!', JavaScript does not rummage through RAM looking for a box with the number 25 painted on it. It resolves the identifier \`age\` through the appropriate lexical environment and obtains the current value associated with that binding. So permanently tattoo this into your brain: a variable name is not the value. The binding is the name-to-value relationship.",
-"DECLARATION, INITIALIZATION, ASSIGNMENT — These three words look like three professors wearing the same shirt, but they describe different moments. \`let score;\` declares a binding. The binding exists, but after initialization its value is \`undefined\`. \`let score = 10;\` declares and initializes it. Later, \`score = 20;\` performs assignment: the existing binding is given a different value. Reassignment is therefore not the same event as declaration. A useful execution trace is: binding created → initialization → read/use → optional reassignment → scope ends. With \`const\`, initialization must happen as part of the declaration because the binding cannot later be reassigned.",
-"LET, CONST AND VAR — \`let\` is the modern 'I may need to change this binding' tool. \`const\` is the modern 'this binding must not be reassigned' tool. \`var\` is the old cupboard that still exists because JavaScript has a museum full of historical decisions. \`let\` and \`const\` are block-scoped lexical declarations. \`var\` is function-scoped. That difference becomes important inside \`if\`, loops and nested blocks. Modern code normally reaches for \`const\` first, then \`let\` when reassignment is genuinely part of the algorithm. The point is not fashion; it is making the intended lifetime and mutability of the binding obvious.",
-"THE GREAT CONST LIE — The idiot hears 'const' and concludes: 'THE VALUE IS IMMORTAL AND NOTHING MAY EVER CHANGE.' Incorrect. \`const\` protects the binding from reassignment; it does not recursively freeze an object. With \`const user = { name: 'Raj' }\`, the binding continues to refer to the same object, but \`user.name = 'Amit'\` mutates that object. Trying \`user = { name: 'Amit' }\` is different: that attempts to replace the binding with a different object and is rejected. Arrays behave the same way. \`const numbers = [1,2]; numbers.push(3);\` changes the existing array. \`numbers = [4,5]\` attempts reassignment.",
-"PRIMITIVES VS OBJECT REFERENCES — Here the warehouse idiot starts throwing chairs. Primitive values such as strings, numbers, booleans, undefined, null, BigInt and Symbols behave as values. If \`let a = 10; let b = a;\`, changing \`b\` to 20 does not change \`a\`. Objects have identity. If \`const first = {name:'Raj'}; const second = first;\`, both bindings refer to the same object. Mutating through \`second.name = 'Amit'\` is visible through \`first.name\` because there is one object with two references to it. This is not mystical 'pass by reference' wording you should memorize blindly; reason in terms of values, object identity and bindings.",
-"SCOPE — Scope answers the question: 'Which pieces of code are allowed to use this identifier?' A block such as \`{ ... }\`, a function, and a module create relevant lexical environments. \`let\` and \`const\` are block-scoped, so a name declared inside an \`if\` block or loop is not available outside that block. Functions create their own environments too. JavaScript uses lexical scoping, meaning name resolution is determined by the nesting structure of the source code. An inner scope can normally resolve a name from an outer scope, but an outer scope cannot reach inward into a child scope. Picture a building: the idiot in room 3 can ask the receptionist downstairs for something, but the receptionist cannot magically see inside room 3's private drawer.",
-"SHADOWING — Shadowing means an inner scope creates another binding with the same identifier. If the outer scope has \`let name = 'Raj'\` and an inner block has \`let name = 'Amit'\`, there are two bindings. Reading \`name\` inside the block finds the inner binding first; reading it outside finds the outer binding. The inner declaration did not edit the outer value. This matters because many bugs come from mentally imagining one variable changing when JavaScript is actually resolving two different bindings.",
-"HOISTING WITHOUT THE FORKLIFT — People often say 'JavaScript hoists variables' as though an invisible forklift picks up your declarations and drags them to the top of the file. That picture is useful only if you immediately throw away the forklift. The language performs declaration instantiation and initialization according to different rules for different declarations. With \`var x = 10\`, the \`var\` binding is initialized to \`undefined\` before the relevant execution reaches the assignment, so \`console.log(x); var x = 10;\` logs \`undefined\`. The assignment is not hoisted with it. With \`let\` and \`const\`, the binding exists but is uninitialized until execution reaches the declaration.",
-"TEMPORAL DEAD ZONE — The TDZ is the period in which a lexical \`let\` or \`const\` binding exists in its scope but cannot yet be accessed because initialization has not happened. Therefore \`console.log(x); let x = 10;\` throws a \`ReferenceError\`. Saying 'let is not hoisted' is a beginner shortcut, not the complete technical picture. The more accurate model is: the binding is established during environment setup, but access before initialization is forbidden. The idiot version is: your name is already on the guest list, but the bouncer says, 'YOU MAY NOT TOUCH THE SNACKS UNTIL YOUR DECLARATION HAS BEEN EXECUTED.'",
-"ASSIGNMENT IS NOT EQUALITY — \`x = 10\` performs assignment. \`x === 10\` performs a strict equality comparison. The first changes or establishes the value associated with a binding; the second produces a boolean describing whether two values are strictly equal. Assignment is itself an expression and therefore produces a value, which is why chained assignment such as \`a = b = 10\` works, although it is often less readable than separate statements. Never look at one equals sign and mentally pronounce it 'is equal to'. The computer will not appreciate the poetry.",
-"VARIABLES ARE THE STORAGE PART OF ALGORITHMS — Almost every useful program follows some version of input → store → process → store → output. Variables give algorithms names for changing state and reusable data. A loop counter changes. An accumulator changes. A function's local result is created. A configuration value may remain constant. A reference to a data structure may remain constant while the data structure mutates. Once you understand bindings, you can trace real algorithms instead of treating code as a pile of mysterious punctuation.",
-"PROFESSIONAL MENTAL MODEL — At the language level, do not invent fake RAM addresses such as 'x lives at 0x1234'. JavaScript engines such as V8 use implementation-specific optimizations, environments and memory representations. Your reliable semantic model is simpler: an identifier is resolved to a binding in an environment; that binding has a current value; object values have identity and can be mutated; scope controls name visibility; initialization and assignment are distinct; and declaration forms have different initialization rules. When debugging, ask three questions: Where is this binding declared? Which binding does this identifier resolve to here? What value does that binding currently hold or refer to?",
-"THE IDIOT BOSS FIGHT — Given any variable problem, first draw the binding arrows. Then mark the scope boundary. Then mark whether the operation is declaration, initialization, assignment, or mutation. Then check whether \`let\`, \`const\`, or \`var\` changes the rules. Then check TDZ and hoisting if the read occurs before the declaration. Finally, if an object or array is involved, ask whether two bindings refer to the same object. If you can predict the result before running the code, explain the exact error when you deliberately break it, and rebuild the example from a blank page, you understand variables rather than merely recognising the words."],
-
-"Types":["JavaScript values come in primitive and object forms. Primitive values include string, number, bigint, boolean, undefined, null and symbol.","Think of types as species at a chaotic zoo. A number is not a string wearing a number costume. Objects have identity; primitives are values.","Advanced JavaScript adds coercion, SameValue comparisons, object wrappers, typed arrays and host objects. Learn what operation performs conversion instead of memorizing weird results."],
-"Coercion and equality":["JavaScript sometimes sees two things and says, 'Fine, I will translate one.' That is coercion. It can turn strings into numbers, values into booleans, or objects into primitives.","Strict equality avoids the abstract-equality conversion dance. Loose equality has explicit specification rules and historical behavior. Truthiness is a separate concept from equality.","Advanced mastery means predicting ToPrimitive, ToNumber and ToString conversions and recognizing why values such as NaN, -0, null and undefined create traps."],
-"Operators":["Operators are tiny machines. + may add numbers or concatenate strings; && and || can return operands rather than booleans; ?? cares specifically about nullish values; ?. stops a property access chain when the receiver is nullish.","Precedence decides grouping, but parentheses are cheaper than brain damage. Learn operands, evaluation order, short-circuiting and side effects.","Advanced work means understanding abstract operations, bitwise 32-bit conversion, BigInt restrictions and the difference between syntax that looks similar and semantics that are different."],
-"Control flow":["A program without control flow is a toaster with one button: on. Conditions choose paths; loops repeat work.","Every loop needs a condition and progress toward termination. for, while and do...while express different shapes of repetition. for...of consumes values; for...in walks enumerable property keys.","Advanced control flow means reasoning about invariants, termination, nested loops, labeled control, exceptions and asynchronous control flow."],
-"Functions":["A function is a reusable machine: inputs enter, work happens, a result may leave. But JavaScript functions are also values, so they can be stored, passed and returned.","Parameters are the names; arguments are the supplied values. return sends a result back. Callbacks let one function hand another function a job.","Advanced functions include closures, higher-order functions, recursion, composition, currying, partial application, generators and async functions. The key idea is that behavior itself can be data."],
-"Scope":["Scope answers one terrifying question: 'Which variable does this name mean?' JavaScript uses lexical scope, so the answer comes from where code is written.","Global, module, function and block scopes form nested environments. Shadowing creates an inner name that hides an outer name. Scope and object lifetime are related but not identical.","Advanced reasoning follows the environment chain step by step. Closures preserve access to lexical environments even after the surrounding function has returned."],
-"Hoisting and TDZ":["Hoisting is not JavaScript secretly moving every line upward with a forklift. It is a simplified way to describe declaration instantiation before execution.","var bindings are initialized differently from let and const. A let or const binding exists in its scope but cannot be accessed before initialization: that interval is the Temporal Dead Zone.","Advanced mastery requires distinguishing parsing, environment creation, initialization and execution. Function declarations have their own declaration-instantiation behavior."],
-"Closures":["A closure is a function that remembers access to the lexical environment where it was created. The function leaves the house but keeps the keys.","That enables factories, private state, callbacks and functional patterns. The variable is not necessarily copied; the closure can observe the binding itself.","Advanced closure bugs involve loops, mutation, stale state, memory retention and asynchronous callbacks. The cure is understanding bindings, not memorizing 'closure magic'."],
-"this":["this is not simply 'the object containing the function.' It is determined by invocation rules for ordinary functions. Method calls, plain calls, new, call/apply/bind and strict mode can produce different results.","Arrow functions are weird in a useful way: they do not create their own this. They capture lexical this.","Advanced mastery means separating lexical scope from dynamic invocation context and understanding constructors, class methods, callbacks and explicit binding."],
-"Objects":["An object is a collection of properties with identity. A property has a key and a value, and may also have descriptor rules.","Objects can be mutated, copied shallowly, frozen, sealed or connected to prototypes. Property lookup may continue up a prototype chain.","Advanced object theory includes descriptors, accessors, property attributes, identity, reference sharing, proxies and reflection. The big trap: two objects with identical contents are still different objects."],
-"Arrays":["An array is an ordered object-like collection with integer-indexed elements and a length property. It is not a magical mathematical list; it has JavaScript-specific behavior.","Learn traversal, insertion, deletion, slicing, splicing, searching, mapping, filtering, reducing and sorting. Always know whether a method mutates the original or returns a new value.","Advanced array knowledge includes sparse arrays, iterator behavior, species, typed arrays, stable sorting expectations and algorithmic complexity."],
-"Strings and Unicode":["A string looks like text, but internally JavaScript stores UTF-16 code units. Human-perceived characters can be much larger conceptual units.","That is why some emoji make length look like the computer has swallowed a calculator. code units, code points and grapheme clusters are different layers.","Advanced text processing requires Unicode normalization, combining marks, locale-aware operations and careful indexing. Never assume string length equals human character count."],
-"Numbers":["Number is IEEE-754 double-precision floating point. It is extremely useful and absolutely not magical decimal arithmetic.","Many decimal fractions cannot be represented exactly in binary. Therefore calculations can contain tiny errors. NaN and Infinity are real Number values with special behavior.","Advanced numerical programming means understanding safe integers, rounding, cancellation, overflow, underflow, tolerances and when BigInt or decimal-oriented strategies are more appropriate."],
-"Regular expressions":["A regex is a pattern language for recognizing pieces of text. Start with literals, character classes, quantifiers, anchors and groups.","Capturing groups remember text. Lookarounds inspect context without consuming it. Flags modify behavior. Replacement can use captured groups or functions.","Advanced regex means understanding backtracking, greediness, catastrophic backtracking, Unicode modes and the boundary where a parser is better than a giant regex monster."],
-"Map and Set":["Set is a nightclub bouncer: one guest identity gets one entry. Map is a cupboard where any suitable key points to a value.","Map keys are not limited to strings. Set and Map use SameValueZero-style equality for membership.","Advanced weak collections are about garbage collection behavior: WeakMap and WeakSet do not keep their object keys alive merely by being referenced weakly."],
-"Prototypes":["JavaScript inheritance is prototype-based. If an object cannot find a property, lookup can continue through its prototype chain.","Think of a village of junk drawers. Your drawer does not have the screwdriver, so you ask the parent drawer, then the grandparent.","Advanced understanding separates an object's prototype from a constructor's prototype property and explains property lookup, shadowing and class syntax."],
-"Classes":["class syntax gives JavaScript a structured way to describe constructors, methods, fields and inheritance. Underneath, prototype mechanics still exist.","extends connects subclass and parent prototype chains. super accesses parent behavior. static belongs to the class rather than instances. #private fields are language-level private.","Advanced class design means knowing when inheritance is appropriate, when composition is clearer, and how class methods actually live on prototypes."],
-"Iterators and generators":["An iterable is something that knows how to produce an iterator. An iterator has next(). A generator is a function that can pause at yield and resume later.","This creates lazy computation: instead of producing everything now, produce the next piece when asked.","Advanced uses include custom protocols, generator delegation, infinite sequences and async iteration. The important mental model is controlled suspension and resumption."],
-"Errors":["Errors are information, not insults from the computer. Syntax errors stop parsing; runtime errors happen during execution; logic errors produce valid but incorrect behavior.","throw raises an exception. try/catch can handle it. finally is for cleanup. Error subclasses communicate categories such as TypeError, ReferenceError and RangeError.","Advanced error handling means preserving context, stack traces and causes, handling expected failures deliberately, and never swallowing unknown failures silently."],
-"Promises":["A Promise is a representation of a future result. It begins pending and settles once as fulfilled or rejected.","then creates another promise and chains asynchronous transformations. catch handles rejection. finally is for cleanup. Promise.all means 'everyone must finish'; allSettled means 'tell me everyone's fate'; race means 'first settlement wins'; any means 'first success wins.'","Advanced async programming requires understanding promise resolution, thenables, microtasks, cancellation patterns and concurrency limits."],
-"async and await":["async functions return promises. await makes asynchronous code read like sequential code while allowing the JavaScript runtime to continue doing other work.","The huge idiot trap is thinking await freezes the browser. It pauses that async function; it does not freeze the entire event loop.","Advanced design distinguishes dependent sequential work from independent concurrent work and uses Promise.all or controlled concurrency where appropriate."],
-"Event loop":["JavaScript execution uses a call stack. The host environment schedules tasks, while promise reactions use the microtask queue.","After the current job completes, microtasks are processed before moving on to later tasks, subject to host scheduling rules. That is why a promise callback can appear before a zero-delay timer.","Advanced event-loop reasoning connects scheduling to responsiveness, rendering, race conditions, starvation and long-task performance."],
-"Modules":["Modules turn one giant spaghetti file into explicit dependency boundaries. export exposes bindings; import consumes them.","Named exports are imported by name; default exports provide one primary export. Dynamic import loads modules asynchronously.","Advanced module theory includes live bindings, module evaluation order, cyclic dependencies, URL-based resolution in browsers and package resolution in Node."],
-"DOM":["The DOM is the browser's object representation of document structure. Elements, text and other nodes form a tree.","Selectors find nodes; creation creates nodes; attributes describe elements; textContent handles plain text; insertion changes the tree; removal detaches nodes.","Advanced DOM work means understanding tree mutation, layout implications, event propagation, accessibility, security and performance."],
-"Events":["An event is a message about something that happened. Browser events travel through phases: capture, target and bubble.","event.target is where the event originated; currentTarget is the listener's current element. Delegation uses bubbling so one ancestor can handle many descendants.","Advanced event work covers propagation control, passive listeners, custom events, pointer/keyboard input and lifecycle cleanup."],
-"Fetch and HTTP":["HTTP is a request-response protocol. A request has a method, URL, headers and possibly a body. A response has status, headers and a body.","fetch performs requests but does not automatically reject just because an HTTP status is 404 or 500. Network-level failures are different from HTTP error statuses.","Advanced networking includes caching, CORS, credentials, aborting, streaming, retries, idempotency and authentication boundaries."],
-"Storage":["localStorage and sessionStorage store strings. IndexedDB stores structured data asynchronously. Cache API stores request/response pairs for web applications.","Storage is browser-managed and has quotas and lifecycle rules. Serialization matters because not every JavaScript value survives JSON conversion.","Advanced offline systems combine IndexedDB, Cache API and service workers while handling versioning, migrations, stale data and consistency."],
-"Security":["Security begins with a trust boundary: assume user input, URLs, stored data and network responses can be hostile.","XSS is unintended script execution. CSP restricts resource/script behavior. Same-origin policy separates origins. CORS is a browser-controlled cross-origin access mechanism, not authentication.","Advanced security includes CSRF, prototype pollution, dependency attacks, secure contexts, cookies, authorization, cryptography and defense in depth."],
-"Testing strategy":["Testing is not 'click the button once and pray.' Unit tests isolate logic; integration tests check components working together; end-to-end tests exercise realistic flows.","Good tests include normal, boundary, invalid and adversarial cases. A failing test is a reproducible bug report with teeth.","Advanced testing uses fixtures, mocks, spies, coverage, property-based tests and regression suites. Tests should reveal behavior, not merely inflate a percentage."],
-"Complexity":["Complexity describes how resource usage changes as input grows. Big-O gives an asymptotic upper-growth description; Big-Theta describes tight growth; Big-Omega describes a lower bound.","An O(n) algorithm doing one million simple operations and an O(n^2) algorithm doing a thousand squared operations may behave differently at small sizes, but asymptotic growth explains scaling.","Advanced analysis includes amortized complexity, recursion trees, lower bounds, space complexity and realistic constant factors."],
-"Arrays and prefix sums":["Prefix sums turn repeated range addition into subtraction of accumulated totals. Compute cumulative information once, then answer many range queries cheaply.","The idiot version: instead of recounting the entire pile every time, write a running receipt.","Advanced variants include 2D prefix sums, difference arrays, offline queries and combining prefix techniques with other structures."],
-"Two pointers":["Two pointers maintain positions that move through a sequence while exploiting an invariant. Often one moves from each end or both move forward.","It is two idiots holding the same rope and moving only when the invariant says they should.","Advanced two-pointer solutions depend on sorted order, monotonicity or a provable window property. Without that property, the trick is just random finger waving."],
-"Sliding window":["A sliding window maintains a contiguous range while expanding and shrinking it to preserve a condition.","Instead of rebuilding the room every time, move the left wall and right wall.","Advanced problems require identifying what information can be updated when an element enters or leaves and proving the window movement does not miss a solution."],
-"Kadane":["Kadane's algorithm solves maximum subarray sum by tracking the best sum ending at the current position and the best answer seen so far.","If your current baggage is making the next trip worse, throw the baggage away and start fresh.","The theory is a dynamic-programming invariant: bestEndingHere is either the current value alone or the previous bestEndingHere plus the current value."],
-"Linked lists":["A linked list stores nodes connected by references rather than requiring contiguous array-style indexing.","Imagine people holding hands. To reach person number 900, you may need to walk through everyone before them.","Advanced linked-list reasoning uses pointer invariants, fast/slow pointers, cycle detection, reversal and careful mutation order."],
-"Stacks":["A stack is Last-In, First-Out. The last plate placed on the pile is the first plate removed.","Stacks naturally model nested work: function calls, parentheses, undo operations and depth-first traversal.","Advanced patterns include monotonic stacks for next-greater problems and expression parsing."],
-"Queues and deques":["A queue is First-In, First-Out. A deque allows insertion and removal from both ends.","Think of a line at a shop. A deque gives the line two doors.","Advanced queue design includes circular buffers, monotonic deques and efficient sliding-window algorithms."],
-"Priority queues":["A priority queue does not care who arrived first; it cares who has the highest or lowest priority.","Emergency room logic: the person with the urgent problem jumps ahead of the person who arrived carrying a sandwich.","A heap is a common implementation. Advanced use appears in Dijkstra, scheduling, top-k problems and event simulation."],
-"Hashing":["Hashing maps keys to positions so lookup can be close to constant average time. Collisions are unavoidable because many possible keys map into limited slots.","Two idiots can be assigned the same locker. Now you need a collision strategy.","Advanced hash tables use chaining or open addressing, load factors, resizing and carefully designed hash functions. Complexity claims depend on assumptions."],
-"Binary trees":["A binary tree gives each node at most two children. The shape, not just the values, determines behavior.","Every node can have a left child and a right child. That is the entire basic rule; the chaos comes afterward.","Traversal orders encode different ways of visiting the tree: preorder, inorder, postorder and level order."],
-"BST":["A binary search tree maintains an ordering invariant: values in the left region are smaller according to the chosen ordering, and values in the right region are larger.","The tree is a librarian who refuses to search every book because it knows which shelf side to choose.","Advanced BST performance depends on height. A badly shaped tree can collapse toward O(n), motivating balancing."],
-"Heaps":["A heap is a nearly complete tree represented efficiently in an array with a parent-child index relationship. A min-heap keeps the smallest item at the root; a max-heap keeps the largest.","The heap does not fully sort everything. It only guarantees the priority relationship needed at the top.","Advanced heap operations support priority queues, top-k selection and graph algorithms."],
-"Red-black trees":["A red-black tree is a self-balancing binary search tree maintained by color invariants and rotations.","The tree has a ridiculous dress code, but the dress code prevents it from becoming a long noodle.","The theory is invariant-driven: rotations preserve ordering while recoloring preserves bounded height."],
-"Tries":["A trie stores strings by shared prefixes. Each path represents characters, and terminal markers identify complete words.","Words like cat, car and can share the 'ca' hallway before splitting.","Advanced tries support autocomplete, prefix queries and specialized compressed or bitwise variants."],
-"Fenwick tree":["A Fenwick tree stores partial sums in a compact structure using binary lowbit relationships.","Instead of remembering every receipt, keep strategically sized bundles so a prefix total can be assembled quickly.","Point updates and prefix queries are logarithmic. Indexing is commonly one-based internally."],
-"Segment tree":["A segment tree recursively divides an array into intervals and stores an aggregate for each interval.","Instead of asking every employee for the total, ask managers who already know totals for their departments.","Advanced versions use lazy propagation for efficient range updates and require a correct associative merge/identity design."],
-"Graph representations":["A graph is a set of vertices connected by edges. Edges can be directed, undirected, weighted or unweighted.","Cities are vertices; roads are edges. A one-way road is directed. A toll road is weighted.","Adjacency lists save space for sparse graphs; matrices give constant-time edge lookup but use quadratic space."],
-"BFS":["Breadth-first search explores a graph in layers. Starting from a source, all distance-1 vertices are processed before distance-2 vertices.","Drop a rumor into a crowd. It spreads one hop at a time.","Because the first time BFS reaches a vertex is through the shortest number of edges in an unweighted graph, it can reconstruct shortest paths with parent pointers."],
-"DFS":["Depth-first search follows a path deeply before backtracking.","Walk down the cave until you hit a wall, then walk backward and try the next tunnel.","DFS powers component detection, cycle detection, topological reasoning, low-link algorithms and many recursive graph decompositions."],
-"Topological sorting":["A topological order places prerequisites before dependents in a directed acyclic graph.","If 'learn variables' is required before 'learn closures', variables must come first. If prerequisites form a cycle, nobody can start.","Kahn's algorithm repeatedly removes zero-indegree vertices; DFS can construct an order while tracking recursion state."],
-"Dijkstra":["Dijkstra repeatedly selects the currently closest unsettled vertex and relaxes its outgoing edges.","Always expand the cheapest known frontier. But if roads can have negative tolls, the logic breaks.","With nonnegative edge weights, a priority queue implementation gives efficient shortest paths. The nonnegative condition is part of the theorem, not decoration."],
-"Bellman-Ford":["Bellman-Ford repeatedly relaxes every edge. After V-1 passes, shortest simple paths have had enough opportunities to propagate.","Everyone gets repeated chances to say, 'Actually, I found a cheaper route.'","An additional successful relaxation indicates a reachable negative cycle. The algorithm is slower but handles negative edges."],
-"Floyd-Warshall":["Floyd-Warshall computes all-pairs shortest paths through dynamic programming. Each stage asks whether allowing one more intermediate vertex improves a path.","Imagine every city gets invited to stand in the middle of every possible route.","The core invariant is the allowed intermediate set. The classic implementation is O(V^3)."],
-"MST":["A minimum spanning tree connects all vertices with minimum total edge weight and no cycle.","Connect every house with roads as cheaply as possible without building a pointless loop.","Kruskal sorts edges and uses DSU; Prim grows one connected tree using a priority queue. MST is not the same problem as shortest path."],
-"DSU":["Disjoint Set Union maintains a collection of separate groups. find identifies a representative; union merges groups.","Every group has a boss. Ask the boss who the group is; if two bosses differ, merge the groups.","Path compression and union by size/rank make operations extremely fast amortized, commonly described as near-constant."],
-"SCC":["Strongly connected components partition a directed graph into maximal groups where every vertex can reach every other vertex in the group.","Everyone in the club can eventually sneak around and reach everyone else.","Kosaraju uses two DFS passes; Tarjan uses low-link structure in one DFS. SCCs compress naturally into a DAG."],
-"Bridges and articulation":["A bridge is an edge whose removal increases the number of connected components. An articulation point is a vertex with that effect.","Find the single road or town whose disappearance breaks the network.","DFS discovery times and low-link values reveal whether a subtree has another route back to an ancestor. The DFS root needs special handling."],
-"Brute force":["Brute force systematically tries candidates. It is not stupid when constraints are small; it can also serve as a correctness oracle for faster algorithms.","Sometimes the correct engineering move is to try every door because there are only three doors.","Advanced use includes pruning, meet-in-the-middle and using brute force to test optimized solutions."],
-"Divide and conquer":["Divide and conquer splits a problem, solves smaller pieces, then combines their answers.","Cut the monster into smaller monsters. Beat each one. Stitch the victory together.","Merge sort demonstrates the pattern clearly. Recurrences describe how the cost scales across levels."],
-"Greedy":["A greedy algorithm makes a locally best choice, but it is correct only when a proof establishes that this choice can be part of an optimal solution.","Do not grab the shiny object merely because it is shiny. Prove the shiny object cannot sabotage the future.","Exchange arguments, cut properties and matroid-like structures explain why particular greedy strategies work."],
-"Backtracking":["Backtracking explores a decision tree, abandons impossible branches and undoes choices before trying alternatives.","Open door. Monster. RUN BACK. Undo the mess. Open next door.","Correctness depends on maintaining state and restoring it exactly. Pruning can dramatically reduce the explored search space."],
-"Dynamic programming":["Dynamic programming solves overlapping subproblems once and stores their answers. The hardest part is defining what a state means.","If you keep solving the same stupid question, write down the answer. Congratulations, you invented memoization.","A DP needs state, transition, base cases and evaluation order. Advanced DP designs states for trees, intervals, digits, subsets and optimized transitions."],
-"Bitmask DP":["A bitmask represents a set using bits. Bit i can mean 'item i is selected.'","A row of tiny light switches becomes your entire subset.","Bitmask DP is powerful when the universe is small enough that 2^n states are feasible. Always analyze the state count before coding."],
-"Randomized algorithms":["Randomized algorithms deliberately use random choices. Randomness can avoid consistently bad pivot choices or simplify expected behavior.","Instead of letting the input bully you with the same trap every time, sometimes throw a controlled dice roll into the algorithm.","Expected complexity is not the same as guaranteed complexity. Analyze the probability model and failure cases."],
-"Network flow":["Flow sends quantities through directed edges with capacities. Residual graphs represent remaining capacity and the possibility of undoing previous flow choices.","Imagine water pipes. If a pipe holds 10 liters, sending 11 is illegal. The residual network tells you where more water can move and where previous choices can be rerouted.","Max-flow/min-cut theory connects optimization with a structural bottleneck. Ford-Fulkerson, Edmonds-Karp and Dinic build progressively stronger machinery."],
-"Matching":["A matching chooses edges so no endpoint is used more than once. In bipartite matching, vertices belong to two sides.","Everyone wants one dance partner, and nobody gets two partners.","Augmenting paths can improve a current matching. A maximal matching cannot be extended greedily, while a maximum matching has the largest possible size."],
-"Computational geometry":["Geometry algorithms use algebraic tests to reason about spatial relationships. Orientation and cross products are foundational.","Instead of staring at a triangle and yelling 'looks clockwise,' calculate the orientation.","Advanced geometry must handle collinearity, duplicate points, intersections, precision and convex hull construction."],
-"Advanced DP":["Advanced dynamic programming is still ordinary DP wearing a boss costume. The difficulty is choosing a state that contains exactly the information needed for future decisions.","Digit DP tracks constraints digit by digit; tree DP tracks subtree summaries; interval DP chooses split points.","Optimization techniques such as monotonic queues, convex-hull tricks or divide-and-conquer optimization reduce expensive transitions when mathematical conditions allow them."]
-};
-function teachFor(t){
- const direct=TEACH[t.title];
- if(direct) return direct.map(x=>"<p>"+esc(x)+"</p>").join("");
- const tag=t.tags.split(";").map(x=>x.trim()).filter(Boolean);
- return "<p><b>Start here:</b> "+esc(t.core)+"</p><p><b>Idiot brain:</b> "+esc(t.idiot)+"</p><p><b>Build the theory:</b> Every named item is a subtopic. Learn its definition, purpose, mechanism, assumptions, examples, edge cases, complexity and failure modes before moving on.</p><p><b>Advanced brain:</b> Connect this concept to the surrounding topics, derive why the rule works, and identify what changes when an assumption is removed.</p><ul>"+tag.map(x=>"<li><b>"+esc(x)+"</b>: define it, explain why it exists, give a concrete situation where it matters, and state one trap.</li>").join("")+"</ul>";
-}
-function theory(t){
-  const title=esc(t.title||"This Topic");
-  const tags=(t.tags||"").split(";").map(x=>x.trim()).filter(Boolean);
-  const tagCards=tags.map((p,i)=>`
-    <article class="theory-card">
-      <h4>${i+1}. ${esc(p)}</h4>
-      <div class="idiot"><b>🤡 IDIOT BRAIN:</b><p>${idiot(p)}</p></div>
-      <p><b>📐 PRECISE IDEA:</b> ${precise(p)}</p>
-      <p><b>❓ WHY IT EXISTS:</b> ${purpose(p)}</p>
-      <p><b>🧠 MENTAL MODEL:</b> ${model(p)}</p>
-      <p><b>⚙️ HOW TO REASON ABOUT IT:</b> Start with the inputs and assumptions, identify the rule that transforms them, predict the observable result, then check boundary cases and failure modes.</p>
-      <p><b>💀 COMMON TRAP:</b> ${trap(p)}</p>
-      <div class="engineer"><b>🧑‍💻 ENGINEER STANDARD:</b> You are not finished when you can reproduce an example. You are finished when you can define ${esc(p)}, explain why its rule works, predict a new case, diagnose a failure, and explain its trade-offs.</div>
-    </article>`).join("");
-
-  return `
-  <section class="full-theory">
-    <h2>🤡 COMPLETE THEORY: ${title}</h2>
-    <p><b>This page is the theory layer.</b> No “copy this snippet and pray.” Every curriculum topic is treated as a real subject: vocabulary → purpose → syntax/grammar → semantics → execution → edge cases → errors → trade-offs → practice → mastery.</p>
-
-    <div class="idiot">
-      <h3>🧠 IDIOT → IDIOT EXPLANATION</h3>
-      <p>${chaos(t)}</p>
-      <p><b>Human translation:</b> ${esc(t.core||"Learn the rules of the topic and how they behave in real programs.")}</p>
-    </div>
-
-    <h3>1. WHAT THIS TOPIC REALLY IS</h3>
-    <p>${definition(t)}</p>
-    <p><b>Topic boundary:</b> The named subtopics below are not decorative labels. Each one is a concept you should be able to define, use, test, break, debug, and connect to the rest of the curriculum.</p>
-
-    <h3>2. WHY THIS TOPIC EXISTS</h3>
-    <p>${purpose(title)}</p>
-    <p>Good programming education always answers two questions: <b>“What does this mechanism do?”</b> and <b>“Why would anyone design a language, algorithm, data structure, or mathematical system this way?”</b> Learn both.</p>
-
-    <h3>3. VOCABULARY — NO MYSTERY WORDS</h3>
-    ${tagCards}
-
-    <h3>4. SYNTAX / GRAMMAR</h3>
-    <div class="syntax-box">
-      <p><b>GENERAL RULE:</b> Before writing code, identify keywords, identifiers, literals, operators, delimiters, required parts, optional parts, and the order in which the language expects them.</p>
-      <p><b>TOKEN TEST:</b> For every piece of syntax, ask: “What is this token? What can legally appear here? What does it bind to? What value or operation does it represent?”</p>
-      <p><b>GROUPING TEST:</b> Add parentheses mentally when precedence or nesting could change meaning. Never rely on visual guessing for complicated expressions.</p>
-      <p><b>INVALID SYNTAX:</b> A syntax error means the source cannot be parsed according to the grammar. Read the reported location, then inspect the surrounding construct rather than blindly changing random characters.</p>
-    </div>
-
-    <h3>5. SEMANTICS — WHAT THE RULE ACTUALLY MEANS</h3>
-    <p>Syntax is the sentence shape. Semantics is the meaning. Two pieces of code can look similar while producing different values, changing different state, allocating different objects, or following different control-flow paths.</p>
-    <ol>
-      <li>Identify the values or states entering the construct.</li>
-      <li>Apply the language/algorithm/math rule exactly.</li>
-      <li>Track every transformation or state change.</li>
-      <li>Record the resulting value, side effect, or invariant.</li>
-      <li>Repeat until execution reaches an observable result.</li>
-    </ol>
-
-    <h3>6. EXECUTION / MECHANISM</h3>
-    <div class="engineer">
-      <p><b>Professional rule:</b> Never explain behavior with “JavaScript just does that.” Replace it with a mechanism: parsing, evaluation, binding lookup, conversion, property lookup, queue scheduling, algorithm invariant, mathematical identity, memory operation, or API contract.</p>
-      <p>When a result surprises you, reconstruct the sequence instead of guessing. The practical lab exists specifically so you can test that prediction against real execution.</p>
-    </div>
-
-    <h3>7. EDGE CASES — WHERE THE MONSTERS LIVE</h3>
-    <ul>
-      <li>Empty input</li><li>Minimum and maximum meaningful values</li><li>Duplicate values</li><li>Unexpected types or representations</li>
-      <li>Boundary indexes</li><li>Large inputs</li><li>Invalid input</li><li>Repeated operations</li>
-      <li>Failure halfway through an operation</li><li>Interaction with another mechanism</li>
-    </ul>
-    <p>For each edge case, predict the result <i>before</i> running it. Prediction is part of learning; execution is the verification.</p>
-
-    <h3>8. ERRORS AND DEBUGGING</h3>
-    <div class="trap">
-      <p><b>Syntax error:</b> the grammar cannot be parsed.</p>
-      <p><b>Runtime error:</b> execution reaches an operation that cannot complete.</p>
-      <p><b>Logic error:</b> the program runs but violates the intended rule.</p>
-      <p><b>Wrong answer:</b> the algorithm executes but computes the wrong result.</p>
-      <p><b>Performance problem:</b> the result may be correct but the work or memory grows too much.</p>
-      <p><b>Conceptual error:</b> the implementation follows a false mental model. This is the most important one to repair because it causes repeated bugs.</p>
-    </div>
-    <p>Debugging sequence: <b>observe → reproduce → isolate → form a hypothesis → test the hypothesis → fix the smallest cause → rerun → add a regression test → explain why the fix works.</b></p>
-
-    <h3>9. FROM ZERO → ADVANCED → ENGINEER</h3>
-    <ol>
-      <li><b>Zero:</b> recognise the vocabulary and purpose.</li>
-      <li><b>Beginner:</b> use the basic syntax correctly.</li>
-      <li><b>Intermediate:</b> predict behavior and handle common edge cases.</li>
-      <li><b>Advanced:</b> understand implementation/runtime/algorithmic consequences.</li>
-      <li><b>Expert:</b> reason about invariants, trade-offs, failure modes, performance, security, maintainability, and interactions with other mechanisms.</li>
-    </ol>
-
-    <h3>10. PRACTICAL MASTERY LOOP</h3>
-    <pre>LEARN
-↓
-EXPLAIN IT LIKE AN IDIOT
-↓
-EXPLAIN IT PRECISELY
-↓
-PREDICT
-↓
-RUN
-↓
-BREAK IT
-↓
-READ THE REAL ERROR / RESULT
-↓
-DEBUG
-↓
-FIX
-↓
-TEST BOUNDARIES
-↓
-SOLVE A NEW PROBLEM
-↓
-EXPLAIN WHY YOUR SOLUTION WORKS
-↓
-BUILD SOMETHING</pre>
-
-    <h3>11. CONNECTIONS TO THE REST OF THE CURRICULUM</h3>
-    <p>No topic lives alone. Ask: Which earlier concept supplies its vocabulary? Which data structure or mathematical idea does it depend on? What runtime behavior can change its cost? What security or correctness assumption can invalidate it? What later topic becomes easier once this one is understood?</p>
-
-    <h3>12. MASTERY QUESTIONS</h3>
-    <ol>
-      <li>Define the topic without using the topic's name as the definition.</li>
-      <li>Explain every subtopic listed on this page.</li>
-      <li>State the normal rule and at least one exception or boundary.</li>
-      <li>Predict a new example before executing it.</li>
-      <li>Diagnose a deliberately broken example.</li>
-      <li>Explain the performance or mathematical cost where relevant.</li>
-      <li>Explain when you would choose a different mechanism.</li>
-      <li>Teach the entire idea to another idiot without copying the page.</li>
-    </ol>
-
-    <div class="try">
-      <h3>🏆 FINAL BOSS</h3>
-      <p>${esc(t.doit||"Build a small real problem using this topic, then deliberately break it and repair it.")}</p>
-      <p><b>Required evidence:</b> working result + boundary tests + one broken case + diagnosis + corrected version + explanation of the rule behind the correction.</p>
-    </div>
-  </section>`;
-}function idiot(p){
-  const k=String(p).toLowerCase();
-  const jokes=[
-    ["variable","A variable is a named box. The label is the name; the stuff inside is the value. Do not confuse the label with the potato."],
-    ["let","LET says: 'MAKE ME A NAMED BOX.' You can later put a different value in that box."],
-    ["const","CONST says: 'MAKE THE NAME STAY ATTACHED TO THIS VALUE.' It does not magically freeze the object inside. JavaScript is sneaky."],
-    ["scope","SCOPE is the security guard checking whether a name is visible from this room. Wrong room? Guard says NO."],
-    ["closure","A CLOSURE is a function that moved out but stole the house keys. It still remembers the surrounding lexical environment."],
-    ["promise","A PROMISE is a restaurant token. Food is not ready yet. Later you either get food or the kitchen reports disaster."],
-    ["array","AN ARRAY is a row of numbered lockers. Locker zero is first because JavaScript enjoys tiny acts of violence."],
-    ["object","AN OBJECT is a labelled junk drawer. You can store properties, retrieve them, replace them, and accidentally mutate shared stuff."],
-    ["this","THIS is the confused employee asking: 'WHO CALLED ME?' The call-site decides the answer in many ordinary cases."],
-    ["recursion","RECURSION is asking yourself to solve the same problem until a base case finally tells you to stop being an idiot."],
-    ["binary search","BINARY SEARCH throws away half the possible answers every time. It only gets to be this rude because the search space is ordered."],
-    ["big-o","BIG-O asks: 'When the input becomes a monster, how quickly does my amount of work become a bigger monster?'"],
-    ["stack","A STACK is a pile of plates. Put on top, remove from top. Touch the bottom and the pile becomes a crime scene."],
-    ["queue","A QUEUE is people waiting for samosas. First in, first out. Unless you explicitly chose a priority queue."],
-    ["function","A FUNCTION is a reusable machine. Give it inputs, let it do work, and it may hand you a result. Merely owning the machine does not turn it on."],
-    ["loop","A LOOP is JavaScript saying 'DO THIS AGAIN' until the stopping rule finally wins."],
-    ["prototype","A PROTOTYPE is the next drawer JavaScript checks when the current object's property lookup comes up empty."],
-    ["error","AN ERROR is the computer handing you evidence that some rule was violated or some operation failed. It is not a personal insult."],
-    ["promise","A PROMISE is not the result itself. It is an object representing a future settlement: fulfilled or rejected."]
-  ];
-  for(const [key,msg] of jokes) if(k.includes(key)) return msg;
-  return "Imagine "+p+" is a tiny goblin with a rulebook. We are not going to memorize the goblin's favourite example. We are going to learn the rulebook, poke the goblin with weird inputs, watch what actually happens, and fix the goblin when it throws a chair.";
-}
-function precise(p){return "<b>"+esc(p)+"</b> is a defined mechanism or concept. Learn its formal rule, valid inputs, outputs or state changes, timing, constraints, interactions, and failure modes. A memorized example is not understanding.";}
-function purpose(p){return "This exists because programmers need a reliable way to solve a recurring problem: representing information, controlling execution, transforming data, managing state, communicating asynchronously, proving correctness, or controlling cost. Learn the problem before worshipping the syntax.";}
-function model(p){return "Build a tiny mental machine for "+esc(p)+": START → INPUT → RULE 1 → INTERMEDIATE STATE → RULE 2 → RESULT/STATE CHANGE/ERROR. Trace each transition instead of teleporting from input to answer.";}
-function trap(p){return "Idiot trap: copying the happy-path example and declaring victory. Attack it with empty input, minimum input, maximum practical input, boundary values, duplicates, wrong types, missing values, repeated calls, and invalid usage where relevant.";}
-function chaos(t){return "You are learning "+esc(t.title||"this topic")+" from an idiot who has already broken it. First we make the idea stupid enough to remember. Then we make it precise enough to trust. Then we run it, break it, debug it, test it, and build with it. If something sounds like magic, we keep digging.";}
-function definition(t){return "This chapter is a skill, not a vocabulary list. You should eventually be able to define the concept, explain why it exists, write its syntax, trace its execution, predict behavior, handle edge cases, diagnose failures, reason about cost, connect it to other concepts, and build something without copying.";}
-function syntaxFor(title){
- const t=title.toLowerCase();
- if(t==="foundations") return "<pre>// expression: produces a value\n2 + 3\n\n// statement: performs an instruction\nconst answer = 2 + 3;\n\n// strict mode\n\"use strict\";</pre><p><b>Idiot decoder:</b> an expression is a thing that can produce a value; a statement is an instruction in the program. Some statements contain expressions. The punctuation is grammar, not decoration.</p>";
- if(t==="variables") return "<pre>let age = 25;\nconst name = \"Bob\";\nvar oldStyle = true;\nage = 26;</pre><p><b>Token drill:</b> keyword = declaration form; identifier = binding name; right side = expression; <code>=</code> = assignment/initialization; semicolon = statement terminator. Then learn scope, TDZ, redeclaration, shadowing and mutation versus reassignment.</p>";
- if(t==="functions") return "<pre>function add(a, b) {\n  return a + b;\n}\nconst double = x =&gt; x * 2;\nadd(2, 3);</pre><p>A function definition creates a callable value. Parameters are local names. A call creates an invocation context. <code>return</code> supplies the call's result and stops that invocation.</p>";
- if(t==="arrays") return "<pre>const a = [10, 20, 30];\na[0];\na.push(40);\na.map(x =&gt; x * 2);\na.slice(1, 3);</pre><p>Always ask: does this method mutate the original? What does it return? What happens for an empty array? What is the complexity?</p>";
- if(t==="objects") return "<pre>const user = { name: \"Bob\", age: 30 };\nuser.name;\nuser[\"age\"];\nuser.city = \"Hansi\";</pre><p>Property access, identity, prototypes, descriptors, getters/setters, mutation and references are separate ideas. Do not compress them into 'object = key value'.</p>";
- if(t==="promises") return "<pre>doWork()\n  .then(value =&gt; transform(value))\n  .catch(error =&gt; recover(error))\n  .finally(() =&gt; cleanup());</pre><p>A Promise represents a future settlement. Continuations form another Promise. Fulfillment and rejection propagate through the chain according to defined rules.</p>";
- if(t==="async and await") return "<pre>async function load() {\n  const value = await getValue();\n  return value;\n}</pre><p><code>async</code> makes the function return a Promise. <code>await</code> pauses that async function's continuation until the awaited result settles; it does not freeze the whole JavaScript runtime.</p>";
- if(t==="event loop") return "<pre>console.log(\"A\");\nsetTimeout(() =&gt; console.log(\"B\"), 0);\nPromise.resolve().then(() =&gt; console.log(\"C\"));\nconsole.log(\"D\");</pre><p>Predict before running. Synchronous work completes first; Promise reactions use the microtask queue; timers are scheduled tasks. 'Zero milliseconds' does not mean 'run now'.</p>";
- if(t==="fetch and http") return "<pre>const response = await fetch(url);\nif (!response.ok) throw new Error(String(response.status));\nconst data = await response.json();</pre><p>Understand request/response, methods, URL, headers, body, status, redirects, CORS, credentials, aborting and response parsing separately.</p>";
- if(t==="regular expressions") return "<pre>/pattern/flags\ntext.match(/foo/gi)\ntext.replace(/foo/gi, \"bar\")</pre><p>Learn literals, flags, character classes, quantifiers, groups, captures, anchors, lookaround, greediness and backtracking before using regex as a magical incantation.</p>";
- if(t==="binary search") return "<pre>let lo = 0, hi = a.length - 1;\nwhile (lo &lt;= hi) {\n  const mid = lo + Math.floor((hi - lo) / 2);\n  // compare a[mid]\n}</pre><p>The invariant is the boss: the answer, if it exists, remains inside the current search interval. Each comparison must safely discard a region.</p>";
- return "<p><b>Token drill:</b> take one real example from this topic and label every keyword, identifier, literal, operator, delimiter, parameter, argument and result. Remove one token and predict the exact failure.</p>";
-}
-function subtopicCard(p,i){
- return "<article class='theory-card'><h4>"+i+". "+esc(p)+"</h4><div class='idiot'><b>🤡 IDIOT TEACHER:</b><p>"+idiot(p)+"</p><p><b>Now YOU:</b> explain the same idea without using my sentence. If you can only repeat me, your brain has rented the concept instead of buying it.</p></div><p><b>🧠 PRECISE RULE:</b> "+precise(p)+"</p><p><b>❓ WHY DOES THIS EXIST?</b> "+purpose(p)+"</p><p><b>👀 MENTAL MACHINE:</b> "+model(p)+"</p><p><b>💀 TRAP:</b> "+trap(p)+"</p><div class='try'><b>🔮 IDIOT CHALLENGE:</b> invent a tiny example, predict the result, run it, and explain any disagreement.</div></article>";
-}
-function theory(t){
- const tags=(t.tags||"").split(";").map(x=>x.trim()).filter(Boolean);
- const cards=tags.map((p,i)=>subtopicCard(p,i+1)).join("");
- return "<section class='full-theory'>"+
- "<h2>🤡 THE IDIOT TEACHES: "+esc(t.title)+"</h2>"+
- "<div class='idiot'><h3>NO PROFESSOR MODE.</h3><p>"+chaos(t)+"</p><p><b>Golden rule:</b> jokes are allowed to be stupid. Technical facts are not.</p></div>"+
- "<h3>1. 🧠 WHAT THE HELL IS THIS?</h3><p>"+definition(t)+"</p><p><b>Idiot test:</b> explain it without saying its name. 'It is a "+esc(t.title)+" thing' gets you immediately sent back to the tutorial dungeon.</p>"+
- "<h3>2. 🤡 THE STUPID PICTURE</h3><p>"+idiot(t.title)+"</p><p>Now replace every joke-word with the real technical word. That translation step is how the idiot becomes an engineer.</p>"+
- "<h3>3. 🎯 THE CORE RULE</h3><p><b>Core:</b> "+esc(t.core||"Find the central rule, what problem it solves, and the boundary where the rule stops applying.")+"</p>"+
- "<h3>4. 🔤 EVERY WORD, ONE AT A TIME</h3>"+cards+
- "<h3>5. ✍️ SYNTAX — EVERY TOKEN HAS A JOB</h3>"+syntaxFor(t.title)+
- "<div class='engineer'><b>ENGINEER DRILL:</b> For every example: name each token, state what it means, state what is legal there, state what it produces, state what it changes, and state when it happens.</div>"+
- "<h3>6. ⚙️ WHAT ACTUALLY HAPPENS?</h3><ol><li><b>Parse:</b> the source must obey the relevant grammar.</li><li><b>Resolve:</b> names, properties, calls, operators, states or mathematical objects are identified.</li><li><b>Evaluate:</b> rules are applied in order.</li><li><b>Act:</b> state changes, calls, allocation, queueing, I/O or mathematical transformations happen.</li><li><b>Observe:</b> output, return value, changed state, timing or error becomes evidence.</li></ol><p>If you catch yourself saying 'JavaScript just does it', stop. Replace the sentence with the actual mechanism you are learning.</p>"+
- "<h3>7. 🔮 PREDICT BEFORE RUNNING</h3><div class='try'><p><b>RUNNING IS NOT THINKING.</b> Running is verification. First write your prediction. Then execute. If reality disagrees, congratulations: you found a hole in your mental model.</p><pre>INPUT → RULE → INTERMEDIATE STATE → RULE → RESULT</pre></div>"+
- "<h3>8. 💥 BREAK IT ON PURPOSE</h3><p>Attack your assumptions instead of protecting them.</p><ul><li>remove a required token</li><li>change a value's type</li><li>use empty input</li><li>use minimum and boundary values</li><li>use huge input</li><li>duplicate data</li><li>repeat an operation</li><li>use the feature in the wrong context</li></ul><p>The failure is part of the lesson. Read the real error/result before touching the code.</p>"+
- "<h3>9. 🐛 DEBUG LIKE AN IDIOT WHO REFUSES TO GUESS</h3><div class='trap'><p><b>OBSERVE → REPRODUCE → ISOLATE → HYPOTHESIZE → TEST → FIX → RERUN → REGRESSION TEST → EXPLAIN.</b></p><p>Syntax error: grammar failed. Runtime error: execution hit a failing operation. Logic error: execution completed but violated intent. Performance issue: result may be correct but work/memory is unacceptable. Conceptual error: your mental model predicted the wrong rule.</p></div>"+
- "<h3>10. 🧪 EDGE-CASE WAR</h3><table class='lesson-table'><tr><th>Attack</th><th>Question</th></tr><tr><td>Empty</td><td>What if there is nothing?</td></tr><tr><td>Minimum</td><td>What is the smallest valid input?</td></tr><tr><td>Boundary</td><td>What happens exactly at the limit?</td></tr><tr><td>Huge</td><td>What happens when scale explodes?</td></tr><tr><td>Invalid</td><td>What happens when the contract is violated?</td></tr><tr><td>Repeated</td><td>What if the same thing appears twice?</td></tr></table>"+
- "<h3>11. 📐 PERFORMANCE / CORRECTNESS / TRADE-OFFS</h3><p>JavaScript: time, memory, allocation, event-loop blocking, network cost, security. DSA: time, space, amortized cost and correctness invariant. Mathematics: assumptions, domains, exact identities and numerical error. Engineering means knowing what your solution costs, not merely getting one lucky output.</p>"+
- "<h3>12. 🔗 CONNECT THE DOTS</h3><p>Ask: what earlier concept does this depend on? What later concept will become easier because of it? What changes if I combine it with functions, objects, arrays, scope, asynchronous work, data structures, or mathematical reasoning? A curriculum is a graph, not a pile of isolated flashcards.</p>"+
- "<h3>13. 🪜 ZERO → IDIOT → COMPETENT → WIZARD</h3><ol><li><b>Zero:</b> recognise the vocabulary.</li><li><b>Idiot:</b> explain the stupid picture and basic rule.</li><li><b>Competent:</b> predict, execute, break and debug.</li><li><b>Advanced:</b> handle edge cases, complexity and interactions.</li><li><b>Wizard:</b> derive the rule, implement/build with it, test it, defend it, and teach another idiot.</li></ol>"+
- "<h3>14. 🏗️ BUILD WITHOUT THE TUTORIAL</h3><div class='try'><p>Close the lesson. Build something small using the concept.</p><ol><li>Write the goal.</li><li>Predict behavior.</li><li>Implement.</li><li>Test ordinary cases.</li><li>Attack it with edge cases.</li><li>Break it deliberately.</li><li>Debug from evidence.</li><li>Fix the cause.</li><li>Add a regression test.</li><li>Explain the final design and its cost.</li></ol></div>"+
- "<h3>15. 🧠 FIVE WHYS MASTER CHECK</h3><div class='idiot'><p>Imagine another idiot asks <b>WHY?</b></p><p>Why does it work?</p><p>WHY?</p><p>Why does that rule exist?</p><p>WHY?</p><p>What happens at the boundary?</p><p>WHY?</p><p>What breaks if the assumption changes?</p><p>WHY?</p><p>What evidence would prove your explanation wrong?</p></div>"+
- "<h3>16. 👑 FINAL IDIOT BOSS</h3><div class='idiot'><p>Without opening the lesson: define it, write its syntax, predict a new example, run it, break it, diagnose the failure, fix it, explain an edge case, state its cost, and build a tiny independent example. Then teach it to another idiot.</p><p><b>If you can teach it without hiding behind jargon, the wizard has escaped the idiot dungeon.</b> 🧙</p></div>"+
- "</section>";
-}
-function workflow(t){
-  const cat=t.cat||"";
-  const isMath=cat.toLowerCase().includes("math");
-  const isDSA=cat.toLowerCase().includes("dsa");
-  const starter=isMath
-    ? "2*(3+4)"
-    : isDSA
-      ? "function solve(a){ return Math.max(...a); }\nconsole.log(solve([3,1,9,2]));"
-      : "console.log(2 + 3 * 4);";
-  const breakCode=isMath
-    ? "2*(3+4"
-    : isDSA
-      ? "function solve(a){ return Math.max(a); }\nconsole.log(solve([3,1,9,2]));"
-      : "console.log(2 + ;";
-  return `<section class="workflow">
-    <h2>⚔️ REAL LEARNING WORKFLOW</h2>
-    <p><b>This is an actual interactive cycle.</b> You do not merely read the lesson. You predict, execute, deliberately break something, inspect the real result, fix it, and test again.</p>
-    <div class="workflow-grid">
-      <div class="step"><h4>1️⃣ LEARN</h4><p>Read the theory above. State the rule in your own words.</p><div class="result">${esc(t.core||"Learn the rule, purpose, syntax and edge cases.")}</div></div>
-      <div class="step"><h4>2️⃣ PREDICT</h4><p>Before running anything, write your prediction.</p><textarea id="wfPred" placeholder="I think the result will be..."></textarea></div>
-      <div class="step"><h4>3️⃣ RUN / CALCULATE</h4><textarea id="wfCode">${esc(starter)}</textarea><button class="primary" onclick="wfRun()">▶ Run for real</button><div id="wfRunOut" class="result">Nothing executed yet.</div></div>
-      <div class="step"><h4>4️⃣ BREAK IT</h4><p>Now use a deliberately broken case.</p><textarea id="wfBreak">${esc(breakCode)}</textarea><button onclick="wfBreakRun()">💥 Break it</button><div id="wfBreakOut" class="result">No failure yet.</div></div>
-      <div class="step"><h4>5️⃣ DEBUG</h4><p>Classify the failure and explain the violated rule.</p><button onclick="wfHint()">💡 WHY?</button><button onclick="wfHint(2)">🔎 BIGGER HINT</button><div id="wfHintOut" class="result">Try to diagnose it before asking.</div></div>
-      <div class="step"><h4>6️⃣ FIX</h4><p>Edit the broken code until it works.</p><button onclick="wfRunFixed()">🔧 Run fixed version</button><div id="wfFixOut" class="result">Your fixed result appears here.</div></div>
-      <div class="step"><h4>7️⃣ TEST</h4><p>Test normal, empty/boundary, invalid and surprising inputs.</p><button onclick="wfTests()">🧪 Run test checks</button><div id="wfTestOut" class="result">Tests not run.</div></div>
-      <div class="step"><h4>8️⃣ BUILD</h4><p>Close the tutorial and create something using the same concept.</p><textarea id="wfBuild" placeholder="Describe what you built and why it works..."></textarea><button onclick="wfBuildCheck()">🏗️ Check my explanation</button><div id="wfBuildOut" class="result">Explain it to another idiot.</div></div>
-    </div>
-  </section>`;
-}
-function wfExec(code,cb){
-  const worker=new Worker(URL.createObjectURL(new Blob([`
-    self.onmessage=async e=>{
-      const out=[];
-      const log=(...a)=>out.push(a.map(x=>typeof x==="string"?x:JSON.stringify(x)).join(" "));
-      try{
-        const fn=new AsyncFunction("console","\${e.data}");
-        await fn({log,warn:log,error:log});
-        postMessage({ok:true,out:out.join("\\n")});
-      }catch(err){postMessage({ok:false,error:(err&&err.stack)||String(err),out:out.join("\\n")})}
-    };
-  `],{type:"text/javascript"}));
-  const timer=setTimeout(()=>{worker.terminate();cb({ok:false,error:"Execution timed out. Possible infinite loop."})},3000);
-  worker.onmessage=e=>{clearTimeout(timer);worker.terminate();cb(e.data)};
-  worker.postMessage({data:code});
-}
-function wfRun(){
-  const out=document.getElementById("wfRunOut");
-  const code=document.getElementById("wfCode").value;
-  if((cat.value||"").toLowerCase().includes("math")){try{out.textContent="Result: "+Function("return ("+code+")")();out.className="result done"}catch(e){out.textContent="Real error: "+e;out.className="result bad"}}else wfExec(code,r=>{out.textContent=r.ok?(r.out||"(no output)"):("Real error: "+r.error);out.className="result "+(r.ok?"done":"bad")});
-}
-function wfBreakRun(){const code=document.getElementById("wfBreak").value;const out=document.getElementById("wfBreakOut");if((cat.value||"").toLowerCase().includes("math")){try{out.textContent="Result: "+Function("return ("+code+")")();out.className="result done"}catch(e){out.textContent="REAL ERROR: "+e;out.className="result bad"}}else wfExec(code,r=>{out.textContent=r.ok?(r.out||"(no output)"):("REAL ERROR: "+r.error);out.className="result "+(r.ok?"done":"bad")})}
-function wfHint(level=1){const out=document.getElementById("wfHintOut");out.textContent=level===1?"Read the first real error/result. Find the exact operation that violates the rule.": "Do not randomly rewrite code. Identify the smallest broken construct, state the rule it violates, then change only that construct and rerun it."}
-function wfRunFixed(){wfRun();document.getElementById("wfFixOut").textContent="The code above is your fixed version. Run it, inspect the real result, then compare it with your prediction."}
-function wfTests(){const out=document.getElementById("wfTestOut");const code=document.getElementById("wfCode").value;wfExec(code,r=>{out.textContent="Baseline test: "+(r.ok?"PASS":"FAIL")+"\nBoundary test: change the input and rerun.\nInvalid-input test: deliberately violate the contract and classify the resulting failure.";out.className="result "+(r.ok?"done":"bad")})}
-function wfBuildCheck(){const x=document.getElementById("wfBuild").value.trim();document.getElementById("wfBuildOut").textContent=x.length<40?"Too short. Explain the rule, your implementation, one edge case, one failure, and why the fix works.":"Good. Now verify your explanation against the actual result and build a second example without copying the lesson.";}function deepDive(t){
- const tags=(t.tags||"").split(";").map(x=>x.trim()).filter(Boolean);
- const cat=(t.cat||"").toLowerCase();
- const title=t.title||"This topic";
- const domain=cat.includes("javascript")?"JavaScript":cat.includes("mathematics")?"Mathematics":cat.includes("dsa")?"Data Structures & Algorithms":"Engineering";
- const idiot=t.idiot||"Imagine the concept as a ridiculous machine. The joke is only the handle; the real rule is what we test and keep.";
- const technical=cat.includes("javascript")
-   ? "JavaScript is a language with defined syntax and semantics, executed inside a particular runtime such as a browser or Node.js. A correct lesson must distinguish what the ECMAScript language specifies from what a host environment provides. When you study "+title+", track values, bindings, execution context, control flow, side effects, errors, scheduling and observable results rather than memorising a slogan."
-   : cat.includes("mathematics")
-   ? "Mathematics is a system of definitions, assumptions, transformations and proofs. For "+title+", every symbol has a meaning, every operation has conditions, and every conclusion needs a reason. Numerical calculation is useful evidence, but it is not a proof by itself. Check domains, signs, units, boundary cases and whether a transformation is reversible."
-   : cat.includes("dsa")
-   ? "An algorithm is not a magic recipe. For "+title+", identify the input model, the maintained state, the invariant, the operation performed at each step, the termination condition and the output contract. Then measure time and space costs. A solution is only trustworthy when you can explain why it is correct and where it fails."
-   : "Engineering turns requirements into systems that can be changed, tested, observed and operated. For "+title+", define the contract, identify failure modes, choose measurements, make trade-offs explicit and verify the result. Cleverness without evidence is just expensive confusion.";
- const why=cat.includes("javascript")
-   ? "The purpose is to control computation and state without relying on accidental behaviour. Ask what problem "+title+" solves, what simpler mechanism existed before it, and what new failure modes it introduces."
-   : cat.includes("mathematics")
-   ? "The purpose is to give you a reusable way to reason. Ask which class of problems "+title+" compresses, which assumptions make the method valid, and how you would recognise a problem that does not fit."
-   : cat.includes("dsa")
-   ? "The purpose is to make a problem tractable. Ask what bottleneck "+title+" removes, which invariant makes the method work, and why a naive approach becomes too slow or memory-heavy."
-   : "The purpose is to make a system reliable and understandable. Ask which risk "+title+" addresses, how success is measured, and what trade-off the solution creates.";
- const syntax=cat.includes("javascript")
-   ? "<pre>// Learn the grammar, not just the shape.
-"+esc(title)+" → identify the declaration/expression/statement form
-→ identify every keyword, operator, delimiter and operand
-→ identify evaluation order
-→ identify produced value and side effects
-→ identify possible exceptions and host dependencies</pre>"
-   : cat.includes("mathematics")
-   ? "<pre>SYMBOL / EXPRESSION
-      ↓
-DEFINE EVERY SYMBOL
-      ↓
-STATE DOMAIN + ASSUMPTIONS
-      ↓
-APPLY A VALID IDENTITY / RULE
-      ↓
-SIMPLIFY OR COMPUTE
-      ↓
-CHECK THE RESULT</pre>"
-   : cat.includes("dsa")
-   ? "<pre>INPUT
-  ↓
-DATA REPRESENTATION
-  ↓
-INVARIANT
-  ↓
-REPEATED OPERATION
-  ↓
-STATE CHANGE
-  ↓
-TERMINATION
-  ↓
-OUTPUT + COMPLEXITY</pre>"
-   : "<pre>REQUIREMENT
-  ↓
-CONTRACT
-  ↓
-DESIGN
-  ↓
-IMPLEMENTATION
-  ↓
-TEST
-  ↓
-MEASURE
-  ↓
-OBSERVE FAILURE
-  ↓
-REFACTOR</pre>";
- const sub=tags.map((x,i)=>{
-   const n=i+1;
-   return "<article class='card deep-subskill'><h4>"+n+". "+esc(x)+"</h4>"+
-    "<p><b>Definition:</b> What does <b>"+esc(x)+"</b> mean in this topic? State it in plain language first, then in precise technical language. Do not hide behind the word itself. If you cannot define it without repeating the label, you do not own the concept yet.</p>"+
-    "<p><b>Purpose:</b> Why does <b>"+esc(x)+"</b> exist? Name the problem it solves. Then name one situation where using it would be unnecessary, misleading, or more complicated than the problem deserves.</p>"+
-    "<p><b>Mechanism:</b> Describe the actual sequence of operations. What is read first? What changes? What remains unchanged? What produces the next step? What finally becomes observable? Trace the smallest useful example by hand.</p>"+
-    "<p><b>Rules:</b> List the conditions that must remain true. Include ordering, scope, domain restrictions, mutation rules, invariants, termination conditions, or API contracts when relevant.</p>"+
-    "<p><b>Boundary:</b> Test zero, one, empty input, duplicate values, maximum/minimum values, invalid input and the exact transition where behaviour changes. Boundary cases are where memorised explanations usually explode.</p>"+
-    "<p><b>Evidence:</b> Decide what would prove your understanding wrong: an executable experiment, counterexample, calculation, proof, benchmark, assertion, or reproducible failure. Never accept 'it seems to work' as evidence.</p>"+
-    "<p><b>Connection:</b> Explain which earlier idea makes <b>"+esc(x)+"</b> understandable and which later idea becomes easier after mastering it.</p></article>";
- }).join("");
- const trace=cat.includes("mathematics")
-   ? "<p>For a calculation, write the given values, define symbols, state restrictions, choose the identity or theorem, substitute carefully, simplify one step at a time, then verify by substitution, estimation, an independent method, or a counterexample. For proofs, distinguish a definition from a theorem and a theorem from an empirical observation.</p>"
-   : cat.includes("dsa")
-   ? "<p>For an algorithm, write a tiny input and literally list every state change. Mark the invariant after every operation. Then show why the loop/recursion moves toward termination. Finally compare the result with a brute-force oracle on many small cases. This turns 'I think this algorithm works' into evidence.</p>"
-   : cat.includes("javascript")
-   ? "<p>For code, trace source text into parsed structure, then into evaluation and observable effects. Track bindings and values separately: a name is not the same thing as the value it currently refers to. Track mutation separately from reassignment. Track synchronous execution separately from queued asynchronous work. When an error occurs, record the exact error type, message, location and smallest input that reproduces it.</p>"
-   : "<p>For engineering, trace a real request from input to output. Record assumptions, state transitions, dependencies, failure points, logs, metrics and recovery behaviour. Then test the smallest useful case, normal cases, boundaries, malformed inputs and operational failures.</p>";
- return "<section class='deep-dive card'>"+
- "<h2>🧠 DEEP MODE — "+esc(title)+"</h2>"+
- "<p><b>Minimum teaching target:</b> this lesson is designed as a full-page treatment of <b>"+esc(title)+"</b>, not a definition card. Read it in order, perform the experiments, and do not mark mastery until you can reproduce the reasoning without the page.</p>"+
- "<div class='idiot'><h3>🤡 1. IDIOT PICTURE</h3><p>"+esc(idiot)+"</p><p>Imagine a cartoon idiot trying to solve <b>"+esc(title)+"</b> with the wrong mental model. Your job is to catch the idiot. Then replace the joke with the exact rule. The humour makes the hook memorable; the technical explanation is the authority.</p></div>"+
- "<div class='engineer'><h3>🧑‍💻 2. PRECISE TECHNICAL MEANING</h3><p>"+esc(technical)+"</p><p><b>Domain:</b> "+domain+". <b>Rule:</b> never confuse a convenient beginner model with the complete mechanism. The beginner model is allowed to be incomplete; it is not allowed to contradict the real rule.</p></div>"+
- "<h3>❓ 3. WHY DOES THIS EXIST?</h3><p>"+esc(why)+"</p><p>Before learning syntax, identify the problem. Then ask three questions: <b>What was hard before this existed?</b> <b>What does this make easier?</b> <b>What new complexity does it introduce?</b> If you cannot answer all three, pause here. You are memorising a tool instead of understanding why the tool exists.</p>"+
- "<h3>🔤 4. VOCABULARY — NO MYSTERY WORDS</h3><p>This lesson's coverage is: <b>"+esc(tags.join(", "))+"</b>. Each term is a separate skill. A semicolon between words does not magically fuse them into one concept. Learn what each term means, how it behaves, how it interacts with the other terms, and what failure looks like.</p>"+
- "<h3>✍️ 5. SYNTAX / FORMAL STRUCTURE</h3>"+syntax+
- "<p>Read syntax from left to right. For every token ask: is it a keyword, identifier, literal, operator, delimiter, type of value, function call, grouping marker, separator, or piece of data? Then ask what the parser can recognise and what the runtime/calculation/algorithm does with that structure. Syntax answers <i>how it is written</i>; semantics answers <i>what it means</i>. Confusing those two creates the classic beginner monster: 'my syntax looks right, therefore my program must be right.' No. A syntactically valid disaster is still a disaster.</p>"+
- "<h3>🧩 6. SUB-SKILL DISSECTION</h3>"+sub+
- "<h3>⚙️ 7. WHAT ACTUALLY HAPPENS?</h3>"+trace+
- "<div class='try'><pre>INPUT / ASSUMPTIONS
-      ↓
-PARSE / DEFINE
-      ↓
-RULES / INVARIANTS
-      ↓
-INTERMEDIATE STATE
-      ↓
-NEXT OPERATION
-      ↓
-RESULT
-      ↓
-VALIDATE
-      ↓
-EXPLAIN WITHOUT NOTES</pre></div>"+
- "<h3>🔮 8. PREDICT BEFORE YOU RUN</h3><p>Stop before executing anything. Write down the expected result and why. For code, predict output, state changes, thrown errors and asynchronous ordering. For mathematics, estimate the sign and approximate size before calculating. For DSA, predict the data structure after each major operation. For engineering, predict the request path and likely failure points. Prediction exposes misunderstanding faster than passive reading because your brain must commit to a model.</p>"+
- "<h3>▶️ 9. RUN / CALCULATE / TRACE</h3><p>Now perform the smallest real experiment. Use the practical lab where available. Change exactly one thing at a time. Record the actual result. If actual and predicted differ, that mismatch is not embarrassment; it is a free X-ray of your mental model.</p>"+
- "<h3>💥 10. BREAK IT ON PURPOSE</h3><div class='trap'><ul><li>Use the smallest valid input.</li><li>Try empty input.</li><li>Try one element.</li><li>Try duplicate values.</li><li>Try the smallest and largest relevant values.</li><li>Try malformed or invalid input.</li><li>Break one assumption at a time.</li><li>Make the workload large enough to expose cost.</li><li>Record the exact wrong answer or error instead of saying 'it broke'.</li></ul></div>"+
- "<h3>🐛 11. DEBUG LIKE A DETECTIVE</h3><p>Debugging is not random editing. Reproduce the failure. Reduce it to the smallest failing case. Read the exact error or compare expected versus actual. Identify the first incorrect state, not merely the final symptom. Form one hypothesis. Change one thing. Re-run the same test. Keep the change if the evidence supports it; revert it if it does not. Repeat until the root cause is explained. Then add a regression test so the same bug has somewhere to die permanently.</p>"+
- "<h3>🧪 12. EDGE CASES AND ADVERSARIES</h3><p>A professional lesson includes cases that attack its assumptions. Ask what happens with zero, negative values, empty collections, duplicates, maximum sizes, invalid states, unexpected ordering, repeated calls, precision limits, timeouts, partial failures, and hostile inputs when security matters. Explain not only the answer but why the answer follows from the rules.</p>"+
- "<h3>📐 13. CORRECTNESS</h3><p>Write a sentence beginning <b>'This is correct when...'</b> and finish it with the actual conditions. Then state the invariant, proof idea, specification, or language guarantee that supports the claim. A test suite can provide evidence that an implementation works on tested cases; it does not automatically prove that every possible input is correct. Know the difference between evidence and proof.</p>"+
- "<h3>⏱️ 14. COST MODEL</h3><p>Measure the relevant cost: time, space, allocations, recursion depth, I/O, network latency, event-loop blocking, numerical error, compilation/build cost, or human maintenance cost. For DSA, state asymptotic complexity and what operation dominates. For mathematics, consider numerical stability and approximation error. For JavaScript, consider allocations, garbage collection, scheduling and host APIs where relevant. For engineering, include operational and maintenance cost.</p>"+
- "<h3>🔗 15. CONNECTIONS</h3><p><b>Prerequisites:</b> "+esc(tags.slice(0,Math.max(1,Math.min(3,tags.length))).join(", "))+". <b>Current concept:</b> "+esc(title)+". <b>Next step:</b> combine it with the other covered skills to solve a larger problem. Mastery means you can explain those connections, not merely recognise each word on a checklist.</p>"+
- "<h3>📈 16. FOUR LEVELS OF MASTERY</h3><ol><li><b>Idiot:</b> explain the ridiculous picture and the one-sentence rule.</li><li><b>Competent:</b> use the concept correctly on a normal problem and explain every important step.</li><li><b>Advanced:</b> handle edge cases, interactions, failures, trade-offs and complexity.</li><li><b>Wizard:</b> derive or justify the rule, build the solution from a blank page, deliberately break it, debug it, test it, measure it, and teach it to another person without copying the lesson.</li></ol>"+
- "<h3>🏗️ 17. BUILD WITHOUT A TUTORIAL</h3><p>Create a small artifact that forces the concept to exist in your hands. Do not copy a finished solution. First write the requirements. Then write examples. Then write the smallest implementation. Then test normal cases and adversarial cases. Then refactor. Finally explain why your design is correct and what its limits are. If you cannot build a tiny version, you probably recognise the concept rather than understand it.</p>"+
- "<h3>🧠 18. FIVE WHYS</h3><ol><li>Why does <b>"+esc(title)+"</b> behave this way?</li><li>Why is that rule necessary?</li><li>Why does the underlying mechanism need that rule?</li><li>Why would a simpler alternative fail or be insufficient?</li><li>Why does this matter when building real software, solving problems, or reasoning about systems?</li></ol>"+
- "<h3>👑 19. FINAL IDIOT BOSS</h3><p>Close the lesson. Without looking back, define <b>"+esc(title)+"</b>. Explain every coverage term. Write the relevant syntax or mathematical form. Trace a small example. Predict its result before running it. Break one assumption. Diagnose the failure. Fix it. State the edge cases. State correctness conditions. State cost. Then explain how this topic connects to at least two other topics in the curriculum. If you can do all of that from memory, you are no longer just reading about "+esc(title)+" — you are using it.</p>"+
- "</section>";
-}
-function fullTeaching(t){
- const tags=(t.tags||"").split(";").map(x=>x.trim()).filter(Boolean), direct=TEACH[t.title]||[], cat=(t.cat||"").toLowerCase();
- const domain=cat.includes("javascript")?"JavaScript":cat.includes("mathematics")?"Mathematics":cat.includes("dsa")?"Data Structures & Algorithms":"Engineering";
- const lead=cat.includes("javascript")?"In JavaScript, separate syntax from semantics, names from values, synchronous execution from queued work, and ECMAScript rules from browser or Node.js host behaviour. Trace values, bindings, evaluation order, side effects and errors.":cat.includes("mathematics")?"In mathematics, define every symbol, state assumptions and domain restrictions, justify every transformation, and distinguish numerical evidence from proof.":cat.includes("dsa")?"In DSA, move from problem constraints to representation, invariant, algorithm, correctness argument and complexity. A remembered pattern is a recipe; a derivable pattern is understanding.":"In engineering, define contracts, states, dependencies, measurements and failure modes. A design is not complete until it can be tested, observed and maintained.";
- const prose=direct.map(x=>"<p>"+esc(x)+"</p>").join("");
- const sub=tags.map((x,i)=>"<article class='card deep-subskill'><h4>"+(i+1)+". "+esc(x)+"</h4><p><b>What it means:</b> "+esc(x)+" is one component of the topic, not a vocabulary decoration. Explain its job in plain language, then state the precise rule. Identify what enters, what changes, what remains unchanged and what becomes observable. The idiot picture is only the memory hook; the rule is the thing you must trust.</p><p><b>How it works:</b> Describe the mechanism step by step. State ordering, assumptions, invariants, domains, mutation, error behaviour and termination conditions where relevant. Explain why the mechanism produces the observed result rather than merely repeating the result.</p><p><b>Example and boundary:</b> Work through the smallest useful example slowly. Then attack it with empty input, one item, zero, negatives, duplicates, extremes, invalid input, large input or broken assumptions as appropriate. Explain the result of each boundary instead of saying only 'it breaks'.</p><p><b>Connection:</b> Explain what prerequisite makes "+esc(x)+" understandable, what later idea depends on it, and how it interacts with the other terms in this lesson.</p></article>").join("");
- return "<section class='card full-teaching'><h2>📚 FULL PARAGRAPH TEACHING — "+esc(t.title)+"</h2>"+
- "<p><b>This is a textbook-style lesson, not a flashcard.</b> Read the paragraphs as connected reasoning. The idiot jokes make the concept memorable, but the technical paragraphs explain what is actually true. Your job is to predict behaviour before you see it, test that prediction, investigate mismatches and eventually reconstruct the lesson without the page.</p>"+
- "<h3>1. What problem are we solving?</h3><p>"+esc(t.core)+"</p><p>"+esc(t.idiot)+"</p><p>"+esc(t.doit)+"</p><p>Every useful concept exists because some recurring problem needs a better way of thinking or working. Imagine solving that problem without this concept. What would the naive solution look like? Where would it become confusing, slow, fragile, difficult to prove or difficult to maintain? Then ask what price the concept introduces. Technical maturity means understanding both the capability and the cost.</p>"+
- "<h3>2. Precise mental model</h3>"+prose+"<p>"+lead+"</p><p>A definition is compressed knowledge. A mental model lets you predict unfamiliar cases. Before running an example, state the initial state, identify the active rule, predict the next state and explain why. If the prediction is wrong, the mismatch is valuable evidence about your model.</p>"+
- "<h3>3. Every coverage term is a real lesson</h3><p>This topic covers <b>"+esc(tags.join(", "))+"</b>. Related terms are not interchangeable: declaration is not initialization, a value is not a variable name, an example is not a proof, an algorithm is not its implementation, and a host API is not automatically part of the language. Learn the differences and the relationships.</p>"+sub+
- "<h3>4. Syntax and notation</h3><p>Syntax is the visible grammar. In programming, identify keywords, identifiers, literals, operators, delimiters, expressions, statements, arguments and return positions. In mathematics, identify symbols, operators, equations, functions and domains. In DSA, identify the representation and legal operations. In engineering, identify interfaces, contracts, messages and configuration. For every piece, ask both 'Can this be parsed or represented?' and 'Does the resulting meaning solve the problem?'</p>"+
- "<h3>5. Slow-motion execution</h3><p>Take one tiny example and refuse to skip steps. Write the initial conditions, apply one rule, record the new state and repeat. JavaScript requires tracing evaluation, bindings, calls, return values, exceptions and asynchronous boundaries. Mathematics requires explicit substitutions and transformations. DSA requires drawing state and maintaining invariants. Engineering requires following requests, state, dependencies and failures. Slow tracing exposes assumptions that fast reading hides.</p>"+
- "<h3>6. Correctness and invariants</h3><p>Ask what must remain true throughout the process. That may be a language guarantee, mathematical identity, loop invariant, data-structure property, API contract or security boundary. State it in plain language. Then inspect every operation and ask whether it preserves the statement. If not, you have either found a bug or discovered a missing condition.</p>"+
- "<h3>7. Break the happy path</h3><p>Attack the concept with empty input, one value, duplicates, zero, negatives, extreme values, malformed input, unexpected ordering, repeated operations, invalid states, precision boundaries, slow dependencies and large workloads where relevant. Change one assumption at a time and predict before running. When reality disagrees, preserve the mismatch as evidence instead of immediately hiding it with a fix.</p>"+
- "<h3>8. Debug the failure</h3><p>Debugging is controlled investigation, not random surgery. Reproduce the failure, reduce it to the smallest case, capture the exact error or wrong result, find the first incorrect state, form one hypothesis, make one change and rerun the same test. If the hypothesis fails, revert and try another. Once fixed, add a regression test. The bug then becomes a documented lesson instead of a future mystery.</p>"+
- "<h3>9. Compare approaches</h3><p>Explain why the taught method works and why a naive alternative may fail under the actual constraints. Ask whether it reduces repeated work, preserves useful state, exploits ordering, makes a proof possible, improves observability or reduces risk. Also identify when the technique is inappropriate. Knowing a tool includes knowing its boundary.</p>"+
- "<h3>10. Cost, precision and limits</h3><p>Every technique has a cost model. For DSA, state time and space complexity. For mathematics, consider exact versus approximate computation, numerical stability and error accumulation. For JavaScript, consider allocations, garbage collection, blocking work and host costs where relevant. For engineering, include latency, storage, reliability and maintenance. Never say 'fast' or 'slow' without specifying what is measured and under what workload.</p>"+
- "<h3>11. Proof, testing and evidence</h3><p>Tests sample behaviour; proof establishes a general claim from definitions and rules. Both matter. Use counterexamples to destroy false generalisations, assertions to protect contracts, property-based tests to explore input spaces, benchmarks to measure performance and formal proof where a general guarantee is required. Always state what your evidence can and cannot establish.</p>"+
- "<h3>12. Build from a blank page</h3><p>Write requirements first, then examples and expected results. Implement the smallest useful version without copying the answer. Test ordinary and adversarial cases. Deliberately introduce a bug, diagnose it and add a regression test. Refactor only after correctness is established. Finally explain every important design decision and limitation. If you cannot rebuild the small version without the tutorial, repeat the exercise with fewer hints.</p>"+
- "<h3>13. Connect the knowledge</h3><p>"+esc(t.title)+" should connect to prerequisites and later topics. Explain at least two relationships: what must be understood before this idea, what becomes easier afterward, and how another topic changes when this one is mastered. Connections give your memory multiple routes to the answer instead of one fragile sentence.</p>"+
- "<h3>14. Teach it back</h3><p>Close the lesson and explain the problem, precise definition, every coverage term, syntax or notation, a worked example, an edge case, a deliberate failure, the debugging process, correctness condition, cost, limitation and one alternative. Then describe something you could build using the concept. If you can do that without copying the page, the knowledge is becoming yours.</p>"+
- "</section>";
-}
-function render(){
-  mainEl.innerHTML=renderLesson();
-  renderList();
-}
-function complete(){
-  done[idx]=Date.now();
-  localStorage.setItem("iw_lesson_done",JSON.stringify(done));
-  render();
-}
-function next(){
-  idx=(idx+1)%topics.length;
-  render();
-  scrollTo({top:0,behavior:"smooth"});
-}
-function prev(){
-  idx=(idx-1+topics.length)%topics.length;
-  render();
-  scrollTo({top:0,behavior:"smooth"});
-}
-qEl.addEventListener("input",renderList);
-catEl.addEventListener("change",renderList);
-render();
-
-function renderLesson(){
- let t=topics[idx],pct=Math.round(Object.keys(done).length/topics.length*100);
- const cat=(t.cat||"").toLowerCase();
- const domain=cat.includes("javascript")?"JavaScript":cat.includes("mathematics")?"Mathematics":cat.includes("dsa")?"Data Structures & Algorithms":"Engineering";
- const relationship=domain==="Mathematics"
-   ? "<div class='engineer'><h2>🧮 CODING ↔ MATHS — DO NOT CONFUSE THE TWO</h2><p><b>Mathematics asks:</b> what is true, why is it true, and can we prove or derive it? <b>Coding asks:</b> how do we turn a precise procedure into instructions a machine can execute reliably?</p><p>For this mathematics lesson, every formula is more than a calculator button. Learn the meaning of each symbol, the allowed inputs, the assumptions, the derivation or proof idea, and the difference between an exact answer and a numerical approximation. Then connect the mathematics to code: what data representation would store the quantities, what algorithm would perform the operations, what precision problems could appear, and what tests would catch implementation mistakes?</p><p>Example: mathematics may say <code>2x+3=7</code> and derive <code>x=2</code>. Coding must additionally decide how an input is represented, parse it, perform the operations in the correct order, handle invalid input, choose numeric types, and verify the result. The mathematics supplies the rule; programming supplies an executable procedure around that rule.</p></div>"
-   : domain==="JavaScript"
-   ? "<div class='engineer'><h2>💻 CODING ↔ MATHS — WHERE THEY MEET</h2><p>JavaScript is the language and coding is the act of expressing a procedure. Mathematics is the reasoning system you use when the problem contains quantities, relationships, logic, probability, geometry, algebra, optimisation or complexity. They overlap, but they are not the same thing.</p><p>You can write useful JavaScript with little advanced mathematics. You cannot, however, avoid reasoning: variables, conditions, loops, Boolean logic, functions, algorithms and debugging all require precise thinking. Later DSA topics add mathematical tools such as logarithms, summations, modular arithmetic, combinatorics, probability and graph theory.</p><p>So do not turn every JavaScript lesson into a maths lesson. Learn the language rule first, then ask whether a mathematical model is useful for predicting, proving, measuring or optimising the behaviour.</p></div>"
-   : domain==="Data Structures & Algorithms"
-   ? "<div class='engineer'><h2>🧩 CODING ↔ MATHS — DSA NEEDS BOTH</h2><p>DSA sits directly between mathematical reasoning and executable code. Mathematics gives you tools for counting work, proving correctness, describing graphs, analysing probability and recurrence relations, and reasoning about bounds. Coding turns the chosen algorithm into an actual implementation with real data, syntax, memory and runtime behaviour.</p><p>For every DSA topic, ask two separate questions: <b>Math question:</b> why does this algorithm work, how much work does it require, and under what assumptions? <b>Coding question:</b> how do I represent the data and implement every operation without violating the invariant?</p><p>A mathematically correct algorithm can still have a buggy implementation. A perfectly running program can still implement the wrong algorithm. Mastery requires both.</p></div>"
-   : "<div class='engineer'><h2>🛠️ ENGINEERING CONNECTION</h2><p>Engineering turns concepts into systems that survive real inputs, failures, maintenance and change. Do not stop at knowing the definition. Identify the contract, observe the behaviour, test boundaries, measure cost and explain the trade-offs.</p></div>";
- return "<div class='hero'><div class='crumb'>"+esc(t.cat)+" / "+esc(t.title)+"</div><h1>"+esc(t.title)+" — IN DEPTH</h1><p><b>Coverage:</b> "+esc(t.tags)+"</p><p><b>Teaching standard:</b> absolute zero → precise theory → syntax/notation → execution → failure → debugging → correctness → cost → connections → build.</p><div class='progress'><div class='fill' style='width:"+pct+"%'></div></div></div>"+
- relationship+
- "<div class='try'><h2>🧠 THE RULE OF THIS SCHOOL</h2><p>We are not doing 'memorise the syntax and pray'. Every topic is taught like the Variables lesson you asked for: first the idiot picture, then the real mechanism, then the vocabulary, then the syntax, then slow execution, then deliberate failure, then debugging, then edge cases, then correctness, cost, connections and a build. Paragraphs carry the teaching; lists are used only when a list is genuinely clearer.</p><p><b>LEARN → PREDICT → RUN / CALCULATE → BREAK IT → SEE REAL ERROR / WRONG RESULT → DEBUG → FIX → TEST → EDGE CASES → BUILD → EXPLAIN → MASTER.</b></p></div>"+
- fullTeaching(t)+deepDive(t)+
- "<section class='card'><h2>🧪 NOW DO IT FOR REAL</h2><p>"+esc(t.doit)+"</p><p>Do not merely read the expected answer. Predict first. Then use the practical lab or your own environment. If the result differs, preserve the exact output/error and investigate it. A wrong prediction is useful because it shows exactly where your mental model disagrees with reality.</p></section>"+
- workflow(t)+
- "<section class='card'><div class='idiot'><h2>🤡 IDIOT TRAP</h2><p>"+esc(t.trap)+"</p><p>The cure is not another memorised sentence. Reproduce the trap, observe what actually happens, explain the rule that caused it, then write a tiny test that would catch it next time.</p></div><h2>🎯 FINAL MASTERY BOSS</h2><p>Without looking back, define <b>"+esc(t.title)+"</b>, explain every coverage term, write the relevant syntax or mathematical notation, work through an example, predict its result before execution, deliberately break one assumption, diagnose the exact failure, fix it, explain the edge cases, state correctness conditions, state cost or precision limits, compare one alternative, and connect this topic to at least two other topics.</p><div class='actions'><button class='primary' onclick='complete()'>✓ I can explain it</button><button onclick='prev()'>← Previous</button><button onclick='next()'>Next →</button></div></section>";
-}
+const topics=[];
+for(const [cat,arr] of Object.entries(groups))for(const x of arr)topics.push({cat,title:x[0],tags:x[1],core:x[2],idiot:x[3],doit:x[4],trap:x[5]});
+const search=document.getElementById("search"),category=document.getElementById("category"),stats=document.getElementById("stats"),list=document.getElementById("list"),main=document.getElementById("main");
+const done=JSON.parse(localStorage.getItem("iw_lesson_done")||"{}");
+let idx=0;
+category.innerHTML=["ALL",...Object.keys(groups)].map(x=>'<option>'+escapeHtml(x)+'</option>').join("");
+function escapeHtml(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function visible(){const q=search.value.trim().toLowerCase(),cat=category.value;return topics.filter(t=>(cat==="ALL"||t.cat===cat)&&(!q||(t.cat+" "+t.title+" "+t.tags).toLowerCase().includes(q)));}
+function renderList(){const v=visible();stats.textContent=topics.length+" lessons • "+Object.keys(done).length+" completed";list.innerHTML=v.map(t=>{const i=topics.indexOf(t);return '<button class="'+(i===idx?"sel":"")+'" data-i="'+i+'">'+(done[i]?"✓ ":"")+escapeHtml(t.title)+' <small>('+escapeHtml(t.cat)+')</small></button>';}).join("");list.querySelectorAll("button").forEach(b=>b.onclick=()=>{idx=Number(b.dataset.i);render();window.scrollTo({top:0,behavior:"smooth"});});}
+function domain(t){if(t.cat==="JavaScript")return ["CODING","JavaScript is an executable language. The goal is not to turn every line into mathematics. Use mathematical reasoning where it clarifies values, logic, complexity, memory or correctness, then turn that reasoning into valid executable behaviour."];if(t.cat==="Mathematics")return ["MATHEMATICS","Mathematics asks what is true, why it is true, what assumptions are being made, and how a result can be derived or proved. Coding can calculate an example, but an example is not automatically a proof."];if(t.cat==="DSA")return ["CODING + MATH","DSA is the bridge. Mathematics explains invariants, counting, recurrence, probability, graphs and complexity; coding represents the data and executes the algorithm. A mathematically correct algorithm can still have a buggy implementation."];return ["ENGINEERING","Engineering turns knowledge into reliable systems. Define the contract, observe behaviour, test boundaries, measure cost and handle failure instead of trusting appearances."];}
+function paragraph(t,kind){const [d,desc]=domain(t);const terms=t.tags.split(";").map(x=>x.trim()).filter(Boolean);const termText=terms.length?terms.join(", "):t.title;return '<p><b>'+kind+' — '+escapeHtml(t.title)+':</b> '+escapeHtml(t.core)+' The useful mental model is that '+escapeHtml(t.title)+' is not a magic phrase to memorize; it is a mechanism with inputs, rules, behaviour and limits. In this lesson we will use the vocabulary '+escapeHtml(termText)+', because names matter: if you cannot name the moving parts, you cannot reliably reason about them. '+escapeHtml(desc)+' When you encounter a new problem, first state what you know, what must happen, and what evidence would convince you that your explanation is correct.</p>';}
+function syntax(t){if(t.cat==="Mathematics")return '<pre>Notation is part of the language of mathematics. Write the quantities, assumptions, operators and relationships explicitly. Example pattern: given inputs → apply a stated rule → derive a result → check the assumptions.</pre>';return '<pre>// General programming pattern\ninput → state/data → operation → result → test\n\n// Do not memorize punctuation alone. Ask what each token means.</pre>';}
+function fullLesson(t){const terms=t.tags.split(";").map(x=>x.trim()).filter(Boolean);let h='<section class="card"><h2>🤡 1. START LIKE AN IDIOT</h2><div class="idiot"><p>Imagine a machine that is extremely fast, extremely literal, and has absolutely no idea what you meant. That machine is our student. '+escapeHtml(t.idiot)+' The joke is useful because the real skill is removing the joke: after the funny picture, we replace it with a precise model.</p><p>'+escapeHtml(t.core)+' If you remember only one sentence at the beginning, remember this: <b>never trust your first mental picture; make the rule precise and test it.</b></p></div></section>';
+h+='<section class="card"><h2>🧠 2. REAL THEORY — IN PARAGRAPHS</h2>'+paragraph(t,"The problem")+
+paragraph(t,"The mechanism")+paragraph(t,"The important distinction")+
+'<p>Beginners often stop when an example produces the expected answer. That is not enough. A single example can agree with a wrong theory. Professional learning therefore moves from example to rule, from rule to edge cases, and from edge cases to evidence. Ask what happens when an input is empty, huge, negative, repeated, missing, malformed or exactly on a boundary. Ask whether the operation changes state, returns a new value, mutates an existing value, throws an error, loses precision or becomes expensive. These questions turn a definition into working knowledge.</p>'+
+'<p>Another important habit is separating <b>what</b> from <b>why</b> and <b>how</b>. What is the rule? Why does the rule exist? How does the environment execute it? A syntax form is only the surface. Underneath it are values, evaluation order, data representation, control flow, memory, mathematical relationships and constraints. If two approaches both produce the same visible result, investigate their assumptions and cost before declaring them equivalent.</p>'+
+'<p>For '+escapeHtml(t.title)+', the professional question is not “Can I repeat the definition?” It is “Can I predict behaviour before running it, explain behaviour after running it, and identify the smallest change that would make my prediction wrong?” That ability is the beginning of debugging and proof-oriented thinking.</p></section>';
+h+='<section class="card"><h2>🔤 3. EVERY TERM IS MACHINERY</h2>';terms.forEach((term,i)=>{h+='<div class="step"><h3>'+(i+1)+'. '+escapeHtml(term)+'</h3><p><b>Idiot meaning:</b> '+escapeHtml(term)+' is one named piece of the puzzle. Do not let the fancy word scare you.</p><p><b>Technical meaning:</b> connect the term to '+escapeHtml(t.title)+', identify its inputs and outputs, and state what changes when its conditions change.</p><p><b>Failure mode:</b> using the word correctly in a sentence while having no operational model. Fix that by constructing an example, a counterexample and an edge case.</p></div>';});h+='</section>';
+h+='<section class="card"><h2>✍️ 4. SYNTAX / NOTATION</h2><p>Syntax is the legal shape of an expression; notation is the compact language used to communicate mathematical structure. Learn it token by token instead of chanting it like a spell.</p>'+syntax(t)+'<p>For every symbol, punctuation mark, keyword or operator, ask: what does it bind to, what value does it produce, what state does it change, what precedence applies, and what happens if the assumption is violated? That is how syntax becomes understanding instead of decoration.</p></section>';
+h+='<section class="card"><h2>⚙️ 5. SLOW-MOTION EXECUTION</h2><p>Before running anything, predict the state after each meaningful step. Identify the inputs, evaluate the first operation, record the intermediate result, apply the next rule and continue until the final result. Then compare your prediction with reality. If you were wrong, do not erase the wrong prediction. It is evidence about your mental model.</p><pre>STEP 1 → identify inputs\nSTEP 2 → apply the rule\nSTEP 3 → record intermediate state\nSTEP 4 → continue evaluation\nSTEP 5 → inspect final result\nSTEP 6 → compare prediction with reality</pre></section>';
+h+='<section class="card"><h2>💥 6. BREAK THE HAPPY PATH</h2><div class="trap"><p>'+escapeHtml(t.trap)+'</p></div><p>Now deliberately attack the concept. Remove an input. Change a type. Use a boundary value. Reverse an assumption. Give the largest reasonable value. Repeat a value. Use an empty structure. For mathematics, change the domain or assumption and see whether the statement remains true. For code, introduce one character of invalid syntax, one wrong variable name, one off-by-one boundary or one incorrect condition. The goal is not to be clever; the goal is to make hidden assumptions visible.</p></section>';
+h+='<section class="card"><h2>🐛 7. DEBUGGING / CORRECTION</h2><p>When reality disagrees with your prediction, freeze the problem. Record the exact input and exact output or error. Reduce the example until the smallest failing case remains. Then identify whether the failure is syntax, runtime, logic, data, assumption, precision or complexity. Change one thing, rerun, and verify. Randomly changing ten lines is not debugging; it is hoping the computer gets bored and fixes itself.</p><p>For mathematics, the same discipline appears as checking assumptions, dimensions, signs, boundary cases, algebraic transformations and independent calculations. A calculator can confirm arithmetic, but it cannot automatically prove that your model was appropriate.</p></section>';
+h+='<section class="card"><h2>🧪 8. CORRECTNESS, COST AND LIMITS</h2>'+paragraph(t,"Correctness")+ '<p>Correctness means the result satisfies the stated contract under the stated assumptions. Complexity asks how resource use changes as the input grows. Precision asks how closely a representation or numerical method approximates the intended mathematical value. These are different questions. A program can be fast but wrong, correct but too slow, or correct for ordinary inputs but fail at a boundary.</p><p>State the invariant that must remain true. State the assumptions under which it is true. State the resource cost. State what can go wrong. This habit scales from elementary arithmetic to advanced algorithms and production systems.</p></section>';
+h+='<section class="card"><h2>🏗️ 9. BUILD WITHOUT COPYING</h2><div class="build"><p>'+escapeHtml(t.doit)+'</p><p>Build it from a blank file or a blank function. First write the contract in plain language. Then choose the representation. Then implement the smallest working version. Then add an edge case. Then test it. Finally explain why the implementation matches the rule and what its cost is.</p></div></section>';
+h+='<section class="card"><h2>🔗 10. CONNECT IT TO THE CURRICULUM</h2><p>'+escapeHtml(domain(t)[1])+'</p><p>Knowledge becomes durable when one idea can explain another. Connect '+escapeHtml(t.title)+' to its prerequisites, its consequences and at least one real use. Ask what breaks if the prerequisite is removed. Ask what becomes possible once this topic is mastered. This prevents the curriculum from becoming a pile of unrelated trivia.</p></section>';
+h+='<section class="card"><h2>👑 11. FINAL IDIOT BOSS</h2><p>Close the lesson. Without looking back, define <b>'+escapeHtml(t.title)+'</b>. Explain every coverage term: '+escapeHtml(terms.join(", "))+'. Write its syntax or notation. Work an example. Predict before execution. Break one assumption. Diagnose the failure. Fix it. Give an edge case. State correctness conditions. State cost or precision limits. Compare an alternative. Then teach the whole idea to another idiot without using the original page.</p><div class="actions"><button class="action primary" onclick="complete()">✓ I mastered this</button><button class="action" onclick="prev()">← Previous</button><button class="action" onclick="next()">Next →</button></div></section>';
+return h;}
+function render(){const t=topics[idx];const pct=Math.round(Object.keys(done).length/topics.length*100);const d=domain(t);main.innerHTML='<section class="hero"><div class="crumb">'+escapeHtml(t.cat)+' / '+escapeHtml(t.title)+'</div><h1>'+escapeHtml(t.title)+' — IN DEPTH</h1><p><b>Coverage:</b> '+escapeHtml(t.tags)+'</p><p><b>Standard:</b> zero → theory → syntax/notation → execution → break → debug → correctness → cost → build → teach.</p><div class="progress"><div class="fill" style="width:'+pct+'%"></div></div></section><section class="card"><h2>🧭 CODING ↔ MATHS</h2><p><b>'+d[0]+'</b></p><p>'+escapeHtml(d[1])+'</p></section>'+fullLesson(t);renderList();}
+function complete(){done[idx]=Date.now();localStorage.setItem("iw_lesson_done",JSON.stringify(done));render();}
+function next(){idx=(idx+1)%topics.length;render();window.scrollTo({top:0,behavior:"smooth"});}
+function prev(){idx=(idx-1+topics.length)%topics.length;render();window.scrollTo({top:0,behavior:"smooth"});}
+search.oninput=renderList;category.onchange=renderList;render();
+</script>
+</body>
+</html>
