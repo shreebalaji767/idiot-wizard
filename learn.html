@@ -46,7 +46,7 @@ textarea{resize:vertical}
   .main{padding:8px!important}
   .hero,.card{padding:12px!important}
 }
-</style></head><body><div class="wrap"><aside class="side"><div class="brand">IDIOT <b>→</b> WIZARD</div><p style="color:var(--m)">Every topic. Zero "trust me bro".</p><input id="q" class="search" placeholder="Search topics..."><select id="cat"></select><div id="stats" style="color:var(--m)"></div><div id="list" class="list"></div><hr><a href="index.html" style="color:#c4b5fd">← Back to labs</a></aside><main id="main"></main></div><script>
+</style></head><body><div class="wrap"><aside class="side"><div class="brand">IDIOT <b>→</b> WIZARD</div><p style="color:var(--m)">Every topic. Zero "trust me bro".</p><input id="q" class="search" placeholder="Search topics..."><select id="cat"></select><div id="stats" style="color:var(--m)"></div><div id="list" class="list"></div><hr><a href="index.html" style="color:#c4b5fd">← Dashboard</a><br><a href="practical.html" style="color:#c4b5fd">⚙️ Practical Lab</a></aside><main id="main"></main></div><script>
 const groups={
 "JavaScript":[
 ["Foundations","values;expressions;statements;comments;strict mode","A program is exact instructions over values. Expressions produce values; statements perform actions.","The computer is a very fast intern who cannot read your mind.","Predict output, run it, then change one token and predict again.","Confusing an expression with a statement."],
@@ -723,6 +723,29 @@ function fullTeaching(t){
  "<h3>14. Teach it back</h3><p>Close the lesson and explain the problem, precise definition, every coverage term, syntax or notation, a worked example, an edge case, a deliberate failure, the debugging process, correctness condition, cost, limitation and one alternative. Then describe something you could build using the concept. If you can do that without copying the page, the knowledge is becoming yours.</p>"+
  "</section>";
 }
+function render(){
+  renderLesson();
+  renderList();
+}
+function complete(){
+  done[idx]=Date.now();
+  localStorage.setItem("iw_lesson_done",JSON.stringify(done));
+  render();
+}
+function next(){
+  idx=(idx+1)%topics.length;
+  render();
+  scrollTo({top:0,behavior:"smooth"});
+}
+function prev(){
+  idx=(idx-1+topics.length)%topics.length;
+  render();
+  scrollTo({top:0,behavior:"smooth"});
+}
+q.addEventListener("input",renderList);
+cat.addEventListener("change",renderList);
+render();
+
 function renderLesson(){
  let t=topics[idx],pct=Math.round(Object.keys(done).length/topics.length*100);
  const cat=(t.cat||"").toLowerCase();
