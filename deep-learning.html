@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>IDIOT → WIZARD — Deep Learning</title>
 <style>
+.topline{max-width:1500px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{color:#e9ddff;text-decoration:none;border:1px solid var(--line);background:#111b2e;padding:8px 11px;border-radius:9px;white-space:nowrap}
+.nav a:hover{background:#21183b;border-color:var(--purple)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.actions button{min-height:44px}
+@media(max-width:850px){
+  .topline{display:block}
+  .nav{justify-content:flex-start;margin-top:10px}
+  .nav a{flex:1;text-align:center}
+}
 :root{--bg:#070b14;--panel:#101a2c;--panel2:#0b1323;--line:#2b3a58;--text:#eef3ff;--muted:#aab6cd;--purple:#8b5cf6;--green:#22c55e;--red:#ef4444;--blue:#38bdf8;--gold:#f59e0b}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#21153a,#070b14 58%);color:var(--text);font:15px/1.75 system-ui,sans-serif}
 header{position:sticky;top:0;z-index:10;background:rgba(7,11,20,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:14px 20px}
@@ -28,13 +39,30 @@ pre{background:#050810;border:1px solid var(--line);padding:15px;border-radius:1
 </style>
 </head>
 <body>
-<header><div class="brand">IDIOT <b>→</b> WIZARD <span class="sub">/ DEEP LEARNING MODE</span></div><div class="sub">No “trust me bro”. Learn the rule, mechanism, failure, edge cases and engineering trade-offs.</div></header>
+<header>
+  <div class="topline">
+    <div>
+      <div class="brand">IDIOT <b>→</b> WIZARD <span class="sub">/ DEEP LEARNING MODE</span></div>
+      <div class="sub">Every topic. Zero “trust me bro”. Learn the rule, mechanism, failure, edge cases and engineering trade-offs.</div>
+    </div>
+    <nav class="nav">
+      <a href="index.html">🏠 Dashboard</a>
+      <a href="learn.html">📚 Full Curriculum</a>
+      <a href="practical.html">⚙️ Practical Lab</a>
+    </nav>
+  </div>
+</header>
 <div class="wrap">
 <aside>
 <input id="search" placeholder="Search the entire curriculum...">
 <select id="cat"><option>All</option><option>JavaScript</option><option>Mathematics</option><option>DSA</option></select>
 <div id="count" class="small"></div><div id="topics"></div>
-<hr><a href="learn.html">← Regular curriculum</a><br><a href="practical.html">← Practical lab</a>
+<hr>
+<strong>Navigate</strong>
+<p class="small">This page is the deep-teaching layer. Use the regular curriculum for the complete lesson sequence and the practical lab for real execution.</p>
+<a href="index.html">🏠 Dashboard</a><br>
+<a href="learn.html">📚 Full curriculum</a><br>
+<a href="practical.html">⚙️ Practical lab</a>
 </aside>
 <main id="main"></main>
 </div>
