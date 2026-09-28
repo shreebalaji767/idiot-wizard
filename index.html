@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827"><link rel="manifest" href="manifest.json">
+<title>IDIOT → WIZARD</title>
+<style>
+:root{--b:#09101e;--p:#111b2f;--p2:#17233b;--t:#edf2ff;--m:#9aa8c4;--a:#7c3aed;--g:#16a34a;--r:#dc2626;--l:#293754;--c:#070b14}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#070b14,#101827,#1b1230);color:var(--t);font:15px/1.55 system-ui,sans-serif}.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}.side{background:#080e1a;border-right:1px solid var(--l);padding:18px;position:sticky;top:0;height:100vh;overflow:auto}.logo{font-size:23px;font-weight:900}.logo i{color:#a78bfa;font-style:normal}.muted{color:var(--m)}nav button,.side>button{width:100%;text-align:left;margin:4px 0}.active{background:#271746;border-color:#6d45b5}button{background:var(--p2);color:var(--t);border:1px solid var(--l);padding:9px 12px;border-radius:9px;cursor:pointer}button:hover{filter:brightness(1.15)}.primary{background:var(--a);border-color:var(--a)}.main{padding:24px;max-width:1500px;width:100%;margin:auto}.top{display:flex;gap:8px;margin-bottom:15px}.search{flex:1;background:var(--p);color:var(--t);border:1px solid var(--l);border-radius:10px;padding:11px}.hero,.card{background:rgba(17,27,47,.9);border:1px solid var(--l);border-radius:15px;padding:19px;margin-bottom:14px}.hero{background:linear-gradient(135deg,#251548,#12263c)}h1{font-size:clamp(30px,5vw,56px);line-height:1.05;margin:4px 0 12px}h2{margin-top:5px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.grid .card{margin:0}.bar{height:9px;background:#26324b;border-radius:9px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#7c3aed,#16a34a)}.topic{display:flex;gap:10px;padding:10px;border-bottom:1px solid #202c45}.topic small{display:block;color:var(--m)}.pill{font-size:12px;color:#c4b5fd;border:1px solid var(--l);border-radius:99px;padding:2px 8px}.lab{display:grid;grid-template-columns:1fr 1fr;gap:12px}.editor,.out{width:100%;min-height:340px;background:var(--c);color:#d1fae5;border:1px solid var(--l);border-radius:10px;padding:13px;font:13px/1.5 ui-monospace,monospace}.out{white-space:pre-wrap;overflow:auto}.err{color:#fecaca}.ok{color:#bbf7d0}.field{width:100%;padding:10px;background:#0b1323;color:var(--t);border:1px solid var(--l);border-radius:8px}.math{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.result{white-space:pre-wrap;background:#090f1b;border:1px solid var(--l);border-radius:9px;padding:11px;margin-top:9px}.lesson p{max-width:900px}.lesson pre,pre{background:var(--c);border:1px solid var(--l);border-radius:8px;padding:12px;overflow:auto}.hidden{display:none!important}@media(max-width:850px){.app{display:block}.side{position:relative;height:auto;border:0;border-bottom:1px solid var(--l)}.main{padding:12px}.lab{grid-template-columns:1fr}}
+</style></head><body>
+<div class="app"><aside class="side"><div class="logo">IDIOT <i>→</i> WIZARD</div><div class="muted">No backend. No fake output. No escaping the hard bits.</div><hr>
+<nav id="nav"></nav><hr><button id="export">Export progress</button><button id="import">Import progress</button><input id="file" type="file" accept=".json" hidden><button id="reset">Reset local progress</button></aside>
+<main class="main"><div class="top"><input id="search" class="search" placeholder="Search every topic..."></div><div id="view"></div></main></div>
+<script>
+const C={
+JavaScript:[
+["Programming foundations","values, expressions, statements, comments, strict mode, variables, let, const, var"],
+["Types","undefined, null, boolean, number, bigint, string, symbol, object, typeof, primitives, references"],
+["Operators","arithmetic, comparison, equality, logical, nullish coalescing, optional chaining, assignment, precedence"],
+["Control flow","if, else, switch, ternary, while, do while, for, for of, for in, break, continue"],
+["Functions","declarations, expressions, arrows, parameters, defaults, rest, return, callbacks, higher-order functions"],
+["Scope and closures","lexical scope, block scope, function scope, hoisting, TDZ, closures, execution contexts"],
+["Arrays","indexing, mutation, iteration, map, filter, reduce, find, some, every, sort, slice, splice, flat"],
+["Strings and Unicode","UTF-16, code units, code points, graphemes, normalization, search, split, join, templates"],
+["Objects","properties, computed keys, descriptors, spread, destructuring, getters, setters, property lookup"],
+["this and classes","this binding, call, apply, bind, constructors, class fields, private fields, extends, super, static"],
+["Numbers and Math","IEEE-754, NaN, Infinity, rounding, precision, Math, BigInt pitfalls"],
+["Regular expressions","patterns, classes, groups, captures, lookarounds, flags, replace, exec"],
+["Map and Set","Map, Set, WeakMap, WeakSet, iteration, equality, use cases"],
+["Iterators and generators","iterator protocol, iterable protocol, generators, yield, delegation"],
+["Symbols","symbols, well-known symbols, meta-programming hooks"],
+["Errors","Error, TypeError, ReferenceError, SyntaxError, RangeError, throw, try catch finally"],
+["Callbacks and timers","call stack, callbacks, timers, task queues, error propagation"],
+["Promises","states, chaining, catch, finally, all, allSettled, race, any, rejection"],
+["async and await","await, concurrency, sequential work, cancellation patterns, async errors"],
+["Event loop","tasks, microtasks, rendering, queue ordering, scheduling"],
+["Modules","ES modules, import/export, default/named exports, dynamic import, module graphs"],
+["DOM","document, selectors, nodes, attributes, text, creation, removal, traversal"],
+["Events","capture, target, bubble, delegation, passive listeners, custom events"],
+["Forms","FormData, validation, input, change, submit, serialization"],
+["Fetch and HTTP","requests, methods, headers, status codes, JSON, AbortController, CORS concepts"],
+["Storage","localStorage, sessionStorage, serialization, quotas"],
+["IndexedDB","databases, object stores, keys, transactions, indexes, async requests"],
+["Web Workers","messages, worker errors, isolation, transferable objects"],
+["Service workers and PWA","install, activate, fetch, Cache API, offline strategies"],
+["Streams","ReadableStream, WritableStream, TransformStream, backpressure"],
+["Web Crypto","randomness, digest, keys, security boundaries, password hashing limits"],
+["WebSocket and WebRTC","persistent messaging, signaling, peer connections, data channels"],
+["Intl","NumberFormat, DateTimeFormat, Collator, plural rules, localization"],
+["Memory and garbage collection","reachability, garbage collection, leaks, profiling"],
+["Proxy and Reflect","traps, invariants, reflection, meta-programming"],
+["Typed arrays","ArrayBuffer, DataView, typed arrays, endianness, binary data"],
+["Atomics and SharedArrayBuffer","shared memory, synchronization, races"],
+["Node.js","runtime, process, fs, path, streams, events, HTTP server concepts"],
+["npm and tooling","package.json, semver, dependencies, bundlers, linters, formatters, source maps"],
+["Testing","assertions, unit, integration, fixtures, mocks, property-based thinking"],
+["Performance","profiling, allocations, DOM cost, batching, debounce, throttle"],
+["Security","XSS, injection, CSP, URL validation, dependency risk"]
+],
+Mathematics:[
+["Arithmetic","integers, fractions, decimals, percentages, ratios, proportions, order of operations"],
+["Factors and primes","divisibility, primes, composites, factorization, divisors, sieve"],
+["GCD and LCM","Euclidean algorithm, extended Euclid, Bezout identity"],
+["Modular arithmetic","congruence, addition, multiplication, powers, inverse, fast exponentiation"],
+["Number theory","Fermat, Euler phi, CRT concepts, parity, divisibility proofs"],
+["Algebra","expressions, equations, inequalities, absolute value, systems"],
+["Functions","domain, range, composition, inverse, piecewise functions, graphs"],
+["Sequences and series","arithmetic, geometric, sums, recurrence relations"],
+["Exponents and logarithms","laws, roots, logarithms, change of base, growth"],
+["Logic","propositions, truth tables, implication, equivalence, predicates, quantifiers"],
+["Sets","union, intersection, difference, Cartesian product, power sets"],
+["Relations","equivalence relations, partial orders, functions as relations"],
+["Proof","direct proof, contradiction, contrapositive, induction, invariants"],
+["Counting","sum rule, product rule, permutations, combinations, pigeonhole"],
+["Recurrences","linear recurrences, recursion trees, substitution, Master theorem intuition"],
+["Probability","sample spaces, conditional probability, Bayes, independence, expectation"],
+["Random variables","PMF/PDF concepts, expectation, variance, covariance"],
+["Distributions","Bernoulli, binomial, geometric, Poisson, normal, uniform"],
+["Statistics","mean, median, mode, variance, standard deviation, quantiles, correlation"],
+["Vectors","addition, scalar multiplication, dot product, norm, projection"],
+["Matrices","operations, transpose, determinant, inverse, rank"],
+["Linear systems","Gaussian elimination, row reduction, consistency"],
+["Eigenvalues","characteristic polynomial, eigenvectors, diagonalization intuition"],
+["Geometry","distance, lines, circles, polygons, coordinate geometry"],
+["Trigonometry","radians, sine, cosine, tangent, identities, inverse trig"],
+["Limits","continuity, algebraic limits, numerical approximation"],
+["Derivatives","rules, chain rule, gradients, rates of change, optimization"],
+["Integrals","antiderivatives, definite integrals, numerical integration"],
+["Numerical methods","bisection, Newton-Raphson, finite differences, numerical error"],
+["Optimization","local/global minima, convexity intuition, gradient methods"],
+["Graph mathematics","vertices, edges, degree, paths, cycles, connectivity"],
+["Binary and hexadecimal","bases, conversion, two's complement, bit representation"],
+["Bitwise mathematics","masks, shifts, XOR, parity, powers of two"]
+],
+DSA:[
+["Complexity","Big O, Omega, Theta, worst, average, best, amortized analysis"],
+["Arrays","access, insertion, deletion, prefix sums, difference arrays"],
+["Two pointers","opposite ends, fast/slow pointers, partitioning"],
+["Sliding window","fixed and variable windows, frequency state"],
+["Kadane algorithm","maximum subarray and invariant reasoning"],
+["Strings","frequency tables, hashing, palindrome, anagrams"],
+["Pattern matching","naive, KMP, Z algorithm, Rabin-Karp"],
+["Linked lists","singly, doubly, circular, reversal, merging, cycle detection"],
+["Stacks","LIFO, parsing, monotonic stacks, next greater element"],
+["Queues and deques","FIFO, circular queues, monotonic deque"],
+["Hashing","hash tables, collisions, load factor, maps and sets"],
+["Heaps","min heap, max heap, heapify, priority queue"],
+["Trees","traversals, recursion, height, balanced vs skewed"],
+["BST","search, insertion, deletion, invariants"],
+["AVL and red-black trees","rotations, balancing, complexity"],
+["Tries","prefix search, autocomplete, string storage"],
+["Fenwick tree","prefix aggregation and point updates"],
+["Segment tree","range queries, updates, lazy propagation"],
+["Graphs","adjacency list, matrix, directed, undirected, weighted"],
+["BFS and DFS","traversal, components, parent trees, cycle detection"],
+["Topological sorting","DAG ordering, Kahn, DFS ordering"],
+["Shortest paths","Dijkstra, Bellman-Ford, Floyd-Warshall"],
+["Minimum spanning tree","Kruskal, Prim, cut intuition"],
+["Disjoint set union","union-find, path compression, union by size/rank"],
+["Strongly connected components","Kosaraju, Tarjan concepts"],
+["Bridges and articulation points","low-link values and graph vulnerability"],
+["Brute force","systematic enumeration and pruning"],
+["Divide and conquer","merge sort, quicksort, recurrence reasoning"],
+["Greedy algorithms","exchange arguments, interval scheduling, heaps"],
+["Backtracking","state, choice, constraint, undo"],
+["Dynamic programming","state, transition, base case, memoization, tabulation"],
+["Bitmask DP","subset states and transitions"],
+["Randomized algorithms","random pivots, hashing, probability intuition"],
+["Advanced graphs","flow, min-cut, matching, Euler/Hamilton concepts"],
+["Advanced strings","rolling hash, suffix concepts, suffix array/tree concepts"],
+["Computational geometry","orientation, cross product, intersections, convex hull"],
+["Range and offline queries","sweep line, prefix methods, Mo's algorithm concept"],
+["Advanced DP","digit DP, tree DP, interval DP, optimization patterns"]
+],
+Engineering:[
+["Debugging","reproduce, isolate, classify, inspect, hypothesis, fix, regression test"],
+["Testing strategy","unit, integration, end-to-end, edge cases, negative tests"],
+["Property thinking","invariants, properties, randomized inputs, counterexamples"],
+["Benchmarking","warmup, repetitions, variance, realistic workloads"],
+["Code review","correctness, clarity, complexity, security, maintainability"],
+["Git","working tree, staging, commits, branches, merge, rebase"],
+["Accessibility","semantic HTML, keyboard access, labels, contrast, focus"],
+["Web performance","network, parsing, layout, paint, caching, lazy work"],
+["Architecture","separation of concerns, modules, boundaries, state management"],
+["Capstones","calculator, parser, visualizer, graph tool, offline app"]
+]};
+const NAV=[["home","🏠 Home"],["curriculum","📚 Curriculum"],["lesson","🧠 Lesson"],["js","⚙️ JS Lab"],["math","∑ Maths Lab"],["dsa","🧩 DSA Judge"],["debug","🐛 Debug Lab"],["projects","🏗️ Projects"]];
+let S={page:"home",done:JSON.parse(localStorage.getItem("iw_done")||"{}")};
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function save(){localStorage.setItem("iw_done",JSON.stringify(S.done))}
+function go(p){S.page=p;render()}
+window.go=go;
+function nav(){document.querySelector("#nav").innerHTML=NAV.map(function(n){return '<button class="'+(S.page===n[0]?"active":"")+'" onclick="go(\''+n[0]+'\')">'+n[1]+'</button>'}).join("")}
+function count(){let a=0,d=0;Object.values(C).forEach(function(xs){a+=xs.length;xs.forEach(function(x){if(S.done[x[0]])d++})});return [d,a,Math.round(100*d/a)]}
+function home(){let q=count();return '<section class="hero"><span class="pill">STATIC • CLIENT-SIDE • OFFLINE-FIRST</span><h1>STOP MEMORIZING.<br>START BREAKING THINGS.</h1><p style="font-size:18px">Coding, JavaScript, mathematics and DSA taught from zero without pretending the computer did something it did not do.</p><p><b>LEARN → SEE → RUN → BREAK → DEBUG → FIX → TEST → PRACTICE → SOLVE → EXPLAIN → BUILD</b></p><div class="bar"><div class="fill" style="width:'+q[2]+'%"></div></div><p>'+q[0]+' / '+q[1]+' curriculum topics marked complete.</p></section><div class="grid"><div class="card"><h2>JavaScript</h2><p>Language, engine model, browser, async, DOM, storage, workers, memory, tooling and security.</p><button class="primary" onclick="go(\'js\')">Run real JavaScript</button></div><div class="card"><h2>Mathematics</h2><p>Arithmetic through discrete maths, probability, linear algebra, calculus and numerical methods.</p><button class="primary" onclick="go(\'math\')">Calculate</button></div><div class="card"><h2>DSA</h2><p>Real function execution, test cases, expected vs actual, timing and failure teaching.</p><button class="primary" onclick="go(\'dsa\')">Judge code</button></div><div class="card"><h2>Debugging</h2><p>Syntax, runtime, type, scope, logic, async, off-by-one and infinite-loop thinking.</p><button class="primary" onclick="go(\'debug\')">Break it</button></div></div>'}
+function curriculum(){let search=(document.querySelector("#search").value||"").toLowerCase(),h='<div class="hero"><h1>Full curriculum map</h1><p>Every listed topic is a teachable target. Check it only when you can explain it and use it.</p></div>';Object.keys(C).forEach(function(area){h+='<section class="card"><h2>'+area+'</h2>';C[area].forEach(function(x){if(search&&!(area+" "+x[0]+" "+x[1]).toLowerCase().includes(search))return;let id=area+"::"+x[0];h+='<label class="topic"><input type="checkbox" '+(S.done[id]?"checked":"")+' data-id="'+esc(id)+'"><span><b>'+esc(x[0])+'</b><small>'+esc(x[1])+'</small></span></label>'});h+='</section>'});return h}
+const mini={
+"Programming foundations":["A program is a precise recipe. Values are ingredients, expressions are little machines producing values, and statements tell the machine to do something.","Idiot version: the computer is a very fast intern with zero ability to infer what you meant. Give it exact instructions.","Practice by changing one thing, predicting the result, then running it."],
+"Complexity":["Complexity describes how resource use grows as input grows. O(n) means linear growth; O(log n) means the search space is repeatedly reduced.","Idiot version: one potato is easy. A thousand potatoes is where your algorithm reveals its personality.","Measure real code too: Big O is a model, not a stopwatch."],
+"Proof":["A proof is a chain of justified statements. Direct proof, contradiction, contrapositive and induction are core tools.","Idiot version: you are not allowed to say 'trust me bro'.","Programming connection: invariants explain why loops and algorithms remain correct."],
+"Debugging":["First reproduce. Then isolate. Then classify the failure. Then inspect values and control flow. Form a hypothesis, make the smallest fix, and run regression tests.","Idiot version: do not punch the computer. Interrogate it.","A stack trace is evidence, not an insult."]
+};
+function lesson(){let keys=Object.keys(mini),k=keys[Math.floor(Math.random()*keys.length)],v=mini[k];return '<section class="card lesson"><span class="pill">IDIOT → WIZARD</span><h1>'+k+'</h1><h2>What is it?</h2><p>'+v[0]+'</p><h2>Idiot explanation</h2><p>'+v[1]+'</p><h2>Engineer brain</h2><p>'+v[2]+'</p><button class="primary" onclick="go(\'js\')">Practice →</button></section>'}
+function jsLab(){return '<section class="hero"><h1>JavaScript Lab</h1><p>Code executes inside a sandboxed Web Worker. Console output and errors come from the browser.</p></section><div class="lab"><div><textarea id="jscode" class="editor">console.log("Hello, wizard");\nconst nums=[1,2,3,4,5];\nconsole.log("sum =",nums.reduce((a,b)=>a+b,0));</textarea><p><button class="primary" id="runjs">▶ Run</button> <button id="stopjs">■ Stop</button> <button id="clearjs">Clear</button> <button id="asyncjs">Async example</button> <button id="badjs">Break it</button></p></div><div id="jsout" class="out">Ready.</div></div><section class="card" id="teacher"><b>Error teacher:</b> Run something wrong and I will classify the failure.</section>'}
+function setupJS(){let w=null,code=document.querySelector("#jscode"),out=document.querySelector("#jsout"),teach=document.querySelector("#teacher");function stop(){if(w)w.terminate();w=null}document.querySelector("#runjs").onclick=function(){stop();out.className="out";out.textContent="Running...";let src='self.console={log:function(){postMessage({t:"log",v:[...arguments]})},warn:function(){postMessage({t:"warn",v:[...arguments]})},error:function(){postMessage({t:"error",v:[...arguments]})}};self.onmessage=async function(e){try{let AF=Object.getPrototypeOf(async function(){}).constructor;let r=await new AF(e.data)();postMessage({t:"done",v:r})}catch(x){postMessage({t:"err",n:x.name,m:x.message,s:x.stack})}}';w=new Worker(URL.createObjectURL(new Blob([src],{type:"text/javascript"})));w.onmessage=function(e){let m=e.data;if(m.t==="log"||m.t==="warn"||m.t==="error"){out.textContent+=(out.textContent==="Running..."?"":"\n")+m.t.toUpperCase()+": "+m.v.map(function(x){return typeof x==="object"?JSON.stringify(x):String(x)}).join(" ")}else if(m.t==="done"){out.textContent+="\nDONE";out.className="out ok"}else{out.textContent="✖ "+m.n+": "+m.m+"\n\n"+m.s;out.className="out err";teach.innerHTML="<b>Error teacher:</b> "+teachError(m.n,m.m)}};w.postMessage(code.value)};document.querySelector("#stopjs").onclick=function(){stop();out.textContent="Stopped."};document.querySelector("#clearjs").onclick=function(){out.textContent=""};document.querySelector("#asyncjs").onclick=function(){code.value='console.log("A");\nPromise.resolve().then(()=>console.log("microtask"));\nsetTimeout(()=>console.log("task"),0);\nconsole.log("B");'};document.querySelector("#badjs").onclick=function(){code.value='const n=42;\nconsole.log(n.toUpperCase());'}}
+function teachError(n,m){if(n==="SyntaxError")return"Syntax error: the parser cannot understand the program. Check brackets, quotes, punctuation and keywords.";if(n==="ReferenceError")return"Reference error: the name is unavailable in this scope. Check spelling, declaration and TDZ.";if(n==="TypeError")return"Type error: the value does not support that operation. Inspect typeof and the actual value.";return"Runtime failure: read the first useful stack frame, identify the operation that failed, inspect inputs, then make the smallest fix."}
+function mathLab(){return '<section class="hero"><h1>Maths Lab</h1><p>Actual calculations: the browser computes these results.</p></section><div class="math"><section class="card"><h2>GCD / LCM</h2><input id="ga" class="field" value="84"><input id="gb" class="field" value="30" style="margin-top:7px"><button class="primary" onclick="calcGcd()">Calculate</button><div id="gr" class="result"></div></section><section class="card"><h2>Prime / factors</h2><input id="pn" class="field" value="360"><button class="primary" onclick="calcPrime()">Calculate</button><div id="pr" class="result"></div></section><section class="card"><h2>n choose k</h2><input id="nn" class="field" value="10"><input id="nk" class="field" value="3" style="margin-top:7px"><button class="primary" onclick="calcComb()">Calculate</button><div id="nr" class="result"></div></section><section class="card"><h2>Quadratic</h2><input id="qa" class="field" value="1"><input id="qb" class="field" value="-5" style="margin-top:7px"><input id="qc" class="field" value="6" style="margin-top:7px"><button class="primary" onclick="calcQuad()">Solve</button><div id="qr" class="result"></div></section><section class="card"><h2>Modular power</h2><input id="ma" class="field" value="7"><input id="mb" class="field" value="128" style="margin-top:7px"><input id="mm" class="field" value="13" style="margin-top:7px"><button class="primary" onclick="calcMod()">Calculate</button><div id="mr" class="result"></div></section><section class="card"><h2>Statistics</h2><input id="st" class="field" value="2,4,4,7,9,10"><button class="primary" onclick="calcStats()">Calculate</button><div id="sr" class="result"></div></section><section class="card"><h2>2×2 matrix</h2><input id="mx" class="field" value="1,2,3,4"><button class="primary" onclick="calcMatrix()">Calculate</button><div id="xr" class="result"></div></section><section class="card"><h2>Binary / hex / bitwise</h2><input id="bi" class="field" value="42"><button class="primary" onclick="calcBits()">Convert</button><div id="br" class="result"></div></section></div>'}
+function igcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){let t=a%b;a=b;b=t}return a}
+function calcGcd(){let a=+ga.value,b=+gb.value,g=igcd(a,b);gr.textContent="gcd = "+g+"\nlcm = "+(g?Math.abs(a/g*b):0)}
+function isprime(n){if(n<2||!Number.isInteger(n))return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true}
+function calcPrime(){let n=+pn.value,o=n,f=[];for(let d=2;d*d<=n;d++)while(n%d===0){f.push(d);n/=d}if(n>1)f.push(n);pr.textContent="prime = "+isprime(o)+"\nfactors = "+(f.join(" × ")||"none")}
+function calcComb(){let n=+nn.value,k=+nk.value;if(!Number.isInteger(n)||!Number.isInteger(k)||n<0||k<0||k>n)return nr.textContent="Invalid n or k";k=Math.min(k,n-k);let r=1;for(let i=1;i<=k;i++)r=r*(n-k+i)/i;nr.textContent="C(n,k) = "+r}
+function calcQuad(){let a=+qa.value,b=+qb.value,c=+qc.value,d=b*b-4*a*c;if(!a)return qr.textContent=b?"x = "+(-c/b):"Not an equation";if(d<0)return qr.textContent="No real roots. Discriminant = "+d;qr.textContent="x1 = "+((-b+Math.sqrt(d))/(2*a))+"\nx2 = "+((-b-Math.sqrt(d))/(2*a))}
+function calcMod(){try{let a=BigInt(ma.value),b=BigInt(mb.value),m=BigInt(mm.value),r=1n;a=((a%m)+m)%m;while(b){if(b%2n)r=r*a%m;a=a*a%m;b/=2n}mr.textContent=String(r)}catch(e){mr.textContent=e.message}}
+function calcStats(){let a=st.value.split(",").map(Number).filter(Number.isFinite).sort((x,y)=>x-y);if(!a.length)return sr.textContent="No numbers";let mean=a.reduce((x,y)=>x+y,0)/a.length;let med=a.length%2?a[a.length>>1]:(a[a.length/2-1]+a[a.length/2])/2;sr.textContent="n = "+a.length+"\nmean = "+mean+"\nmedian = "+med+"\nmin = "+a[0]+"\nmax = "+a[a.length-1]}
+function calcMatrix(){let a=mx.value.split(",").map(Number);if(a.length!==4)return xr.textContent="Enter 4 numbers";let d=a[0]*a[3]-a[1]*a[2];xr.textContent="det = "+d+(d?"\ninverse = [["+a[3]/d+","+(-a[1]/d)+"],["+(-a[2]/d)+","+a[0]/d+"]]":"\nNo inverse: singular matrix")}
+function calcBits(){let n=BigInt(bi.value);br.textContent="decimal = "+n+"\nbinary = "+n.toString(2)+"\nhex = 0x"+n.toString(16)+"\nlow bit = "+(n&1n)+"\nleft shift 1 = "+(n<<1n)}
+function dsaLab(){return '<section class="hero"><h1>DSA Judge</h1><p>Real execution against visible tests. Because this is static, tests are intentionally not advertised as secret.</p></section><section class="card"><h2>Challenge: maximum subarray</h2><p>Write <code>maxSubarray(a)</code>. Return the largest sum of a non-empty contiguous subarray.</p><textarea id="dcode" class="editor">function maxSubarray(a){\n let best=a[0],cur=a[0];\n for(let i=1;i<a.length;i++){cur=Math.max(a[i],cur+a[i]);best=Math.max(best,cur)}\n return best;\n}</textarea><p><button class="primary" id="rund">Run tests</button> <button id="breakd">Break it</button></p><div id="dout" class="result">No tests yet.</div></section>'}
+function setupDsa(){document.querySelector("#rund").onclick=function(){try{let f=new Function(document.querySelector("#dcode").value+";return maxSubarray")(),tests=[[[1],1],[[-2,1,-3,4,-1,2,1,-5,4],6],[[-5,-2,-8],-2],[[5,4,-1,7,8],23],[[0,0,0],0]],pass=0,lines=[];tests.forEach(function(t){let st=performance.now(),got=f(t[0].slice()),ms=performance.now()-st,ok=Object.is(got,t[1]);if(ok)pass++;lines.push((ok?"✓":"✖")+" input="+JSON.stringify(t[0])+" expected="+t[1]+" actual="+got+" time="+ms.toFixed(3)+"ms")});dout.textContent=lines.join("\n")+"\n\n"+pass+"/"+tests.length+" passed";dout.className="result "+(pass===tests.length?"ok":"err")}catch(e){dout.textContent=e.name+": "+e.message+"\n"+e.stack;dout.className="result err"}};document.querySelector("#breakd").onclick=function(){document.querySelector("#dcode").value=document.querySelector("#dcode").value.replace("cur+a[i]","cur-a[i]")}}
+function debug(){return '<section class="hero"><h1>Debugging Lab</h1><p>Do not panic. Classify the corpse.</p></section><div class="grid">'+[["Syntax","const x = 3\\nconsole.log(x","Parser cannot build a valid program. Check punctuation and delimiters."],["Reference","console.log(total)\\nlet total=10","The name is unavailable at that point; declarations and TDZ matter."],["Type","(42).toUpperCase()","The value is a number, not a string. Inspect the type and API."],["Logic","function even(n){return n%2===1}","It runs. It is wrong. Tests catch this."],["Off-by-one","for(let i=0;i<=arr.length;i++)","The final valid index is length-1."],["Infinite loop","while(i<10){console.log(i)}","The loop condition never changes because progress is missing."]].map(function(x){return '<section class="card"><h2>'+x[0]+'</h2><pre>'+x[1]+'</pre><p>'+x[2]+'</p></section>'}).join("")+'</div>'}
+function projects(){let p=["Expression parser","Sorting visualizer","Graph traversal explorer","Pathfinding tool","Autocomplete trie","LRU cache","Mini test runner","Statistics workbench","Matrix toolkit","Offline notes app","HTTP inspector mock","Algorithm benchmarker"];return '<section class="hero"><h1>Projects</h1><p>Build things that force the concepts to become real.</p></section><div class="grid">'+p.map(function(x,i){return '<section class="card"><span class="pill">PROJECT '+(i+1)+'</span><h2>'+x+'</h2><p>Requirements: design → implement → edge cases → tests → benchmark → explain complexity → refactor.</p></section>'}).join("")+'</div>'}
+function render(){nav();let v=document.querySelector("#view");if(S.page==="home")v.innerHTML=home();else if(S.page==="curriculum")v.innerHTML=curriculum();else if(S.page==="lesson")v.innerHTML=lesson();else if(S.page==="js")v.innerHTML=jsLab();else if(S.page==="math")v.innerHTML=mathLab();else if(S.page==="dsa")v.innerHTML=dsaLab();else if(S.page==="debug")v.innerHTML=debug();else v.innerHTML=projects();if(S.page==="curriculum")document.querySelectorAll("[data-id]").forEach(function(x){x.onchange=function(){if(x.checked)S.done[x.dataset.id]=true;else delete S.done[x.dataset.id];save();render()}});if(S.page==="js")setupJS();if(S.page==="dsa")setupDsa()}
+document.querySelector("#search").oninput=function(){if(S.page!=="curriculum")S.page="curriculum";render()};document.querySelector("#export").onclick=function(){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="idiot-wizard-progress.json";a.click()};document.querySelector("#import").onclick=function(){document.querySelector("#file").click()};document.querySelector("#file").onchange=function(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=function(){try{let x=JSON.parse(r.result);S.done=x.done||{};save();render()}catch(_){alert("Invalid progress JSON")}};r.readAsText(f)};document.querySelector("#reset").onclick=function(){if(confirm("Erase local progress?")){S.done={};save();render()}};if("serviceWorker"in navigator)navigator.serviceWorker.register("service-worker.js").catch(function(){});render();
+</script></body></html>
