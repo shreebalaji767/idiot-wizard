@@ -1,50 +1,242 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IDIOT → WIZARD Practical Lab</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827"><link rel="manifest" href="manifest.json">
+<title>IDIOT → WIZARD — Practical Lab</title>
 <style>
-:root{--b:#070b14;--p:#101a2c;--l:#2b3a58;--t:#eef3ff;--m:#aab6cd;--a:#8b5cf6;--g:#22c55e;--r:#ef4444}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#211438,#070b14 58%);color:var(--t);font:15px/1.55 system-ui}.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}.side{padding:18px;background:#080e19;border-right:1px solid var(--l);position:sticky;top:0;height:100vh}.side button{width:100%;text-align:left;margin:4px 0}.active{background:#281748;border-color:#7048b8}.main{max-width:1450px;width:100%;padding:24px;margin:auto}.hero,.card,.panel{background:rgba(16,26,44,.94);border:1px solid var(--l);border-radius:14px;padding:16px;margin-bottom:13px}.hero{background:linear-gradient(135deg,#291747,#10263b)}h1{font-size:clamp(30px,5vw,54px);line-height:1.05}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}.editor,.out,.field{width:100%;background:#050910;color:#d1fae5;border:1px solid var(--l);border-radius:9px;padding:12px;font:13px/1.5 ui-monospace,monospace}.editor{min-height:320px;resize:vertical}.out{min-height:220px;white-space:pre-wrap;overflow:auto}.field{font-family:inherit;color:var(--t);margin:4px 0}button{cursor:pointer;background:#17243c;color:var(--t);border:1px solid var(--l);border-radius:9px;padding:9px 12px}.primary{background:var(--a);border-color:var(--a)}.row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.result{white-space:pre-wrap;background:#070c15;border:1px solid var(--l);padding:10px;border-radius:8px;margin-top:8px}.teacher{border-left:5px solid var(--a);background:#18112b;padding:12px;border-radius:8px}.hidden{display:none!important}.good{color:#86efac}.bad{color:#fca5a5}@media(max-width:800px){.app{display:block}.side{position:relative;height:auto}.main{padding:12px}}
-</style></head><body><div class="app"><aside class="side"><b style="font-size:22px">IDIOT <span style="color:#a78bfa">→</span> WIZARD</b><p style="color:var(--m)">REAL work only.</p><button data-tab="js">⚙️ JavaScript</button><button data-tab="math">∑ Mathematics</button><button data-tab="dsa">🧩 DSA Judge</button><button data-tab="errors">🐛 Error Teacher</button><hr><a href="index.html">← Dashboard</a><br><a href="learn.html">← Curriculum</a></aside><main class="main"><section class="hero"><span style="color:var(--m)">CLIENT-SIDE • NO FAKE OUTPUT</span><h1>Practical Lab</h1><p>Run → break → inspect → fix → test. The browser actually calculates and executes.</p></section><div id="js"></div><div id="math" class="hidden"></div><div id="dsa" class="hidden"></div><div id="errors" class="hidden"></div></main></div>
+:root{--bg:#070b14;--panel:#101a2c;--panel2:#17243c;--line:#2b3a58;--text:#eef3ff;--muted:#aab6cd;--accent:#8b5cf6;--good:#22c55e;--bad:#ef4444;--warn:#f59e0b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#211438,#070b14 58%);color:var(--text);font:15px/1.55 system-ui,sans-serif}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.side{padding:16px;background:#080e19;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow:auto}.brand{font-size:23px;font-weight:900}.brand span{color:#a78bfa}.side button{width:100%;text-align:left;margin:3px 0}.active{background:#281748;border-color:#7048b8}.main{max-width:1500px;width:100%;padding:22px;margin:auto}.hero,.card,.panel{background:rgba(16,26,44,.94);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:13px}.hero{background:linear-gradient(135deg,#291747,#10263b)}h1{font-size:clamp(30px,5vw,54px);line-height:1.05;margin:.2em 0}h2,h3{margin-top:.3em}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.editor,.out,.field,select{width:100%;background:#050910;color:#d1fae5;border:1px solid var(--line);border-radius:9px;padding:12px;font:13px/1.5 ui-monospace,monospace}.editor{min-height:290px;resize:vertical}.out{min-height:170px;white-space:pre-wrap;overflow:auto}.field,select{font-family:inherit;color:var(--text);margin:4px 0}.row{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}button{cursor:pointer;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px 12px}.primary{background:var(--accent);border-color:var(--accent)}.good{color:#86efac}.bad{color:#fca5a5}.warn{color:#fcd34d}.result{white-space:pre-wrap;background:#070c15;border:1px solid var(--line);padding:10px;border-radius:8px;margin-top:8px}.teacher{border-left:5px solid var(--accent);background:#18112b;padding:12px;border-radius:8px;margin-top:10px}.teacher h3{margin-top:0}.hidden{display:none!important}.bar{height:10px;background:#26324b;border-radius:10px;overflow:hidden}.bar>i{display:block;height:100%;background:linear-gradient(90deg,#8b5cf6,#22c55e)}.mono{font-family:ui-monospace,monospace}.small{font-size:13px;color:var(--muted)}.test{padding:7px;border-bottom:1px solid #1e2b45}.test.ok{border-left:4px solid var(--good)}.test.fail{border-left:4px solid var(--bad)}.stage{display:flex;gap:5px;flex-wrap:wrap}.stage b{padding:6px 9px;border:1px solid var(--line);border-radius:8px;font-size:12px}.canvas{width:100%;height:250px;background:#050910;border:1px solid var(--line);border-radius:9px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.check{display:flex;gap:8px;align-items:flex-start;padding:8px;border-bottom:1px solid #1b2841}.check input{margin-top:5px}@media(max-width:850px){.app{display:block}.side{position:relative;height:auto}.main{padding:12px}.two{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div class="app">
+<aside class="side">
+<div class="brand">IDIOT <span>→</span> WIZARD</div>
+<p class="small">No backend. No fake output. No escaping the hard bits.</p>
+<button data-tab="js">⚙️ JavaScript Runner</button>
+<button data-tab="event">⏱ Event Loop</button>
+<button data-tab="recursion">🔁 Recursion</button>
+<button data-tab="memory">🧠 Memory</button>
+<button data-tab="math">∑ Maths Lab</button>
+<button data-tab="dsa">🧩 DSA Judge</button>
+<button data-tab="visual">📊 Algorithm Visualizer</button>
+<button data-tab="perf">⚡ Performance Lab</button>
+<button data-tab="debug">🐛 Debug Lab</button>
+<button data-tab="proof">∴ Proof Lab</button>
+<button data-tab="random">🎲 Random Challenge</button>
+<button data-tab="projects">🏗️ Project Builder</button>
+<hr>
+<button id="export">Export all local lab data</button><button id="import">Import lab data</button><input id="file" type="file" accept=".json" hidden>
+<a href="index.html" style="color:#c4b5fd;display:block;margin-top:8px">← Dashboard</a>
+<a href="learn.html" style="color:#c4b5fd;display:block;margin-top:5px">← Full lessons</a>
+</aside>
+<main class="main">
+<section class="hero"><span class="small">STATIC • CLIENT-SIDE • OFFLINE-FIRST</span><h1>THE REAL PRACTICAL LAB</h1><p>LEARN → SEE → RUN → BREAK → DEBUG → FIX → TEST → PRACTICE → SOLVE → EXPLAIN → BUILD</p><div class="stage"><b>REAL EXECUTION</b><b>REAL ERRORS</b><b>REAL TESTS</b><b>REAL CALCULATIONS</b><b>LOCAL ONLY</b></div></section>
+<div id="js"></div><div id="event" class="hidden"></div><div id="recursion" class="hidden"></div><div id="memory" class="hidden"></div><div id="math" class="hidden"></div><div id="dsa" class="hidden"></div><div id="visual" class="hidden"></div><div id="perf" class="hidden"></div><div id="debug" class="hidden"></div><div id="proof" class="hidden"></div><div id="random" class="hidden"></div><div id="projects" class="hidden"></div>
+</main></div>
 <script>
-var $=function(s){return document.querySelector(s)}, $$=function(s){return Array.from(document.querySelectorAll(s))};
-function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
-function teach(msg,why){return '<div class="teacher"><b>🤡 Error teacher</b><p>'+esc(msg)+'</p><p><b>Why:</b> '+esc(why||'Read the first useful error, inspect the input and change one thing at a time.')+'</p></div>'}
-function show(id){$$('[id]').forEach(function(x){if(['js','math','dsa','errors'].includes(x.id))x.classList.toggle('hidden',x.id!==id)});$$('.side button').forEach(function(b){b.classList.toggle('active',b.dataset.tab===id)})}
-$$('.side button').forEach(function(b){b.onclick=function(){show(b.dataset.tab)}});
-$('#js').innerHTML='<div class="card"><h2>Real JavaScript execution</h2><p>Code runs in a disposable Web Worker. Console output, exceptions, timers and promises are real browser behavior.</p><textarea id="code" class="editor">console.log("Hello, wizard");\nconst a=[1,2,3,4];\nconsole.log("sum =",a.reduce((x,y)=>x+y,0));</textarea><div class="row"><button class="primary" id="run">▶ Run</button><button id="stop">■ Stop</button><button id="async">Async ordering</button><button id="break">💥 Break it</button></div><pre id="jsout" class="out">Ready.</pre><div id="jsteach"></div></div><div class="card"><b>Important:</b> execution success is not correctness. A program can print perfectly wrong answers.</div>';
-var worker=null;
-$('#run').onclick=function(){runCode($('#code').value)};
-$('#stop').onclick=function(){if(worker)worker.terminate();worker=null;$('#jsout').textContent+='\n■ Worker terminated.'};
-$('#async').onclick=function(){$('#code').value='console.log("A");\nsetTimeout(()=>console.log("timer"),0);\nPromise.resolve().then(()=>console.log("microtask"));\nconsole.log("B");'};
-$('#break').onclick=function(){$('#code').value='const user={name:"Idiot"};\nconsole.log(user.profile.name);';runCode($('#code').value)};
-function runCode(code){if(worker)worker.terminate();$('#jsout').textContent='Running…';$('#jsteach').innerHTML='';var src='const send=(t,v)=>postMessage({t,v});console.log=(...a)=>send("log",a.map(x=>{try{return typeof x==="string"?x:JSON.stringify(x)}catch(e){return String(x)}}).join(" "));self.onerror=(m,u,l)=>send("err",m+" @ line "+l);self.onunhandledrejection=e=>send("err","Unhandled rejection: "+e.reason);try{'+code+'}catch(e){send("err",e.stack||String(e))}';worker=new Worker(URL.createObjectURL(new Blob([src],{type:'text/javascript'})));var killed=setTimeout(function(){if(worker){worker.terminate();worker=null;$('#jsout').textContent+='\n⏱ stopped after 3 seconds';$('#jsteach').innerHTML=teach('Execution exceeded the safety limit.','Likely infinite loop, runaway recursion or explosive work. Reduce the input and trace the stopping condition.')}},3000);worker.onmessage=function(e){if(e.data.t==='log')$('#jsout').textContent+=($('#jsout').textContent==='Running…'?'':'\n')+e.data.v;else{$('#jsout').textContent+='\n❌ '+e.data.v;$('#jsteach').innerHTML=teach(e.data.v,'This is evidence. Find the operation and inspect the value that violated its expectation.')}};worker.onerror=function(e){$('#jsout').textContent+='\n❌ '+e.message;$('#jsteach').innerHTML=teach(e.message,'The source could not execute normally. Check syntax, names, types and the reported line.')};setTimeout(function(){clearTimeout(killed)},3050)}
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const DB_NAME="idiot-wizard-lab", DB_VERSION=1;
+let state={mistakes:{},attempts:0};
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function teach(kind,message,why,fix){return '<div class="teacher"><h3>🤡 Error Teacher: '+esc(kind)+'</h3><p>'+esc(message)+'</p><p><b>WHY?</b> '+esc(why)+'</p><p><b>FIX:</b> '+esc(fix)+'</p><p class="small">Idiot mode: the computer is not angry. It is reporting evidence. Engineer mode: classify → inspect → hypothesize → patch → regression-test.</p></div>'}
+function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open(DB_NAME,DB_VERSION);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains("lab"))d.createObjectStore("lab",{keyPath:"id"})};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+async function put(id,value){try{const d=await openDB();return new Promise((res,rej)=>{const t=d.transaction("lab","readwrite");t.objectStore("lab").put({id,value,updated:Date.now()});t.oncomplete=res;t.onerror=()=>rej(t.error)})}catch(e){}}
+async function getAll(){try{const d=await openDB();return new Promise((res,rej)=>{const r=d.transaction("lab").objectStore("lab").getAll();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}catch(e){return[]}}
+$$(".side button[data-tab]").forEach(b=>b.onclick=()=>show(b.dataset.tab));
+function show(id){$$(".main>div[id]").forEach(x=>x.classList.toggle("hidden",x.id!==id));$$(".side button[data-tab]").forEach(x=>x.classList.toggle("active",x.dataset.tab===id))}
+function saveMistake(k){state.mistakes[k]=(state.mistakes[k]||0)+1;state.attempts++;put("state",state)}
+function format(v){try{return typeof v==="string"?v:JSON.stringify(v)}catch(e){return String(v)}}
 
-$('#math').innerHTML='<div class="card"><h2>Real Mathematics Calculators</h2><p>Arithmetic, GCD/LCM, primes, modular arithmetic, quadratics, combinations, statistics, vectors, roots and base conversion.</p></div><div class="grid">'+
-'<div class="panel"><h3>Arithmetic</h3><input id="ma" class="field" value="125"><input id="mb" class="field" value="80"><button onclick="basic()">Calculate</button><div id="mr1" class="result"></div></div>'+
-'<div class="panel"><h3>GCD / LCM</h3><input id="ga" class="field" value="84"><input id="gb" class="field" value="30"><button onclick="gcdcalc()">Calculate</button><div id="mr2" class="result"></div></div>'+
-'<div class="panel"><h3>Prime factorization</h3><input id="pa" class="field" value="360"><button onclick="prime()">Calculate</button><div id="mr3" class="result"></div></div>'+
-'<div class="panel"><h3>Modular power</h3><input id="xa" class="field" value="7"><input id="xe" class="field" value="128"><input id="xm" class="field" value="13"><button onclick="modcalc()">Calculate</button><div id="mr4" class="result"></div></div>'+
-'<div class="panel"><h3>Quadratic ax²+bx+c=0</h3><input id="qa" class="field" value="1"><input id="qb" class="field" value="-5"><input id="qc" class="field" value="6"><button onclick="quad()">Solve</button><div id="mr5" class="result"></div></div>'+
-'<div class="panel"><h3>nCk / nPk</h3><input id="cn" class="field" value="10"><input id="ck" class="field" value="3"><button onclick="comb()">Calculate</button><div id="mr6" class="result"></div></div>'+
-'<div class="panel"><h3>Statistics</h3><input id="sa" class="field" value="2,4,4,4,5,5,7,9"><button onclick="stats()">Calculate</button><div id="mr7" class="result"></div></div>'+
-'<div class="panel"><h3>Vector dot product</h3><input id="va" class="field" value="1,2,3"><input id="vb" class="field" value="4,5,6"><button onclick="vec()">Calculate</button><div id="mr8" class="result"></div></div>'+
-'<div class="panel"><h3>Bisection root</h3><input id="fx" class="field" value="x*x-2"><input id="fa" class="field" value="0"><input id="fb" class="field" value="2"><button onclick="bisect()">Find root</button><div id="mr9" class="result"></div></div>'+
-'<div class="panel"><h3>Base conversion</h3><input id="bn" class="field" value="255"><input id="bf" class="field" value="10"><input id="bt" class="field" value="16"><button onclick="base()">Convert</button><div id="mr10" class="result"></div></div></div>';
-function basic(){var a=+$('#ma').value,b=+$('#mb').value;$('#mr1').textContent='a+b = '+(a+b)+'\na-b = '+(a-b)+'\na×b = '+a*b+'\na÷b = '+a/b+'\na is '+(100*a/b)+'% of b'}
-function gcdnum(a,b){a=Math.abs(a);b=Math.abs(b);while(b)[a,b]=[b,a%b];return a}
-function gcdcalc(){var a=+$('#ga').value,b=+$('#gb').value,g=gcdnum(a,b);$('#mr2').textContent='GCD = '+g+'\nLCM = '+Math.abs(a/g*b)}
-function prime(){var n=+$('#pa').value;if(!Number.isInteger(n)||n<2){$('#mr3').textContent='Enter integer ≥ 2';return}var x=n,f=[];for(var p=2;p*p<=x;p++)while(x%p===0){f.push(p);x/=p}if(x>1)f.push(x);$('#mr3').textContent='Prime: '+(f.length===1)+'\nFactors: '+f.join(' × ')}
-function modpow(a,e,m){a=BigInt(a);e=BigInt(e);m=BigInt(m);var r=1n;a=(a%m+m)%m;while(e){if(e&1n)r=r*a%m;a=a*a%m;e>>=1n}return r}
-function modcalc(){$('#mr4').textContent='a^e mod m = '+modpow($('#xa').value,$('#xe').value,$('#xm').value)}
-function quad(){var a=+$('#qa').value,b=+$('#qb').value,c=+$('#qc').value,D=b*b-4*a*c;if(a===0){$('#mr5').textContent=b?'x = '+(-c/b):'Invalid equation';return}if(D>=0)$('#mr5').textContent='D = '+D+'\nx1 = '+((-b+Math.sqrt(D))/(2*a))+'\nx2 = '+((-b-Math.sqrt(D))/(2*a));else $('#mr5').textContent='D = '+D+'\nx = '+(-b/(2*a))+' ± '+(Math.sqrt(-D)/(2*a))+'i'}
-function fact(n){var r=1n;for(var i=2n;i<=BigInt(n);i++)r*=i;return r}
-function comb(){var n=+$('#cn').value,k=+$('#ck').value;if(k<0||k>n){$('#mr6').textContent='Require 0 ≤ k ≤ n';return}$('#mr6').textContent='nCk = '+fact(n)/(fact(k)*fact(n-k))+'\nnPk = '+fact(n)/fact(n-k)}
-function stats(){var a=$('#sa').value.split(',').map(Number).filter(Number.isFinite).sort((x,y)=>x-y),n=a.length,m=a.reduce((x,y)=>x+y,0)/n,v=a.reduce((s,x)=>s+(x-m)**2,0)/n;$('#mr7').textContent='n = '+n+'\nmean = '+m+'\nmedian = '+(n%2?a[(n-1)/2]:(a[n/2-1]+a[n/2])/2)+'\nvariance = '+v+'\nSD = '+Math.sqrt(v)}
-function vec(){var a=$('#va').value.split(',').map(Number),b=$('#vb').value.split(',').map(Number);if(a.length!==b.length){$('#mr8').textContent='Dimensions differ';return}$('#mr8').textContent='dot = '+a.reduce((s,x,i)=>s+x*b[i],0)+'\n||a|| = '+Math.hypot(...a)+'\n||b|| = '+Math.hypot(...b)}
-function bisect(){var fn;try{fn=new Function('x','return '+$('#fx').value)}catch(e){$('#mr9').textContent=e.toString();return}var a=+$('#fa').value,b=+$('#fb').value,fa=fn(a),fb=fn(b);if(fa*fb>0){$('#mr9').textContent='Endpoint values must have opposite signs.';return}var m=0;for(var i=0;i<100;i++){m=(a+b)/2;var fm=fn(m);if(Math.abs(fm)<1e-12)break;if(fa*fm<=0){b=m;fb=fm}else{a=m;fa=fm}}$('#mr9').textContent='root ≈ '+m+'\nf(root) ≈ '+fn(m)}
-function base(){try{var n=BigInt(parseInt($('#bn').value,+$('#bf').value));$('#mr10').textContent='decimal = '+n+'\nbase '+$('#bt').value+' = '+n.toString(+$('#bt').value)}catch(e){$('#mr10').textContent='Invalid base/value'}}
+/* JAVASCRIPT */
+$("#js").innerHTML=`
+<section class="card"><h2>⚙️ Real JavaScript Runner</h2><p>Student code runs inside a disposable Web Worker. The host page is not given direct access to the student's DOM.</p>
+<textarea id="jscode" class="editor">console.log("Hello, wizard");
+const numbers=[2,4,6,8];
+console.log("sum =",numbers.reduce((a,b)=>a+b,0));</textarea>
+<div class="row"><button class="primary" id="jsrun">▶ Run</button><button id="jsstop">■ Stop</button><button id="jsclear">Clear</button><button id="jsasync">Event-loop experiment</button><button id="jsbreak">💥 Break it</button><button id="jslogic">🧠 Logic bug</button></div>
+<pre id="jsout" class="out">Ready.</pre><div id="jsteach"></div></section>
+<section class="card"><h3>What counts as success?</h3><p>Execution success ≠ correctness. A program can run perfectly and still calculate nonsense. The judge and tests are the authority.</p></section>`;
+let worker=null,workerURL=null;
+function stopWorker(){if(worker)worker.terminate();worker=null;if(workerURL)URL.revokeObjectURL(workerURL);workerURL=null}
+$("#jsrun").onclick=()=>runJS($("#jscode").value);
+$("#jsstop").onclick=()=>{stopWorker();$("#jsout").textContent+="\n■ Execution stopped by learner."};
+$("#jsclear").onclick=()=>{$("#jsout").textContent="";$("#jsteach").innerHTML=""};
+$("#jsasync").onclick=()=>$("#jscode").value='console.log("A");\nsetTimeout(()=>console.log("task"),0);\nPromise.resolve().then(()=>console.log("microtask"));\nconsole.log("B");';
+$("#jsbreak").onclick=()=>{$("#jscode").value='const user={name:"Idiot"};\nconsole.log(user.profile.name);';runJS($("#jscode").value)};
+$("#jslogic").onclick=()=>{$("#jscode").value='function isEven(n){ return n % 2 === 1; }\nconsole.log(isEven(2));\nconsole.log(isEven(3));\n// It runs. It is still wrong.';runJS($("#jscode").value)};
+function runJS(code){stopWorker();$("#jsout").textContent="Running…";$("#jsteach").innerHTML="";
+const src=`const safe=v=>{try{return typeof v==="string"?v:JSON.stringify(v)}catch(e){return String(v)}};const send=(t,v)=>postMessage({t,v});console.log=(...a)=>send("log",a.map(safe).join(" "));console.warn=(...a)=>send("warn",a.map(safe).join(" "));console.error=(...a)=>send("error",a.map(safe).join(" "));self.onunhandledrejection=e=>send("unhandled",String(e.reason));self.onmessage=async e=>{try{const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;const fn=new AsyncFunction(e.data);const value=await fn();send("done",value)}catch(x){send("err",{name:x.name,message:x.message,stack:x.stack})}};`;
+workerURL=URL.createObjectURL(new Blob([src],{type:"text/javascript"}));worker=new Worker(workerURL);
+let timer=setTimeout(()=>{stopWorker();$("#jsout").textContent+="\n⏱ SAFETY TIMEOUT";saveMistake("infinite-loop/performance");$("#jsteach").innerHTML=teach("Performance / possible infinite loop","Execution exceeded the 3-second teaching safety limit.","Common causes: missing loop progress, runaway recursion, huge allocation or unexpectedly expensive work.","Reduce input; inspect the loop/recursion invariant; add a stopping condition; benchmark after correctness.")},3200);
+worker.onmessage=e=>{const m=e.data;if(m.t==="log"||m.t==="warn"||m.t==="error")$("#jsout").textContent+=($("#jsout").textContent==="Running…"?"":"\n")+m.t.toUpperCase()+": "+m.v;else if(m.t==="done"){clearTimeout(timer);$("#jsout").textContent+="\nDONE";$("#jsout").className="out good";}else if(m.t==="unhandled"){clearTimeout(timer);$("#jsout").textContent+="\nUNHANDLED REJECTION: "+m.v;saveMistake("async error");$("#jsteach").innerHTML=teach("Async error","A promise rejected without a handler.","Promise rejection is a separate failure channel from synchronous try/catch around unrelated code.","Handle the promise with await/try-catch or .catch(), and decide whether recovery is possible.")}else{clearTimeout(timer);$("#jsout").textContent="✖ "+m.v.name+": "+m.v.message+"\n\n"+m.v.stack;$("#jsout").className="out bad";saveMistake(m.v.name);$("#jsteach").innerHTML=teach(m.v.name,m.v.message,"Read the first useful stack frame and inspect the value used by the failing operation.","Make the smallest correction, then rerun the same case and a nearby edge case.")}};
+worker.onerror=e=>{clearTimeout(timer);$("#jsout").textContent="✖ "+e.message;saveMistake("SyntaxError");$("#jsteach").innerHTML=teach("Syntax error",e.message,"The parser could not build a valid program. Check the reported line, delimiters, quotes and keywords.","Fix syntax first; only then reason about runtime behavior.")};worker.postMessage(code)}
 
-$('#dsa').innerHTML='<div class="card"><h2>Real DSA Judge</h2><p>Visible tests execute your function and compare expected vs actual. Because this is static, tests cannot be secret.</p><select id="prob" class="field"><option value="two">Two Sum</option><option value="max">Maximum Subarray</option><option value="bin">Binary Search</option><option value="pal">Palindrome</option><option value="br">Valid Brackets</option></select><textarea id="dc" class="editor">function solve(a,target){\n  const seen=new Map();\n  for(let i=0;i<a.length;i++){\n    const need=target-a[i];\n    if(seen.has(need)) return [seen.get(need),i];\n    seen.set(a[i],i);\n  }\n  return [];\n}</textarea><div class="row"><button class="primary" onclick="judge()">▶ Judge</button><button onclick="broken()">💥 Broken version</button></div><pre id="do" class="out">Ready.</pre><div id="dt"></div></div>';
-var tests={two:[[[2,7,11,15],9],[[-1,-2,-3,-4],-6],[[3,3],6]],max:[[[ -2,1,-3,4,-1,2,1,-5,4]],6],[[[-5,-2,-8]],-2]],bin:[[[[1,3,5,7,9],7],3],[[[1,3,5,7,9],2],-1]],pal:[[['racecar'],true],[['hello'],false],[[''],true]],br:[[['()[]{}'],true],[['([)]'],false],[['{'],false]]]};
-function judge(){var p=$('#prob').value,fn;try{fn=new Function($('#dc').value+';return solve;')()}catch(e){$('#do').textContent=e.stack||String(e);$('#dt').innerHTML=teach(e.toString(),'Syntax errors stop parsing; runtime errors happen after execution begins. Fix the first reported problem.') ;return}var out=[],pass=0;tests[p].forEach(function(t,i){var args=t[0],expected=t[1],actual,err='';var st=performance.now();try{actual=fn.apply(null,args)}catch(e){err=e.stack||String(e)}var ok=!err&&JSON.stringify(actual)===JSON.stringify(expected);if(ok)pass++;out.push((ok?'✅':'❌')+' Test '+(i+1)+' expected '+JSON.stringify(expected)+' actual '+(err||JSON.stringify(actual))+' | '+(performance.now()-st).toFixed(3)+' ms')});$('#do').textContent=out.join('\n')+'\n\nRESULT: '+pass+'/'+tests[p].length+' passed';$('#dt').innerHTML=pass===tests[p].length?teach('All visible tests pass.','Now prove the invariant, test larger inputs and state time and space complexity.') : teach('A counterexample failed.','Trace the exact failing input. Ask what your loop or state assumes that the test violates.')}
-function broken(){var p=$('#prob').value;if(p==='two')$('#dc').value='function solve(a,target){return [0,1]}';if(p==='max')$('#dc').value='function solve(a){let best=0;for(const x of a)best=Math.max(best+x,0);return best}';if(p==='bin')$('#dc').value='function solve(a,t){let l=0,r=a.length-1;while(l<r){let m=Math.floor((l+r)/2);if(a[m]<t)l=m+1;else r=m-1}return a[l]===t?l:-1}';if(p==='pal')$('#dc').value='function solve(s){return s===s.split("").reverse().join("")}';if(p==='br')$('#dc').value='function solve(s){return true}';}
-$('#errors').innerHTML='<div class="card"><h2>🐛 Error Teacher</h2><div class="grid"><div class="panel"><b>Syntax error</b><p>Parser cannot understand the source. Runtime never starts.</p></div><div class="panel"><b>Runtime error</b><p>The program runs until an operation violates its rules.</p></div><div class="panel"><b>Logic error</b><p>The program runs but the answer is wrong. A failing test is evidence.</p></div><div class="panel"><b>Performance error</b><p>The answer may be right but resource growth is unacceptable.</p></div><div class="panel"><b>Async error</b><p>Ordering, rejection or cancellation is wrong.</p></div><div class="panel"><b>Precision error</b><p>Floating-point representation is not exact decimal arithmetic.</p></div></div><div class="teacher"><b>Idiot debugging ritual:</b> reproduce → classify → isolate → inspect → state invariant → smallest fix → rerun → regression test.</div></div>';
-show('js');
-</script></body></html>
+/* EVENT LOOP */
+$("#event").innerHTML=`
+<section class="card"><h2>⏱ Event Loop Visualizer</h2><p>Predict the order, then let the browser schedule it. The visualizer records the actual output order.</p>
+<textarea id="evcode" class="editor">console.log("A");
+setTimeout(()=>console.log("timer"),0);
+Promise.resolve().then(()=>console.log("microtask"));
+console.log("B");</textarea>
+<div class="row"><button class="primary" id="evrun">Run experiment</button><button id="evreset">Reset</button></div><pre id="evout" class="out">Actual order will appear here.</pre>
+<div class="cards"><div class="panel"><b>Current job</b><p>The synchronous script runs first.</p></div><div class="panel"><b>Microtasks</b><p>Promise reactions run after the current job before the next task.</p></div><div class="panel"><b>Tasks</b><p>Timers are scheduled tasks; exact browser scheduling has more detail than this teaching model.</p></div></div></section>`;
+$("#evrun").onclick=()=>{const logs=[];const old=console.log;console.log=(...a)=>logs.push(a.join(" "));try{eval($("#evcode").value);setTimeout(()=>{console.log=old;$("#evout").textContent=logs.join("\n")},30)}catch(e){console.log=old;$("#evout").textContent=e.stack}};
+$("#evreset").onclick=()=>$("#evout").textContent="Actual order will appear here.";
+
+/* RECURSION */
+$("#recursion").innerHTML=`
+<section class="card"><h2>🔁 Recursion Visualizer</h2><p>Trace the call stack. Base case first. Then recursive case. No magic.</p>
+<input id="recn" class="field" type="number" min="0" max="12" value="5"><select id="rectype"><option value="fact">factorial(n)</option><option value="fib">fib(n)</option></select>
+<button class="primary" id="recrun">Trace</button><div id="recout" class="result"></div></section>`;
+$("#recrun").onclick=()=>{let n=Number($("#recn").value),type=$("#rectype").value,lines=[],calls=0;
+function f(x,depth){calls++;lines.push(" ".repeat(depth*2)+"→ call "+type+"("+x+")");if((type==="fact"&&x<=1)||(type==="fib"&&x<=1)){lines.push(" ".repeat(depth*2)+"← base case = "+x);return x}let r=type==="fact"?x*f(x-1,depth+1):f(x-1,depth+1)+f(x-2,depth+1);lines.push(" ".repeat(depth*2)+"← return "+r);return r}
+try{let r=f(n,0);$("#recout").textContent=lines.join("\n")+"\n\nresult = "+r+"\ncalls = "+calls}catch(e){$("#recout").textContent=e.stack}};
+
+/* MEMORY */
+$("#memory").innerHTML=`
+<section class="card"><h2>🧠 Memory & References</h2><p>This is a teaching model of references and reachability, not a literal visualization of the engine's private heap.</p>
+<div class="two"><div><textarea id="memcode" class="editor">const a={score:10};
+const b=a;
+b.score=99;
+console.log(a.score);</textarea><button class="primary" id="memrun">Run</button></div><pre id="memout" class="out">Ready.</pre></div>
+<div class="cards"><div class="panel"><b>Primitive</b><p>Copying a primitive copies its value.</p></div><div class="panel"><b>Object reference</b><p>Two variables can refer to the same object.</p></div><div class="panel"><b>Garbage collection</b><p>Objects become collectible when unreachable, subject to engine behavior.</p></div><div class="panel"><b>WeakMap</b><p>Weak references can support metadata without keeping keys alive.</p></div></div></section>`;
+$("#memrun").onclick=()=>runMemory($("#memcode").value);
+function runMemory(code){const logs=[];const send=x=>logs.push(String(x));try{const fn=new Function("send",code.replaceAll("console.log","send"));fn(send);$("#memout").textContent=logs.join("\n")+"\n\nRemember: equal-looking objects can be different references; aliasing means two names can point at one object."}catch(e){$("#memout").textContent=e.stack}}
+
+/* MATHS */
+$("#math").innerHTML=`
+<section class="card"><h2>∑ Maths Lab — actual calculators</h2><p>Every result below is computed in the browser. Inputs are validated and edge cases are taught.</p></section>
+<div class="grid">
+<div class="panel"><h3>Arithmetic / percentage</h3><input id="aa" class="field" value="125"><input id="ab" class="field" value="80"><button onclick="mathBasic()">Calculate</button><div id="ar" class="result"></div></div>
+<div class="panel"><h3>Fractions</h3><input id="fa1" class="field" value="3/4"><input id="fb1" class="field" value="5/6"><button onclick="fracCalc()">Add / multiply</button><div id="fr" class="result"></div></div>
+<div class="panel"><h3>GCD / LCM / Euclid</h3><input id="ga" class="field" value="84"><input id="gb" class="field" value="30"><button onclick="gcdCalc()">Calculate</button><div id="gr" class="result"></div></div>
+<div class="panel"><h3>Extended Euclid</h3><input id="ea" class="field" value="240"><input id="eb" class="field" value="46"><button onclick="egcdCalc()">Calculate</button><div id="er" class="result"></div></div>
+<div class="panel"><h3>Prime / factors / divisors</h3><input id="pn" class="field" value="360"><button onclick="primeCalc()">Calculate</button><div id="pr" class="result"></div></div>
+<div class="panel"><h3>Modular arithmetic</h3><input id="ma" class="field" value="7"><input id="me" class="field" value="128"><input id="mm" class="field" value="13"><button onclick="modCalc()">a^e mod m</button><div id="mr" class="result"></div></div>
+<div class="panel"><h3>Modular inverse</h3><input id="ia" class="field" value="3"><input id="im" class="field" value="11"><button onclick="invCalc()">Find inverse</button><div id="ir" class="result"></div></div>
+<div class="panel"><h3>Quadratic</h3><input id="qa" class="field" value="1"><input id="qb" class="field" value="-5"><input id="qc" class="field" value="6"><button onclick="quadCalc()">Solve</button><div id="qr" class="result"></div></div>
+<div class="panel"><h3>Linear system 2×2</h3><input id="la" class="field" value="2,1,5"><input id="lb" class="field" value="1,-1,1"><button onclick="linearCalc()">Solve</button><div id="lr" class="result"></div></div>
+<div class="panel"><h3>Combinations / permutations</h3><input id="cn" class="field" value="10"><input id="ck" class="field" value="3"><button onclick="combCalc()">Calculate</button><div id="cr" class="result"></div></div>
+<div class="panel"><h3>Statistics</h3><input id="st" class="field" value="2,4,4,7,9,10"><button onclick="statsCalc()">Calculate</button><div id="sr" class="result"></div></div>
+<div class="panel"><h3>Probability</h3><input id="pa" class="field" value="2"><input id="pb" class="field" value="5"><button onclick="probCalc()">a/b</button><div id="pbr" class="result"></div></div>
+<div class="panel"><h3>Vector</h3><input id="va" class="field" value="1,2,3"><input id="vb" class="field" value="4,5,6"><button onclick="vecCalc()">Calculate</button><div id="vr" class="result"></div></div>
+<div class="panel"><h3>2×2 matrix</h3><input id="mx" class="field" value="1,2,3,4"><button onclick="matrixCalc()">Det / inverse</button><div id="xr" class="result"></div></div>
+<div class="panel"><h3>Quadratic-free root finding</h3><input id="fx" class="field" value="x*x-2"><input id="fleft" class="field" value="0"><input id="fright" class="field" value="2"><button onclick="bisectCalc()">Bisection</button><div id="br" class="result"></div></div>
+<div class="panel"><h3>Base conversion / bitwise</h3><input id="bn" class="field" value="42"><button onclick="bitsCalc()">Convert</button><div id="bir" class="result"></div></div>
+</div>`;
+const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a};
+function parseFrac(s){let p=s.trim().split("/");if(p.length===1)return[Number(p[0]),1];if(p.length!==2||!p.every(x=>Number.isFinite(Number(x))))throw Error("Invalid fraction");let n=Number(p[0]),d=Number(p[1]);if(d===0)throw Error("Denominator cannot be zero");let g=gcd(n,d);return[n/g,d/g]}
+function mathBasic(){let a=+$("#aa").value,b=+$("#ab").value;$("#ar").textContent="sum = "+(a+b)+"\ndifference = "+(a-b)+"\nproduct = "+a*b+"\nquotient = "+a/b+"\na as % of b = "+(100*a/b)}
+function fracCalc(){try{let[a,c]=parseFrac($("#fa1").value),[b,d]=parseFrac($("#fb1").value),n=a*d+b*c,q=c*d,g=gcd(n,q);$("#fr").textContent="sum = "+n/g+"/"+q/g+"\nproduct = "+(a*b)/gcd(a*b,c*d)+"/"+(c*d)/gcd(a*b,c*d)}catch(e){$("#fr").textContent=e.message}}
+function egcd(a,b){if(b===0)return[a,1,0];let[g,x,y]=egcd(b,a%b);return[g,y,x-Math.floor(a/b)*y]}
+function gcdCalc(){let a=+$("#ga").value,b=+$("#gb").value,g=gcd(a,b);$("#gr").textContent="gcd = "+g+"\nlcm = "+(g?Math.abs(a/g*b):0)+"\nEuclid ends at gcd = "+g}
+function egcdCalc(){let a=+$("#ea").value,b=+$("#eb").value,r=egcd(a,b);$("#er").textContent="gcd = "+r[0]+"\nx = "+r[1]+"\ny = "+r[2]+"\ncheck: ax+by = "+(a*r[1]+b*r[2])}
+function primeCalc(){let n=Number($("#pn").value);if(!Number.isInteger(n)||n<1){$("#pr").textContent="Enter a positive integer";return}let x=n,f=[],d=[];for(let p=2;p*p<=x;p++)while(x%p===0){f.push(p);x/=p}if(x>1)f.push(x);for(let i=1;i*i<=n;i++)if(n%i===0){d.push(i);if(i*i!==n)d.push(n/i)}$("#pr").textContent="prime = "+(n>=2&&f.length===1)+"\nfactorization = "+(f.join(" × ")||"1")+"\ndivisors = "+d.sort((a,b)=>a-b).join(", ")}
+function modPow(a,e,m){a=BigInt(a);e=BigInt(e);m=BigInt(m);if(m===0n)throw Error("Modulo cannot be zero");let r=1n;a=(a%m+m)%m;while(e>0){if(e&1n)r=r*a%m;a=a*a%m;e>>=1n}return r}
+function modCalc(){try{$("#mr").textContent=String(modPow($("#ma").value,$("#me").value,$("#mm").value))}catch(e){$("#mr").textContent=e.message}}
+function invCalc(){let a=Number($("#ia").value),m=Number($("#im").value),r=egcd(a,m);$("#ir").textContent=r[0]===1?"inverse = "+((r[1]%m+m)%m):"No inverse because gcd(a,m) = "+r[0]}
+function quadCalc(){let a=+$("#qa").value,b=+$("#qb").value,c=+$("#qc").value;if(a===0){$("#qr").textContent=b?"linear x = "+(-c/b):"Not an equation";return}let D=b*b-4*a*c;if(D>=0)$("#qr").textContent="D = "+D+"\nx1 = "+((-b+Math.sqrt(D))/(2*a))+"\nx2 = "+((-b-Math.sqrt(D))/(2*a));else $("#qr").textContent="D = "+D+"\ncomplex roots: "+(-b/(2*a))+" ± "+(Math.sqrt(-D)/(2*a))+"i"}
+function linearCalc(){let a=$("#la").value.split(",").map(Number),b=$("#lb").value.split(",").map(Number),D=a[0]*b[1]-a[1]*b[0];if(D===0){$("#lr").textContent="No unique solution (determinant 0).";return}let x=(a[2]*b[1]-b[2]*a[1])/D,y=(a[0]*b[2]-a[2]*b[0])/D;$("#lr").textContent="x = "+x+"\ny = "+y}
+function bigFact(n){let r=1n;for(let i=2n;i<=BigInt(n);i++)r*=i;return r}
+function combCalc(){let n=+$("#cn").value,k=+$("#ck").value;if(!Number.isInteger(n)||!Number.isInteger(k)||k<0||k>n){$("#cr").textContent="Require integers 0 ≤ k ≤ n";return}$("#cr").textContent="nCk = "+bigFact(n)/(bigFact(k)*bigFact(n-k))+"\nnPk = "+bigFact(n)/bigFact(n-k)}
+function statsCalc(){let a=$("#st").value.split(",").map(Number).filter(Number.isFinite).sort((x,y)=>x-y);if(!a.length){$("#sr").textContent="No valid numbers";return}let n=a.length,mean=a.reduce((s,x)=>s+x,0)/n,med=n%2?a[n>>1]:(a[n/2-1]+a[n/2])/2,varp=a.reduce((s,x)=>s+(x-mean)**2,0)/n;$("#sr").textContent="n = "+n+"\nmean = "+mean+"\nmedian = "+med+"\nvariance(pop) = "+varp+"\nSD(pop) = "+Math.sqrt(varp)+"\nmin = "+a[0]+"\nmax = "+a[n-1]}
+function probCalc(){let a=+$("#pa").value,b=+$("#pb").value;$("#pbr").textContent=b===0?"Denominator cannot be zero":(a/b)+" = "+(100*a/b)+"%"}
+function vecCalc(){let a=$("#va").value.split(",").map(Number),b=$("#vb").value.split(",").map(Number);if(a.length!==b.length){$("#vr").textContent="Dimension mismatch";return}$("#vr").textContent="dot = "+a.reduce((s,x,i)=>s+x*b[i],0)+"\n||a|| = "+Math.hypot(...a)+"\n||b|| = "+Math.hypot(...b)}
+function matrixCalc(){let a=$("#mx").value.split(",").map(Number);if(a.length!==4){$("#xr").textContent="Need 4 numbers";return}let d=a[0]*a[3]-a[1]*a[2];$("#xr").textContent="det = "+d+(d?"\ninverse = [["+a[3]/d+", "+(-a[1]/d)+"],["+(-a[2]/d)+", "+a[0]/d+"]]":"\nNo inverse: singular matrix")}
+function bisectCalc(){try{let f=new Function("x","return "+$("#fx").value),a0=+$("#fleft").value,b0=+$("#fright").value;let a=a0,b=b0,fa=f(a),fb=f(b);if(fa*fb>0){$("#br").textContent="Bisection requires opposite endpoint signs.";return}let m=0;for(let i=0;i<100;i++){m=(a+b)/2;let fm=f(m);if(Math.abs(fm)<1e-12)break;if(fa*fm<=0){b=m;fb=fm}else{a=m;fa=fm}}$("#br").textContent="root ≈ "+m+"\nf(root) ≈ "+f(m)}catch(e){$("#br").textContent=e.stack}}
+function bitsCalc(){try{let n=BigInt($("#bn").value);$("#bir").textContent="decimal = "+n+"\nbinary = "+n.toString(2)+"\nhex = 0x"+n.toString(16)+"\nlow bit = "+(n&1n)+"\nleft shift = "+(n<<1n)+"\nright shift = "+(n>>1n)}catch(e){$("#bir").textContent=e.message}}
+
+/* DSA JUDGE */
+$("#dsa").innerHTML=`
+<section class="card"><h2>🧩 Real DSA Judge</h2><p>Tests execute locally. They are visible because a static application cannot honestly claim client-side tests are secret.</p>
+<select id="challenge" class="field"><option value="twosum">Two Sum</option><option value="maxsub">Maximum Subarray</option><option value="binary">Binary Search</option><option value="pal">Palindrome</option><option value="brackets">Valid Brackets</option><option value="anagram">Anagram</option></select>
+<textarea id="dsacode" class="editor">function solve(a,target){
+  const seen=new Map();
+  for(let i=0;i<a.length;i++){
+    const need=target-a[i];
+    if(seen.has(need)) return [seen.get(need),i];
+    seen.set(a[i],i);
+  }
+  return [];
+}</textarea>
+<div class="row"><button class="primary" id="dsarun">Run visible tests</button><button id="dsabreak">Break algorithm</button><button id="dsarandom">Random tests</button></div>
+<div id="dsaout" class="result">No tests yet.</div><div id="dsateach"></div></section>
+<section class="card"><h3>Judge protocol</h3><p>Run → expected vs actual → edge cases → randomized cases → complexity discussion → explain invariant → retry.</p></section>`;
+const tests={
+twosum:[[[2,7,11,15],9],[[-1,-2,-3,-4,-5],-8],[[3,3],6],[[],10]],
+maxsub:[[[1],1],[[-2,1,-3,4,-1,2,1,-5,4],6],[[-5,-2,-8],-2],[[5,4,-1,7,8],23]],
+binary:[[[1,3,5,7,9],7],[[1,3,5,7,9],2],[[-4,-1,0,2],-4],[[],3]],
+pal:[["racecar",true],["hello",false],["",true],["aa",true]],
+brackets:[["()",true],["([{}])",true],["(]",false],["",true]],
+anagram:[["listen","silent",true],["hello","world",false],["a","A",false]]
+};
+function argsFor(k,t){if(k==="twosum")return[t[0],t[1]];if(k==="maxsub"||k==="binary")return[t[0],t[1]];if(k==="pal"||k==="brackets")return[t[0]];return[t[0],t[1]]}
+function expectedFor(k,t){return k==="anagram"?t[2]:t[1]}
+$("#dsarun").onclick=()=>judge(tests[$("#challenge").value]);
+$("#dsabreak").onclick=()=>{$("#dsacode").value=$("#dsacode").value.replaceAll("target-a[i]","target+a[i]");judge(tests[$("#challenge").value])};
+$("#dsarandom").onclick=()=>{const k=$("#challenge").value,arr=[];for(let i=0;i<15;i++){if(k==="twosum"){let a=Array.from({length:6},()=>Math.floor(Math.random()*21)-10),t=Math.floor(Math.random()*21)-10;arr.push([a,t])}else if(k==="maxsub"){arr.push([Array.from({length:8},()=>Math.floor(Math.random()*21)-10)])}else if(k==="binary"){let a=[...new Set(Array.from({length:8},()=>Math.floor(Math.random()*40)-20))].sort((x,y)=>x-y);arr.push([a,Math.floor(Math.random()*40)-20])}else if(k==="pal"){let s=Math.random()<.5?"level":"abc"+Math.floor(Math.random()*9);arr.push([s])}else if(k==="brackets"){arr.push([Math.random()<.5?"([])":"([)]"])}else{arr.push(["abc","bca",true])}}judge(arr,true)};
+function oracle(k,t){if(k==="twosum"){for(let i=0;i<t[0].length;i++)for(let j=i+1;j<t[0].length;j++)if(t[0][i]+t[0][j]===t[1])return[i,j];return[]}if(k==="maxsub"){let best=t[0][0],cur=t[0][0];for(let i=1;i<t[0].length;i++){cur=Math.max(t[0][i],cur+t[0][i]);best=Math.max(best,cur)}return best}if(k==="binary"){let l=0,r=t[0].length-1;while(l<=r){let m=(l+r)>>1;if(t[0][m]===t[1])return m;if(t[0][m]<t[1])l=m+1;else r=m-1}return-1}if(k==="pal")return t[0]===Array.from(t[0]).reverse().join("");if(k==="brackets"){let st=[],pairs={")":"(","]":"[","}":"{"};for(const c of t[0]){if("([{".includes(c))st.push(c);else if(pairs[c]!==st.pop())return false}return st.length===0}if(k==="anagram")return [...t[0]].sort().join("")===[...t[1]].sort().join("")}
+function judge(ts,random=false){const k=$("#challenge").value;let src=$("#dsacode").value,fn;try{fn=new Function(src+";return solve")()}catch(e){saveMistake("DSA syntax");$("#dsaout").textContent=e.stack;$("#dsateach").innerHTML=teach("DSA syntax error",e.message,"The submitted function could not be constructed.","Fix syntax, then rerun the same tests.");return}
+let pass=0,rows=[];for(const t of ts){let expected=expectedFor(k,t),actual,err="",ms=0;try{let t0=performance.now();actual=fn(...argsFor(k,t));ms=performance.now()-t0}catch(e){err=e.stack}let ok=!err&&JSON.stringify(actual)===JSON.stringify(expected);if(ok)pass++;rows.push('<div class="test '+(ok?"ok":"fail")+'">'+(ok?"✓":"✖")+" expected=<span class='mono'>"+esc(format(expected))+"</span> actual=<span class='mono'>"+esc(err||format(actual))+"</span> · "+ms.toFixed(3)+"ms</div>")}
+$("#dsaout").innerHTML=rows.join("")+"<p><b>"+pass+"/"+ts.length+" passed</b>"+(random?" · randomized batch":"")+"</p>";if(pass<ts.length){saveMistake("DSA wrong answer");$("#dsateach").innerHTML=teach("Wrong answer","Your function executed, but at least one expected result did not match.","Execution proves syntax/runtime validity, not algorithm correctness. Compare the failing input, output, invariant and edge case.","Reproduce the smallest failing case, trace state changes, fix the invariant, then rerun all tests.")}else $("#dsateach").innerHTML=teach("Green tests","All current tests passed.","Passing tests establish only the tested cases. They do not prove every possible input.","Explain complexity, add an edge case, then try randomized testing.")}
+
+/* SORT VISUALIZER */
+$("#visual").innerHTML=`
+<section class="card"><h2>📊 Actual Algorithm Visualizer</h2><p>The bars below are updated from real sorting algorithm state, not an animation pretending an algorithm ran.</p><input id="visn" class="field" value="9,3,7,1,8,2,6,4,5"><select id="alg" class="field"><option value="bubble">Bubble sort</option><option value="selection">Selection sort</option><option value="insertion">Insertion sort</option></select><div class="row"><button class="primary" id="visrun">Animate actual algorithm</button><button id="visstop">Stop</button></div><canvas id="canvas" class="canvas" width="900" height="250"></canvas><div id="visinfo" class="result"></div></section>`;
+let visTimer=null;
+function drawBars(a,active=[]){const c=$("#canvas"),ctx=c.getContext("2d"),w=c.width,h=c.height;ctx.clearRect(0,0,w,h);let max=Math.max(...a,1),bw=w/a.length;ctx.font="12px monospace";a.forEach((v,i)=>{let bh=(v/max)*(h-35);ctx.fillStyle=active.includes(i)?"#ef4444":"#8b5cf6";ctx.fillRect(i*bw+2,h-bh-20,bw-4,bh);ctx.fillStyle="#eef3ff";ctx.fillText(String(v),i*bw+5,h-5)})}
+async function animateSort(){clearInterval(visTimer);let a=$("#visn").value.split(",").map(Number).filter(Number.isFinite);if(!a.length)return;let alg=$("#alg").value,steps=[],comparisons=0,swaps=0;drawBars(a);
+function snap(active){steps.push({a:a.slice(),active:active.slice()})}
+if(alg==="bubble"){for(let i=0;i<a.length;i++)for(let j=0;j<a.length-i-1;j++){comparisons++;snap([j,j+1]);if(a[j]>a[j+1]){[a[j],a[j+1]]=[a[j+1],a[j]];swaps++;snap([j,j+1])}}}
+if(alg==="selection"){for(let i=0;i<a.length;i++){let m=i;for(let j=i+1;j<a.length;j++){comparisons++;snap([m,j]);if(a[j]<a[m])m=j}if(m!==i){[a[i],a[m]]=[a[m],a[i]];swaps++;snap([i,m])}}}
+if(alg==="insertion"){for(let i=1;i<a.length;i++){let j=i;while(j>0){comparisons++;snap([j-1,j]);if(a[j-1]<=a[j])break;[a[j-1],a[j]]=[a[j],a[j-1]];swaps++;snap([j-1,j]);j--}}}
+let i=0;visTimer=setInterval(()=>{if(i>=steps.length){clearInterval(visTimer);drawBars(a);$("#visinfo").textContent="sorted = "+a.join(", ")+"\ncomparisons = "+comparisons+"\nswaps = "+swaps;return}drawBars(steps[i].a,steps[i].active);i++},90)}
+$("#visrun").onclick=animateSort;$("#visstop").onclick=()=>clearInterval(visTimer);
+
+/* PERFORMANCE */
+$("#perf").innerHTML=`
+<section class="card"><h2>⚡ Performance Lab</h2><p>Benchmarks are measurements on this browser/device. They are not universal complexity proofs.</p>
+<select id="bench" class="field"><option value="linear">Linear scan</option><option value="quadratic">Nested loop</option><option value="binary">Binary search</option><option value="sort">Native sort</option></select>
+<input id="size" class="field" type="number" min="10" max="20000" value="5000"><button class="primary" id="benchrun">Benchmark</button><div id="benchout" class="result"></div></section>`;
+$("#benchrun").onclick=()=>{let n=Math.min(20000,Math.max(10,Number($("#size").value))),a=Array.from({length:n},(_,i)=>i),kind=$("#bench").value,start=performance.now(),ops=0;if(kind==="linear"){for(let i=0;i<n;i++)ops++}else if(kind==="quadratic"){let limit=Math.min(n,1500);for(let i=0;i<limit;i++)for(let j=0;j<limit;j++)ops++}else if(kind==="binary"){let target=n-1,l=0,r=n-1;while(l<=r){ops++;let m=(l+r)>>1;if(a[m]===target)break;if(a[m]<target)l=m+1;else r=m-1}}else{a.slice().sort((x,y)=>y-x);ops=n}let ms=performance.now()-start;$("#benchout").textContent="n = "+n+"\ntime = "+ms.toFixed(3)+" ms\ncounted operations ≈ "+ops+"\nModel: "+(kind==="linear"?"O(n)":kind==="quadratic"?"O(n²) for the bounded nested loop":kind==="binary"?"O(log n)":"implementation-dependent; commonly O(n log n)")};
+
+/* DEBUG LAB */
+$("#debug").innerHTML=`
+<section class="card"><h2>🐛 Debug Lab — break it on purpose</h2><p>Each challenge contains a real bug. Run it, observe the actual failure, classify it, fix it, and test a similar case.</p>
+<select id="bugpick" class="field"><option value="syntax">Syntax error</option><option value="reference">Reference error</option><option value="type">Type error</option><option value="logic">Logic error</option><option value="offby">Off-by-one</option><option value="loop">Infinite loop</option><option value="scope">Closure/scope bug</option><option value="async">Async rejection</option><option value="precision">Precision bug</option></select>
+<button class="primary" id="bugrun">Run bug</button><pre id="bugout" class="out">Choose a bug and run it.</pre><div id="bugteach"></div></section>`;
+const bugs={syntax:['function add(a,b { return a+b; }','SyntaxError','A delimiter is missing.'],reference:['console.log(total);\nlet total=10;','ReferenceError','let is in the temporal dead zone until initialization.'],type:['const n=42; console.log(n.toUpperCase());','TypeError','Number does not provide toUpperCase.'],logic:['function even(n){return n%2===1} console.log(even(2),even(3));','Logic error','The program runs but the predicate is inverted.'],offby:['const a=[10,20,30]; for(let i=0;i<=a.length;i++) console.log(a[i].toFixed(0));','Off-by-one','Valid indexes end at length-1.'],loop:['let i=0; while(i<3){ console.log(i); }','Infinite loop','i never changes, so the stopping condition never becomes false.'],scope:['var funcs=[]; for(var i=0;i<3;i++) funcs.push(()=>i); console.log(funcs.map(f=>f()));','Scope/closure bug','var shares one function-scoped binding; let creates per-iteration bindings.'],async:['Promise.reject(new Error("boom"));','Async rejection','A rejected promise needs a rejection handler.'],precision:['console.log(0.1+0.2===0.3);','Precision bug','Binary floating point cannot represent many decimal fractions exactly.']};
+$("#bugrun").onclick=()=>{let b=bugs[$("#bugpick").value],code=b[0],kind=b[1];$("#bugout").textContent="Running actual broken program…\n"+code;saveMistake(kind);if(kind==="Logic error"||kind==="Off-by-one"||kind==="Precision bug"||kind==="Scope/closure bug")$("#bugteach").innerHTML=teach(kind,"This class of bug may produce output instead of throwing an exception.",b[2],"Change the smallest relevant rule, then add a regression test that would have caught it.");else $("#bugteach").innerHTML=teach(kind,b[2],"The failure is useful evidence. Read the exact operation and the runtime rule involved.","Repair the program, rerun it, then deliberately create one nearby edge case.");try{new Function(code)()}catch(e){$("#bugout").textContent+="\n\nREAL ERROR:\n"+e.stack}};
+
+/* PROOF LAB */
+$("#proof").innerHTML=`
+<section class="card"><h2>∴ Proof & Logic Lab</h2><p>No hand-waving. Build truth tables, inspect logical equivalence, and practice induction structure.</p>
+<div class="two"><div class="panel"><h3>Truth table</h3><select id="logicop" class="field"><option value="and">P ∧ Q</option><option value="or">P ∨ Q</option><option value="imp">P → Q</option><option value="xor">P ⊕ Q</option><option value="eq">P ↔ Q</option></select><button class="primary" id="logicrun">Generate</button><div id="logicout" class="result"></div></div>
+<div class="panel"><h3>Induction skeleton</h3><input id="indn" class="field" value="n(n+1)/2"><button class="primary" id="indrun">Show structure</button><div id="indout" class="result"></div></div></div></section>`;
+$("#logicrun").onclick=()=>{let op=$("#logicop").value,rows=["P Q | result"];for(let p of [false,true])for(let q of [false,true]){let r=op==="and"?p&&q:op==="or"?p||q:op==="imp"?(!p||q):op==="xor"?p!==q:p===q;rows.push((p?1:0)+" "+(q?1:0)+" | "+(r?1:0))}$("#logicout").textContent=rows.join("\n")};
+$("#indrun").onclick=()=>$("#indout").textContent="BASE CASE: prove the statement for the first allowed n.\nINDUCTIVE HYPOTHESIS: assume it is true for n=k.\nINDUCTIVE STEP: using that assumption, prove it for k+1.\nCONCLUSION: therefore it holds for all n in the induction domain.\n\nIdiot rule: 'it works for 10 examples' is not induction.";
+
+/* RANDOM */
+$("#random").innerHTML=`
+<section class="card"><h2>🎲 Random Challenge Generator</h2><p>Generate a new problem, solve it without looking at an answer, then use the verifier.</p>
+<select id="randtopic" class="field"><option value="math">Maths</option><option value="js">JavaScript</option><option value="dsa">DSA</option></select><button class="primary" id="randgo">Generate</button><div id="randout" class="result"></div><textarea id="randanswer" class="editor" placeholder="Write your answer / code here..."></textarea><button id="randcheck">Check</button><div id="randteacher"></div></section>`;
+let currentChallenge=null;
+$("#randgo").onclick=()=>{let t=$("#randtopic").value;if(t==="math"){let a=Math.floor(Math.random()*50)+2,b=Math.floor(Math.random()*20)+2;currentChallenge={kind:t,answer:a*b,question:"Calculate "+a+" × "+b+" without a calculator first."}}else if(t==="js"){currentChallenge={kind:t,answer:"[1,4,9]",question:"Write JavaScript that maps [1,2,3] to [1,4,9]."}}else{currentChallenge={kind:t,answer:6,question:"What is the maximum subarray sum of [-2,3,-1,4,-5]?"}}$("#randout").textContent=currentChallenge.question};
+$("#randcheck").onclick=()=>{if(!currentChallenge)return;let ans=$("#randanswer").value.trim();if(currentChallenge.kind==="math"){let ok=Number(ans)===currentChallenge.answer;$("#randteacher").innerHTML=ok?teach("Correct","The answer matches the computed value.","Now explain the operation, then create a similar example.","Generalize the method.") :teach("Wrong answer","Your submitted value does not match the generated problem.","Recalculate carefully and check multiplication structure.","Try a smaller analogous example, then retry.")}else{$("#randteacher").innerHTML=teach("Self-verification","Code/text challenges need execution or reasoning checks appropriate to the task.","Do not accept an answer because it looks plausible.","Run a concrete test case and explain why it generalizes.")}};
+
+/* PROJECT BUILDER */
+const projectList=["Expression parser","Scientific calculator","Sorting visualizer","Graph BFS/DFS explorer","Shortest-path explorer","Trie autocomplete","LRU cache","Mini test runner","Statistics workbench","Matrix toolkit","Offline notes app","HTTP inspector","Algorithm benchmarker","Regex log analyzer","Binary file inspector"];
+$("#projects").innerHTML='<section class="card"><h2>🏗️ Project Builder</h2><p>Projects are not checkboxes for decoration. Track requirements, edge cases, tests, complexity and explanation.</p><div id="projectcards" class="cards"></div></section>';
+$("#projectcards").innerHTML=projectList.map((p,i)=>'<div class="panel"><span class="small">PROJECT '+(i+1)+'</span><h3>'+p+'</h3>'+["Design","Implement","Edge cases","Tests","Benchmark","Explain complexity","Refactor"].map(x=>'<label class="check"><input type="checkbox" data-project="'+i+'" data-step="'+x+'"><span>'+x+'</span></label>').join("")+'</div>').join("");
+$$("[data-project]").forEach(x=>{let k="p:"+x.dataset.project+":"+x.dataset.step;x.checked=localStorage.getItem(k)==="1";x.onchange=()=>{localStorage.setItem(k,x.checked?"1":"0");put(k,x.checked)}});
+
+/* IMPORT / EXPORT */
+$("#export").onclick=async()=>{const db=await getAll();const payload={version:1,exportedAt:new Date().toISOString(),state,localStorage:Object.fromEntries(Object.keys(localStorage).filter(k=>k.startsWith("p:")).map(k=>[k,localStorage.getItem(k)])),indexedDB:db};const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}));a.download="idiot-wizard-lab-progress.json";a.click()};
+$("#import").onclick=()=>$("#file").click();
+$("#file").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=async()=>{try{let x=JSON.parse(r.result);state=x.state||state;Object.entries(x.localStorage||{}).forEach(([k,v])=>localStorage.setItem(k,v));for(const item of x.indexedDB||[])await put(item.id,item.value);alert("Lab data imported.")}catch(err){alert("Invalid lab JSON: "+err.message)}};r.readAsText(f)};
+
+show("js");
+</script>
+</body></html>
