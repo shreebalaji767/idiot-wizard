@@ -1,5 +1,51 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IDIOT → WIZARD — Full Lessons</title><style>
 :root{--b:#070b14;--p:#101a2c;--p2:#17243c;--l:#2b3a58;--t:#eef3ff;--m:#aab6cd;--a:#8b5cf6;--g:#22c55e;--r:#ef4444}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1b1230,#070b14 55%);color:var(--t);font:15px/1.65 system-ui,sans-serif}.wrap{display:grid;grid-template-columns:320px 1fr;min-height:100vh}.side{border-right:1px solid var(--l);padding:18px;position:sticky;top:0;height:100vh;overflow:auto;background:#080e19}.brand{font-weight:900;font-size:24px}.brand b{color:#a78bfa}.search,select{width:100%;background:#0b1323;color:var(--t);border:1px solid var(--l);border-radius:9px;padding:10px;margin:7px 0}.list button{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid #18253d;border-radius:0;padding:9px;color:var(--m)}.list button:hover,.list .sel{background:#21183b;color:var(--t)}main{padding:28px;max-width:1100px;width:100%;margin:auto}.hero,.card{background:rgba(16,26,44,.94);border:1px solid var(--l);border-radius:16px;padding:20px;margin-bottom:16px}.hero{background:linear-gradient(135deg,#261744,#10253b)}h1{font-size:clamp(30px,5vw,54px);line-height:1.05;margin:.2em 0}.crumb{color:#c4b5fd}.idiot{border-left:5px solid var(--a);background:#17112b;padding:15px;border-radius:9px}.engineer{border-left:5px solid #38bdf8;background:#0d2030;padding:15px;border-radius:9px}.trap{border-left:5px solid var(--r);background:#281216;padding:15px;border-radius:9px}.try{border-left:5px solid var(--g);background:#0c2118;padding:15px;border-radius:9px}pre{background:#060a12;border:1px solid var(--l);padding:14px;border-radius:9px;overflow:auto}.actions{display:flex;gap:8px;flex-wrap:wrap}button{cursor:pointer;color:var(--t);background:var(--p2);border:1px solid var(--l);border-radius:9px;padding:9px 12px}.primary{background:var(--a);border-color:var(--a)}.progress{height:9px;background:#25324c;border-radius:9px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#8b5cf6,#22c55e)}.workflow{background:#0b1323;border:1px solid var(--l);border-radius:14px;padding:18px;margin-top:18px}.workflow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.step{border:1px solid var(--l);border-radius:12px;padding:12px;background:#0e1728}.step h4{margin:0 0 6px}.step textarea,.step input{width:100%;background:#060a12;color:var(--t);border:1px solid var(--l);border-radius:8px;padding:9px;box-sizing:border-box}.step textarea{min-height:110px;font-family:ui-monospace,monospace}.result{white-space:pre-wrap;background:#060a12;border:1px solid var(--l);padding:10px;border-radius:8px;margin-top:8px;min-height:38px}.workflow .done{color:#86efac}.workflow .bad{color:#fca5a5}.workflow button{margin-top:7px}@media(max-width:900px){.wrap{display:block}.side{position:relative;height:auto}.list{max-height:330px;overflow:auto}main{padding:14px}}
+</style><style id="responsive-idiot-wizard">
+:root{--safe:env(safe-area-inset-bottom,0px)}
+html{font-size:16px;scroll-behavior:smooth}
+body{min-width:0;overflow-x:hidden;-webkit-text-size-adjust:100%;padding-bottom:var(--safe)}
+img,svg,canvas,video,iframe{max-width:100%;height:auto}
+pre,code{max-width:100%}
+pre{overflow:auto;-webkit-overflow-scrolling:touch;white-space:pre}
+table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+button,input,select,textarea{font:inherit;max-width:100%}
+textarea{resize:vertical}
+@media(max-width:900px){
+  .app{grid-template-columns:1fr!important;display:block!important}
+  .side{position:sticky!important;top:0!important;z-index:50;width:100%!important;height:auto!important;max-height:46vh!important;overflow:auto!important;border-right:0!important;border-bottom:1px solid var(--l,#293754)!important;padding:12px!important}
+  .side nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .side nav button,.side>button{margin:0!important;min-height:44px}
+  .main{width:100%!important;max-width:none!important;padding:14px!important}
+  .top{position:sticky;top:0;z-index:40;background:rgba(9,16,30,.94);padding:6px 0}
+  .hero,.card{padding:15px!important;border-radius:12px!important}
+  .grid{grid-template-columns:1fr!important}
+  .lab{grid-template-columns:1fr!important}
+  .math{grid-template-columns:1fr!important}
+  .editor,.out{min-height:260px!important}
+}
+@media(max-width:600px){
+  body{font-size:14px}
+  .side{max-height:52vh!important}
+  .side nav{grid-template-columns:1fr 1fr}
+  .logo{font-size:20px}
+  .main{padding:10px!important}
+  h1{font-size:clamp(28px,10vw,42px)!important}
+  h2{font-size:22px}
+  h3{font-size:19px}
+  .top{margin-bottom:8px}
+  .search{min-height:44px}
+  button,.field,input,select,textarea{min-height:44px}
+  .editor,.out{min-height:220px!important;font-size:12px!important;padding:10px!important}
+  .lesson pre,pre{font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}
+  .topic{align-items:flex-start}
+  .topic input{margin-top:4px;flex:0 0 auto}
+  .topic small{overflow-wrap:anywhere}
+}
+@media(max-width:380px){
+  .side nav{grid-template-columns:1fr}
+  .main{padding:8px!important}
+  .hero,.card{padding:12px!important}
+}
 </style></head><body><div class="wrap"><aside class="side"><div class="brand">IDIOT <b>→</b> WIZARD</div><p style="color:var(--m)">Every topic. Zero "trust me bro".</p><input id="q" class="search" placeholder="Search topics..."><select id="cat"></select><div id="stats" style="color:var(--m)"></div><div id="list" class="list"></div><hr><a href="index.html" style="color:#c4b5fd">← Back to labs</a></aside><main id="main"></main></div><script>
 const groups={
 "JavaScript":[
