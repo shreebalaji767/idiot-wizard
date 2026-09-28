@@ -559,8 +559,55 @@ function wfBreakRun(){const code=document.getElementById("wfBreak").value;const 
 function wfHint(level=1){const out=document.getElementById("wfHintOut");out.textContent=level===1?"Read the first real error/result. Find the exact operation that violates the rule.": "Do not randomly rewrite code. Identify the smallest broken construct, state the rule it violates, then change only that construct and rerun it."}
 function wfRunFixed(){wfRun();document.getElementById("wfFixOut").textContent="The code above is your fixed version. Run it, inspect the real result, then compare it with your prediction."}
 function wfTests(){const out=document.getElementById("wfTestOut");const code=document.getElementById("wfCode").value;wfExec(code,r=>{out.textContent="Baseline test: "+(r.ok?"PASS":"FAIL")+"\nBoundary test: change the input and rerun.\nInvalid-input test: deliberately violate the contract and classify the resulting failure.";out.className="result "+(r.ok?"done":"bad")})}
-function wfBuildCheck(){const x=document.getElementById("wfBuild").value.trim();document.getElementById("wfBuildOut").textContent=x.length<40?"Too short. Explain the rule, your implementation, one edge case, one failure, and why the fix works.":"Good. Now verify your explanation against the actual result and build a second example without copying the lesson.";}function renderLesson(){let t=topics[idx],pct=Math.round(Object.keys(done).length/topics.length*100);return "<div class='hero'><div class='crumb'>"+esc(t.cat)+" / "+esc(t.title)+"</div><h1>"+esc(t.title)+"</h1><p><b>Coverage:</b> "+esc(t.tags)+"</p><div class='progress'><div class='fill' style='width:"+pct+"%'></div></div></div><section class='card'><h2>🧠 What is this?</h2><p>"+esc(t.core)+"</p><div class='idiot'><h2>🤡 IDIOT → IDIOT explanation</h2><p>"+esc(t.idiot)+"</p><p><b>Human translation:</b> "+esc(t.core)+"</p></div><div class='engineer'><h2>🧑‍💻 Precise theory</h2><p><b>Core rule:</b> "+esc(t.core)+"</p>"+theory(t)+"<p><b>Professional checklist:</b> definition → mechanism → constraints → complexity → edge cases → failure modes → testing.</p></div><div class='try'><h2>🧪 Do it for real</h2><p>"+esc(t.doit)+"</p><pre>Predict → implement → test normal → test boundaries → break it → debug → fix → regression-test → explain.</pre></div>"+workflow(t)+"<div class='trap'><h2>💀 Common idiot trap</h2><p>"+esc(t.trap)+"</p></div><h2>🎯 Mastery test</h2><p>Without looking: define every listed subtopic, demonstrate one example, explain one edge case, name a failure mode, and explain when this concept is useful.</p><div class='actions'><button class='primary' onclick='complete()'>✓ I can explain it</button><button onclick='prev()'>← Previous</button><button onclick='next()'>Next →</button></div></section>";}
-function complete(){done[idx]=true;localStorage.setItem("iw_lesson_done",JSON.stringify(done));render()}
+function wfBuildCheck(){const x=document.getElementById("wfBuild").value.trim();document.getElementById("wfBuildOut").textContent=x.length<40?"Too short. Explain the rule, your implementation, one edge case, one failure, and why the fix works.":"Good. Now verify your explanation against the actual result and build a second example without copying the lesson.";}function deepDive(t){
+ const tags=(t.tags||"").split(";").map(x=>x.trim()).filter(Boolean);
+ const cat=(t.cat||"").toLowerCase();
+ const title=(t.title||"").toLowerCase();
+ const angle=cat.includes("javascript")
+   ? "What does the JavaScript engine/browser/runtime actually do? Separate syntax, values, bindings, execution, state, scheduling, memory and observable effects."
+   : cat.includes("mathematics")
+   ? "What are the definitions, assumptions, domain restrictions, transformations, identities, proof obligations and numerical limitations?"
+   : cat.includes("dsa")
+   ? "What is the data model, invariant, operation sequence, correctness argument and asymptotic cost? Why does the algorithm work?"
+   : "What is the engineering contract, failure mode, measurement method, trade-off and maintainability consequence?";
+ const level=(cat.includes("javascript")?"Language / Runtime":"")+(cat.includes("mathematics")?"Math / Proof":"")+(cat.includes("dsa")?"Algorithm / Data Structure":"")+(cat.includes("engineering")?"Engineering / Systems":"");
+ return "<section class='deep-dive card'>"+
+ "<h2>🧠 DEEP MODE — "+esc(t.title)+"</h2>"+
+ "<div class='idiot'><h3>🤡 IDIOT RULE</h3><p>We are not learning a sentence. We are building a machine in your head. "+esc(t.idiot||"Make the idea absurd enough to remember, then precise enough to trust.")+"</p><p><b>Teacher rule:</b> I can make the explanation ridiculous. I cannot make the technical rule ridiculous.</p></div>"+
+ "<div class='engineer'><h3>🧑‍💻 PROFESSIONAL QUESTION</h3><p>"+esc(angle)+"</p><p><b>Domain:</b> "+esc(level)+"</p></div>"+
+ "<h3>🔤 SUB-SKILL DISSECTION</h3>"+
+ tags.map((x,i)=>"<article class='card'><h4>"+(i+1)+". "+esc(x)+"</h4><p><b>What is it?</b> Define it without using its own name.</p><p><b>Why?</b> What problem does it solve, and what complexity does it introduce?</p><p><b>Mechanism:</b> What exact steps/rules produce the behavior?</p><p><b>Boundary:</b> When does the rule stop applying or require a special case?</p><p><b>Evidence:</b> What experiment, calculation, proof or test could prove your explanation wrong?</p><p><b>Connection:</b> Which earlier topic does this depend on, and which later topic depends on it?</p></article>").join("")+
+ "<h3>⚙️ EXECUTION / DERIVATION TRACE</h3>"+
+ "<div class='try'><p><b>Never teleport from input to answer.</b></p><pre>INPUT / ASSUMPTIONS
+      ↓
+PARSE / DEFINE
+      ↓
+RULES / INVARIANTS
+      ↓
+INTERMEDIATE STATE
+      ↓
+NEXT RULE / OPERATION
+      ↓
+RESULT
+      ↓
+VALIDATE AGAINST THE SPECIFICATION</pre><p>For programming, trace values, bindings, calls, state, queues and side effects. For mathematics, trace definitions, transformations and assumptions. For DSA, trace the data structure plus the invariant. For engineering, trace the request/state/failure path.</p></div>"+
+ "<h3>💀 PROFESSIONAL TRAP HUNT</h3>"+
+ "<div class='trap'><ul><li>What is the smallest valid input?</li><li>What happens for empty input?</li><li>What happens exactly at a boundary?</li><li>What happens with duplicate or adversarial data?</li><li>What happens when the input becomes huge?</li><li>What happens when an assumption is false?</li><li>What error/wrong result appears?</li><li>Can the failure be reproduced deterministically?</li></ul></div>"+
+ "<h3>📐 CORRECTNESS IS NOT OPTIONAL</h3><p>Write the rule/invariant that must remain true. Then explain why every operation preserves it. If this is mathematics, state the assumptions and prove the transformation. If this is DSA, prove the invariant and termination. If this is JavaScript, distinguish language guarantees from browser/runtime behavior.</p>"+
+ "<h3>⏱️ COST MODEL</h3><p>Ask what the solution costs in time, space, allocations, I/O, network latency, event-loop blocking, numerical error or human complexity. A solution that works once is not automatically a good solution.</p>"+
+ "<h3>🔗 KNOWLEDGE GRAPH</h3><p><b>Prerequisite → "+esc(t.title)+" → dependent concepts.</b> Do not memorize isolated cards. Explain why the previous concept is needed and predict which later concepts become easier because this one is mastered.</p>"+
+ "<h3>🧪 MASTER IT BY FOUR LEVELS</h3><ol><li><b>Idiot:</b> explain the stupid picture.</li><li><b>Competent:</b> solve a normal problem.</li><li><b>Advanced:</b> handle edge cases, failures, interactions and cost.</li><li><b>Wizard:</b> derive the rule, build from a blank page, prove/test it, deliberately break it, repair it, and teach it.</li></ol>"+
+ "</section>";
+}
+function renderLesson(){
+ let t=topics[idx],pct=Math.round(Object.keys(done).length/topics.length*100);
+ return "<div class='hero'><div class='crumb'>"+esc(t.cat)+" / "+esc(t.title)+"</div><h1>"+esc(t.title)+"</h1><p><b>Coverage:</b> "+esc(t.tags)+"</p><div class='progress'><div class='fill' style='width:"+pct+"%'></div></div></div>"+
+ "<section class='card'><h2>🧠 What is this?</h2><p>"+esc(t.core)+"</p><div class='idiot'><h2>🤡 IDIOT → IDIOT explanation</h2><p>"+esc(t.idiot)+"</p><p><b>Human translation:</b> "+esc(t.core)+"</p></div><div class='engineer'><h2>🧑‍💻 Precise theory</h2><p><b>Core rule:</b> "+esc(t.core)+"</p>"+theory(t)+"<p><b>Professional checklist:</b> definition → mechanism → constraints → complexity → edge cases → failure modes → testing.</p></div>"+
+ deepDive(t)+
+ "<div class='try'><h2>🧪 Do it for real</h2><p>"+esc(t.doit)+"</p><pre>LEARN → PREDICT → RUN / CALCULATE → BREAK IT → SEE REAL ERROR / WRONG RESULT → DEBUG → FIX → TEST → EDGE CASES → BUILD → EXPLAIN → MASTER.</pre></div>"+
+ workflow(t)+
+ "<div class='trap'><h2>💀 Common idiot trap</h2><p>"+esc(t.trap)+"</p></div><h2>🎯 Mastery test</h2><p>Without looking: define every listed subtopic, demonstrate one example, explain one edge case, name a failure mode, state the correctness rule and cost, and explain when this concept is useful.</p><div class='actions'><button class='primary' onclick='complete()'>✓ I can explain it</button><button onclick='prev()'>← Previous</button><button onclick='next()'>Next →</button></div></section>";
+}function complete(){done[idx]=true;localStorage.setItem("iw_lesson_done",JSON.stringify(done));render()}
 function next(){idx=(idx+1)%topics.length;render();scrollTo(0,0)}
 function prev(){idx=(idx-1+topics.length)%topics.length;render();scrollTo(0,0)}
 function render(){renderList();main.innerHTML=renderLesson()}
