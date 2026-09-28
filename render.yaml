@@ -1,0 +1,7 @@
+services:
+  - type: static
+    name: idiot-wizard
+    runtime: static
+    buildCommand: echo "Static site - no build required"
+    staticPublishPath: .
+    autoDeploy: true
