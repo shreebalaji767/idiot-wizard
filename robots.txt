@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://idiot-wizard.onrender.com/sitemap.xml
+Sitemap: https://shreebalaji767.github.io/idiot-wizard/sitemap.xml
