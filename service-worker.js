@@ -1,4 +1,4 @@
-const CACHE="iw-v6";
+const CACHE="iw-v7";
 const PRECACHE=[
   "./",
   "./index.html",
