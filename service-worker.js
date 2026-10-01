@@ -10,6 +10,7 @@ const PRECACHE=[
   "./service-worker.js",
   "./pwa.js",
   "./icon.svg",
+  "./responsive.css",
   "./robots.txt",
   "./sitemap.xml"
 ];
