@@ -1,0 +1,45 @@
+name: Validate IDIOT → WIZARD
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  static-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate manifest
+        run: python -m json.tool manifest.json >/dev/null
+
+      - name: Validate required web files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, json
+
+          required = [
+              "index.html", "learn.html", "practical.html",
+              "deep.html", "deep-learning.html",
+              "manifest.json", "service-worker.js", "pwa.js", "icon.svg"
+          ]
+          for name in required:
+              assert Path(name).is_file(), f"Missing {name}"
+
+          for path in Path(".").glob("*.html"):
+              text = path.read_text(encoding="utf-8")
+              assert re.search(r"<title>.+?</title>", text, re.I|re.S), f"{path}: missing title"
+              assert re.search(r'<meta[^>]+name=["\']description["\']', text, re.I), f"{path}: missing description"
+              assert 'rel="manifest"' in text, f"{path}: missing manifest link"
+              assert 'src="pwa.js"' in text, f"{path}: missing PWA runtime"
+
+          manifest=json.loads(Path("manifest.json").read_text(encoding="utf-8"))
+          assert manifest["name"] == "IDIOT → WIZARD"
+          assert manifest["start_url"]
+          assert manifest["scope"]
+          assert manifest["icons"]
+          print("Static validation passed.")
+          PY
