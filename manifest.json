@@ -1,1 +1,24 @@
-{"name":"IDIOT → WIZARD","short_name":"IdiotWizard","start_url":".","display":"standalone","background_color":"#09101e","theme_color":"#101827","description":"Static offline-first learning platform for JavaScript, mathematics and DSA."}
+{
+  "id": "./",
+  "name": "IDIOT → WIZARD",
+  "short_name": "IdiotWizard",
+  "description": "Offline-first learning studio for JavaScript, mathematics, DSA, debugging and practical programming.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#09101e",
+  "theme_color": "#101827",
+  "categories": ["education", "developer", "productivity"],
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ],
+  "shortcuts": [
+    {"name":"JavaScript Lab","short_name":"JS Lab","url":"./practical.html#javascript","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml"}]},
+    {"name":"Deep Learning","short_name":"Deep","url":"./deep.html","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml"}]},
+    {"name":"Full Lessons","short_name":"Lessons","url":"./learn.html","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml"}]}
+  ]
+}
