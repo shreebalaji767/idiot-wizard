@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="t d">
+<title id="t">IDIOT Wizard</title><desc id="d">Purple wizard hat and lightning bolt icon for IDIOT to WIZARD</desc>
+<rect width="512" height="512" rx="96" fill="#09101e"/>
+<circle cx="256" cy="278" r="142" fill="#111b2f" stroke="#7c3aed" stroke-width="18"/>
+<path d="M112 278h288l-25-48H137z" fill="#8b5cf6"/>
+<path d="M155 230c18-91 60-137 101-137s83 46 101 137H155z" fill="#6d28d9"/>
+<path d="M191 154c24-8 47-13 65-13 18 0 41 5 65 13-8 15-15 30-19 46h-92c-4-16-11-31-19-46z" fill="#a78bfa"/>
+<path d="M271 93l-17 48 34-13-14 37 45-49-32 9 14-32z" fill="#fbbf24"/>
+<text x="256" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="72" font-weight="900" fill="#eef2ff">IW</text>
+<text x="256" y="408" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#a78bfa">BLSSNVJ21</text>
+</svg>
