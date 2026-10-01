@@ -1,0 +1,76 @@
+/* IDIOT → WIZARD — Universal responsive layer
+   Target: phones, tablets, laptops, desktops, ultrawide screens, touch and keyboard. */
+:root{
+  --iw-gutter:clamp(12px,2vw,32px);
+  --iw-radius:clamp(10px,1.2vw,18px);
+  --iw-control:44px;
+}
+html{width:100%;min-width:0;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:72px}
+body{width:100%;min-width:0;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
+*,*::before,*::after{box-sizing:border-box}
+img,svg,video,canvas,iframe{max-width:100%;height:auto}
+button,input,select,textarea{max-width:100%;font:inherit}
+button,a,input,select,textarea{touch-action:manipulation}
+button{min-height:var(--iw-control)}
+input,select,textarea{min-height:var(--iw-control)}
+a{overflow-wrap:anywhere}
+pre{max-width:100%;overflow:auto;-webkit-overflow-scrolling:touch;tab-size:2}
+table{max-width:100%;border-collapse:collapse}
+[role="dialog"],.modal,.dialog{max-width:calc(100vw - 24px)}
+.overflow-x,.table-wrap,.table-responsive{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.grid,.cards,.two,.toolbar,.layout,.main-layout{min-width:0}
+.hero,.card,.panel,.box,.step,.idiot,.real,.trap,.danger,.build,.practice,.precise,.lab,.boss{min-width:0;overflow-wrap:anywhere}
+.code,code,pre{overflow-wrap:anywhere;word-break:break-word}
+@media (max-width:1100px){
+  .app,.wrap{grid-template-columns:1fr!important;display:block!important}
+  aside,.side{position:sticky!important;top:0!important;z-index:100;width:100%!important;height:auto!important;max-height:min(48vh,430px)!important;overflow:auto!important;border-right:0!important;border-bottom:1px solid var(--line,#2b3a58)!important}
+  .side nav,.nav,.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .side nav button,.side .topic,.list button{min-height:44px;margin:0!important}
+  main,.main{width:100%!important;max-width:none!important;margin:0!important;padding:var(--iw-gutter)!important}
+  .topics{position:relative!important;top:0!important;height:auto!important;max-height:330px}
+}
+@media (max-width:800px){
+  .grid,.two,.toolbar{grid-template-columns:1fr!important}
+  .hero,.card,.panel,.box{padding:clamp(13px,3vw,20px)!important}
+  h1{font-size:clamp(30px,8vw,48px)!important}
+  h2{font-size:clamp(21px,5vw,32px)}
+  .editor,.out{min-height:240px!important}
+}
+@media (max-width:600px){
+  :root{--iw-gutter:12px}
+  body{font-size:14px;line-height:1.6}
+  .side{max-height:42vh!important;padding:10px!important}
+  .side nav,.nav,.list{grid-template-columns:1fr 1fr}
+  .nav a{min-height:44px;display:grid;place-items:center;text-align:center}
+  main,.main{padding:12px!important}
+  .hero,.card,.panel,.box{border-radius:12px!important;padding:13px!important}
+  .actions,.row{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .actions>*:only-child,.row>*:only-child{grid-column:1/-1}
+  .actions button,.row button{width:100%;min-width:0}
+  .stage{display:grid;grid-template-columns:1fr 1fr}
+  .stage b{text-align:center}
+  .editor{min-height:220px!important;font-size:13px!important}
+  pre{font-size:12px}
+  table{font-size:12px}
+}
+@media (max-width:380px){
+  .side nav,.nav,.list,.actions,.row,.stage{grid-template-columns:1fr}
+  h1{font-size:28px!important}
+  button,input,select,textarea{font-size:14px}
+}
+@media (min-width:1600px){
+  main,.main{max-width:1320px}
+}
+@media (min-width:2200px){
+  main,.main{max-width:1500px}
+}
+@media (pointer:coarse){
+  button,.action,.topic,a{min-height:44px}
+  input,select,textarea{min-height:46px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+@media (prefers-contrast:more){
+  button,input,select,textarea,.card,.panel,.hero{border-width:2px}
+}
