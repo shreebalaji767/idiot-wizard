@@ -1,5 +1,25 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A deep learning studio for mastering JavaScript, mathematics and DSA through precise explanations, edge cases and build tasks.">
+<meta name="keywords" content="deep JavaScript, DSA deep learning, programming fundamentals, algorithm mastery, maths for coding">
+<meta name="author" content="BLSSNVJ21">
+<meta name="creator" content="BLSSNVJ21">
+<meta name="application-name" content="IDIOT → WIZARD">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IDIOT → WIZARD">
+<meta property="og:title" content="IDIOT → WIZARD — Deep Learning Studio">
+<meta property="og:description" content="Deep technical lessons with precise rules, edge cases and mastery drills.">
+<meta property="og:image" content="icon.svg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IDIOT → WIZARD — Deep Learning Studio">
+<meta name="twitter:description" content="Deep technical lessons with precise rules, edge cases and mastery drills.">
+<meta name="twitter:image" content="icon.svg">
+<meta name="theme-color" content="#101827">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <title>IDIOT → WIZARD — Deep Learning Studio</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#070b14;color:#eef3ff;font:16px/1.7 system-ui,sans-serif}header{padding:30px 18px;text-align:center;position:sticky;top:0;z-index:5;background:#080e19ee;border-bottom:1px solid #2b3a58}h1{font-size:clamp(34px,7vw,70px);line-height:1;margin:0}main{max-width:1200px;margin:auto;padding:18px}.toolbar,.grid{display:grid;gap:14px}.toolbar{grid-template-columns:1fr 220px;margin-bottom:14px}.grid{grid-template-columns:300px 1fr}.panel,.card{background:#101a2c;border:1px solid #2b3a58;border-radius:15px;padding:17px}.topics{height:calc(100vh - 150px);position:sticky;top:135px;overflow:auto}.topic,button,input,select,textarea{font:inherit}.topic,button{cursor:pointer;color:#eef3ff;background:#17243c;border:1px solid #2b3a58;border-radius:9px;padding:10px}.topic{width:100%;text-align:left;margin:4px 0}.topic.active{background:#281a49;border-color:#8b5cf6}input,select,textarea{width:100%;background:#060a12;color:#eef3ff;border:1px solid #2b3a58;border-radius:9px;padding:11px}.idiot{border-left:5px solid #8b5cf6;background:#17112b}.real{border-left:5px solid #38bdf8;background:#0d2030}.danger{border-left:5px solid #ef4444;background:#281216}.lab{border-left:5px solid #22c55e;background:#0c2118}pre{background:#050810;border:1px solid #2b3a58;border-radius:9px;padding:13px;overflow:auto}.out{white-space:pre-wrap;background:#050810;border:1px solid #2b3a58;padding:10px;border-radius:8px}.bad{color:#fca5a5}.good{color:#86efac}.badge{display:inline-block;border:1px solid #2b3a58;border-radius:999px;padding:3px 8px;margin:2px;color:#c4b5fd;font-size:12px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #2b3a58;padding:8px;text-align:left}th{background:#17243c}@media(max-width:850px){.grid,.toolbar{grid-template-columns:1fr}.topics{height:auto;max-height:330px;position:relative;top:0}main{padding:10px}}
@@ -71,4 +91,5 @@ function breakIt(){let x=document.getElementById("break").value.trim();document.
 function check(){let x=document.getElementById("proof").value.trim();document.getElementById("proofout").textContent=x.length<80?"Too vague. State the rule/invariant, why each step preserves it, and the resource cost.":"Good. Now attack your proof with a boundary case and an adversarial input.";}
 function build(){let x=document.getElementById("build").value.trim();document.getElementById("buildout").textContent=x.length<100?"Add inputs, outputs, mechanism, edge cases, failure behavior, tests and complexity.":"Solid. Build it without copying, break it deliberately, and add a regression test.";}
 document.getElementById("search").oninput=renderTopics;document.getElementById("domain").onchange=renderTopics;render();
-</script></body></html>
+</script><script src="pwa.js"></script>
+</body></html>
