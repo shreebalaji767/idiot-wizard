@@ -3,6 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Deep, beginner-friendly programming lessons covering JavaScript, mathematics, DSA and engineering concepts.">
+<meta name="keywords" content="JavaScript lessons, programming lessons, DSA lessons, mathematics for programmers, coding education">
+<meta name="author" content="BLSSNVJ21">
+<meta name="creator" content="BLSSNVJ21">
+<meta name="application-name" content="IDIOT → WIZARD">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IDIOT → WIZARD">
+<meta property="og:title" content="IDIOT → WIZARD — Full Lessons">
+<meta property="og:description" content="Full programming lessons from idiot explanations to precise engineering rules.">
+<meta property="og:image" content="icon.svg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IDIOT → WIZARD — Full Lessons">
+<meta name="twitter:description" content="Full programming lessons from idiot explanations to precise engineering rules.">
+<meta name="twitter:image" content="icon.svg">
+<meta name="theme-color" content="#101827">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <title>IDIOT → WIZARD — Full Lessons</title>
 <style>
 :root{--bg:#070b14;--panel:#101a2c;--panel2:#17243c;--line:#2b3a58;--text:#eef3ff;--muted:#aab6cd;--purple:#8b5cf6;--green:#22c55e;--red:#ef4444;--blue:#38bdf8}
@@ -316,5 +336,6 @@ function next(){idx=(idx+1)%topics.length;render();window.scrollTo({top:0,behavi
 function prev(){idx=(idx-1+topics.length)%topics.length;render();window.scrollTo({top:0,behavior:"smooth"});}
 search.oninput=renderList;category.onchange=renderList;render();
 </script>
+<script src="pwa.js"></script>
 </body>
 </html>
