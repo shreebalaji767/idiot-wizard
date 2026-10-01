@@ -59,6 +59,17 @@
   });
 
   document.addEventListener("DOMContentLoaded",function(){
+    document.querySelectorAll(".logo,.brand").forEach(function(el){
+      if(el.querySelector(".iw-brand-icon")) return;
+      var img=document.createElement("img");
+      img.className="iw-brand-icon";
+      img.src="icon.svg";
+      img.alt="";
+      img.width=34;
+      img.height=34;
+      img.style.cssText="width:34px;height:34px;vertical-align:middle;margin-right:8px;border-radius:9px;object-fit:cover";
+      el.prepend(img);
+    });
     var footer=document.createElement("footer");
     footer.setAttribute("aria-label","Site footer");
     footer.textContent="⚡ IDIOT → WIZARD · BLSSNVJ21 · Learn by breaking, debugging and building.";
