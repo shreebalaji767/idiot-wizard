@@ -1,8 +1,28 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101827"><link rel="manifest" href="manifest.json">
-<title>IDIOT → WIZARD</title>
+<meta name="description" content="IDIOT → WIZARD is an offline-first learning studio for JavaScript, mathematics, DSA, debugging and practical programming.">
+<meta name="keywords" content="JavaScript, learn JavaScript, DSA, data structures, algorithms, mathematics, programming, debugging, coding practice, PWA">
+<meta name="author" content="BLSSNVJ21">
+<meta name="creator" content="BLSSNVJ21">
+<meta name="application-name" content="IDIOT → WIZARD">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IDIOT → WIZARD">
+<meta property="og:title" content="IDIOT → WIZARD — Learn JavaScript, Maths & DSA">
+<meta property="og:description" content="Learn JavaScript, Maths & DSA by breaking, debugging and building.">
+<meta property="og:image" content="icon.svg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IDIOT → WIZARD — Learn JavaScript, Maths & DSA">
+<meta name="twitter:description" content="Learn JavaScript, Maths & DSA by breaking, debugging and building.">
+<meta name="twitter:image" content="icon.svg">
+<meta name="theme-color" content="#101827">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+
+<title>IDIOT → WIZARD — Learn JavaScript, Maths & DSA</title>
 <style>
 :root{--b:#09101e;--p:#111b2f;--p2:#17233b;--t:#edf2ff;--m:#9aa8c4;--a:#7c3aed;--g:#16a34a;--r:#dc2626;--l:#293754;--c:#070b14}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#070b14,#101827,#1b1230);color:var(--t);font:15px/1.55 system-ui,sans-serif}.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}.side{background:#080e1a;border-right:1px solid var(--l);padding:18px;position:sticky;top:0;height:100vh;overflow:auto}.logo{font-size:23px;font-weight:900}.logo i{color:#a78bfa;font-style:normal}.muted{color:var(--m)}nav button,.side>button{width:100%;text-align:left;margin:4px 0}.active{background:#271746;border-color:#6d45b5}button{background:var(--p2);color:var(--t);border:1px solid var(--l);padding:9px 12px;border-radius:9px;cursor:pointer}button:hover{filter:brightness(1.15)}.primary{background:var(--a);border-color:var(--a)}.main{padding:24px;max-width:1500px;width:100%;margin:auto}.top{display:flex;gap:8px;margin-bottom:15px}.search{flex:1;background:var(--p);color:var(--t);border:1px solid var(--l);border-radius:10px;padding:11px}.hero,.card{background:rgba(17,27,47,.9);border:1px solid var(--l);border-radius:15px;padding:19px;margin-bottom:14px}.hero{background:linear-gradient(135deg,#251548,#12263c)}h1{font-size:clamp(30px,5vw,56px);line-height:1.05;margin:4px 0 12px}h2{margin-top:5px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.grid .card{margin:0}.bar{height:9px;background:#26324b;border-radius:9px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#7c3aed,#16a34a)}.topic{display:flex;gap:10px;padding:10px;border-bottom:1px solid #202c45}.topic small{display:block;color:var(--m)}.pill{font-size:12px;color:#c4b5fd;border:1px solid var(--l);border-radius:99px;padding:2px 8px}.lab{display:grid;grid-template-columns:1fr 1fr;gap:12px}.editor,.out{width:100%;min-height:340px;background:var(--c);color:#d1fae5;border:1px solid var(--l);border-radius:10px;padding:13px;font:13px/1.5 ui-monospace,monospace}.out{white-space:pre-wrap;overflow:auto}.err{color:#fecaca}.ok{color:#bbf7d0}.field{width:100%;padding:10px;background:#0b1323;color:var(--t);border:1px solid var(--l);border-radius:8px}.math{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.result{white-space:pre-wrap;background:#090f1b;border:1px solid var(--l);border-radius:9px;padding:11px;margin-top:9px}.lesson p{max-width:900px}.lesson pre,pre{background:var(--c);border:1px solid var(--l);border-radius:8px;padding:12px;overflow:auto}.hidden{display:none!important}@media(max-width:850px){.app{display:block}.side{position:relative;height:auto;border:0;border-bottom:1px solid var(--l)}.main{padding:12px}.lab{grid-template-columns:1fr}}
@@ -199,4 +219,5 @@ function debug(){return '<section class="hero"><h1>Debugging Lab</h1><p>Do not p
 function projects(){let p=["Expression parser","Sorting visualizer","Graph traversal explorer","Pathfinding tool","Autocomplete trie","LRU cache","Mini test runner","Statistics workbench","Matrix toolkit","Offline notes app","HTTP inspector mock","Algorithm benchmarker"];return '<section class="hero"><h1>Projects</h1><p>Build things that force the concepts to become real.</p></section><div class="grid">'+p.map(function(x,i){return '<section class="card"><span class="pill">PROJECT '+(i+1)+'</span><h2>'+x+'</h2><p>Requirements: design → implement → edge cases → tests → benchmark → explain complexity → refactor.</p></section>'}).join("")+'</div>'}
 function render(){nav();let v=document.querySelector("#view");if(S.page==="home")v.innerHTML=home();else if(S.page==="curriculum")v.innerHTML=curriculum();else if(S.page==="lesson")v.innerHTML=lesson();else if(S.page==="js")v.innerHTML=jsLab();else if(S.page==="math")v.innerHTML=mathLab();else if(S.page==="dsa")v.innerHTML=dsaLab();else if(S.page==="debug")v.innerHTML=debug();else v.innerHTML=projects();if(S.page==="curriculum")document.querySelectorAll("[data-id]").forEach(function(x){x.onchange=function(){if(x.checked)S.done[x.dataset.id]=true;else delete S.done[x.dataset.id];save();render()}});if(S.page==="js")setupJS();if(S.page==="dsa")setupDsa()}
 document.querySelector("#search").oninput=function(){if(S.page!=="curriculum")S.page="curriculum";render()};document.querySelector("#export").onclick=function(){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="idiot-wizard-progress.json";a.click()};document.querySelector("#import").onclick=function(){document.querySelector("#file").click()};document.querySelector("#file").onchange=function(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=function(){try{let x=JSON.parse(r.result);S.done=x.done||{};save();render()}catch(_){alert("Invalid progress JSON")}};r.readAsText(f)};document.querySelector("#reset").onclick=function(){if(confirm("Erase local progress?")){S.done={};save();render()}};if("serviceWorker"in navigator)navigator.serviceWorker.register("service-worker.js").catch(function(){});render();
-</script></body></html>
+</script><script src="pwa.js"></script>
+</body></html>
