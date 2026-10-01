@@ -43,3 +43,19 @@ jobs:
           assert manifest["icons"]
           print("Static validation passed.")
           PY
+
+      - name: JavaScript syntax check
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, subprocess, tempfile
+          for path in Path(".").glob("*.html"):
+              text=path.read_text(encoding="utf-8")
+              for i,script in enumerate(re.findall(r"<script(?:[^>]*)>(.*?)</script>",text,re.I|re.S)):
+                  if not script.strip(): continue
+                  with tempfile.NamedTemporaryFile("w",suffix=".js",delete=False,encoding="utf-8") as f:
+                      f.write(script); name=f.name
+                  subprocess.run(["node","--check",name],check=True)
+          print("JavaScript syntax checks passed.")
+          PY
