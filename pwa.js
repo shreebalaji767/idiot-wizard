@@ -75,6 +75,7 @@
     footer.textContent="⚡ IDIOT → WIZARD · BLSSNVJ21 · Learn by breaking, debugging and building.";
     footer.style.cssText="max-width:1100px;margin:30px auto 0;padding:18px 14px;color:#9aa8c4;text-align:center;font:12px/1.5 system-ui,sans-serif;border-top:1px solid rgba(43,58,88,.7)";
     document.body.appendChild(footer);
+    document.documentElement.classList.add("iw-ready");
   });
 
   registerSW();
