@@ -3,6 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Structured deep lessons for JavaScript, mathematics and DSA with examples, mechanisms, debugging and mastery tasks.">
+<meta name="keywords" content="deep learning programming, JavaScript concepts, mathematics, DSA, algorithms, debugging">
+<meta name="author" content="BLSSNVJ21">
+<meta name="creator" content="BLSSNVJ21">
+<meta name="application-name" content="IDIOT → WIZARD">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IDIOT → WIZARD">
+<meta property="og:title" content="IDIOT → WIZARD — Deep Learning">
+<meta property="og:description" content="Structured deep lessons for programmers.">
+<meta property="og:image" content="icon.svg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IDIOT → WIZARD — Deep Learning">
+<meta name="twitter:description" content="Structured deep lessons for programmers.">
+<meta name="twitter:image" content="icon.svg">
+<meta name="theme-color" content="#101827">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <title>IDIOT → WIZARD — Deep Learning</title>
 <style>
 .topline{max-width:1500px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
@@ -283,5 +303,6 @@ function next(){current=(current+1)%curriculum.length;render();scrollTo(0,0)}
 function prev(){current=(current-1+curriculum.length)%curriculum.length;render();scrollTo(0,0)}
 search.oninput=renderList;cat.onchange=renderList;render();
 </script>
+<script src="pwa.js"></script>
 </body>
 </html>
